@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -41,7 +41,22 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'settings' => 'array'
     ];
+
+    public function getSettings(): array {
+        return $this->settings;
+    }
+
+    public function getSetting(string $key): mixed
+    {
+        return $this->settings[$key] ?? null;
+    }
+
+    public function setSetting(string $key, mixed $value): void
+    {
+        $this->settings[$key] = $value;
+    }
 
     public function posts(): HasMany
     {
