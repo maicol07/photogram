@@ -12,9 +12,10 @@ return new class extends Migration {
         Schema::create('comments', static function (Blueprint $table) {
             $table->id();
 
-            $table->foreignIdFor(User::class);
             $table->foreignIdFor(Post::class);
-            $table ->string('content');
+            $table->foreignIdFor(User::class);
+
+            $table->string('content');
 
             $table->timestamps();
         });
