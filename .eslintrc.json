@@ -1,0 +1,73 @@
+{
+    "env": {
+        "browser": true,
+        "es6": true,
+        "es2017": true,
+        "es2020": true,
+        "es2021": true
+    },
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "lib": ["esnext"]
+    },
+    "plugins": [
+        "new-with-error",
+        "simple-import-sort",
+        "only-warn"
+    ],
+    "extends": [
+        "airbnb-base",
+        "plugin:regexp/recommended",
+        "plugin:sonarjs/recommended",
+        "plugin:unicorn/recommended",
+        "plugin:you-dont-need-lodash-underscore/compatible"
+    ],
+    "rules": {
+        "max-len": ["error", {"code": 120}],
+        "capitalized-comments": [
+            "error",
+            "always",
+            {
+                "ignorePattern": "pragma|ignored|noinspection",
+                "ignoreInlineComments": true
+            }
+        ],
+        "comma-dangle": "off",
+        "class-methods-use-this": "off",
+        "eol-last": "off",
+        "func-names": "off",
+        "lines-between-class-members": "off",
+        "new-cap": ["error", { "properties": false }],
+        "no-invalid-this": "off",
+        "no-multiple-empty-lines": "off",
+        "no-param-reassign": ["error", { "props": false }],
+        "no-restricted-syntax": "off",
+        "no-undef": "off",
+        "no-underscore-dangle": "off",
+        "no-unused-vars": "off",
+        "no-void": ["error", { "allowAsStatement": true }],
+        "object-curly-spacing": "off",
+        "sort-imports": "off",
+        // Plugins
+        // "custom-elements/extends-correct-class": "off",
+        // Conflicts when extending other Web Components
+        "filenames/match-regex": "off",
+        "i18n-text/no-en": "off",
+        // Allow imports to modules without extension
+        "import/extensions": ["error",
+            {
+                "js": "ignorePackages"
+            }
+        ],
+        "import/no-cycle": "off",
+        "import/no-unresolved": "off",
+        "import/order": "off",
+        "import/prefer-default-export": "off",
+        "n/file-extension-in-import": "off",
+        "new-with-error/new-with-error": "error",
+        "prettier/prettier": "off",
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "unicorn/filename-case": "off"
+    }
+}
