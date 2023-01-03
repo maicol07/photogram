@@ -1,0 +1,49 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "dependencies": {
+        "@material/button": "^14.0.0",
+        "@material/card": "^14.0.0",
+        "@material/dialog": "^14.0.0",
+        "@material/icon-button": "^14.0.0",
+        "@material/image-list": "^14.0.0",
+        "@material/list": "^14.0.0",
+        "@material/layout-grid": "^14.0.0",
+        "@material/menu": "^14.0.0",
+        "@material/menu-surface": "^14.0.0",
+        "@material/ripple": "^14.0.0",
+        "@material/select": "^14.0.0",
+        "@material/snackbar": "^14.0.0",
+        "@material/textfield": "^14.0.0",
+        "@mdi/font": "^7.1.96"
+    },
+    "devDependencies": {
+        "axios": "^1.1.2",
+        "eslint": "^8.30.0",
+        "eslint-config-airbnb-base": ">=15.0.0",
+        "eslint-plugin-import": ">=2.25.4",
+        "eslint-plugin-new-with-error": ">=2.0.0",
+        "eslint-plugin-only-warn": ">=1.0.3",
+        "eslint-plugin-regexp": ">=1.1.0",
+        "eslint-plugin-simple-import-sort": ">=7.0.0",
+        "eslint-plugin-sonarjs": ">=0.10.0",
+        "eslint-plugin-unicorn": ">=35.0.0",
+        "eslint-plugin-you-dont-need-lodash-underscore": ">=6.12.0",
+        "laravel-vite-plugin": "^0.7.0",
+        "lodash": "^4.17.19",
+        "postcss": "^8.1.14",
+        "postcss-html": "^1.5.0",
+        "sass": "^1.57.1",
+        "stylelint": "^14.14.0",
+        "stylelint-config-html": "^1.1.0",
+        "stylelint-config-idiomatic-order": "^9.0.0",
+        "stylelint-config-recommended-scss": "^8.0.0",
+        "stylelint-config-standard": "^29.0.0",
+        "stylelint-scss": "^4.3.0",
+        "vite": "^3.0.0"
+    },
+    "packageManager": "pnpm@7.21.0"
+}
