@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Livewire\Login;
+use App\Http\Livewire\Signup;
+use App\Http\Livewire\User\Profile;
 use Illuminate\Support\Facades\Route;
 
 /*
