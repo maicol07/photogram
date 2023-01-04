@@ -2,19 +2,31 @@
 
 namespace App\Http\Livewire\User;
 
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
+use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
 class Dialog extends Component
 {
     use WithFileUploads;
 
+    public User $user;
+
+    protected $rules = [
+        'user.bio' => 'string|max:140',
+        'user.profileImage' => 'string',
+    ];
+
+    /**
+     * The profile image of user
+     *
+     * @var TemporaryUploadedFile
+     */
+    public $image;
+
     public bool $open = false;
-
-    public $image = '';
-
-    public string $bio = '';
 
     public function close(): void
     {
@@ -28,8 +40,11 @@ class Dialog extends Component
             'image' => 'image|max:1024', // 1MB Max
         ]);
 
-        $this->image->store('image');
-        $this->emitUp('editProfile', ['img' => $this->image, 'bio' => $this->bio]);
+        assert($this->image instanceof TemporaryUploadedFile);
+        $path = $this->image->store('public');
+        $this->user->profileImage = basename($path);
+        $this->user->save();
+        $this->emitUp('editProfile');
     }
 
     public function render(): View
