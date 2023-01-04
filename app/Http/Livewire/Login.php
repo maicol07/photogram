@@ -29,11 +29,10 @@ class Login extends Page
 
 
         if (Auth::attempt($validatedData)) {
-            dd('if true');
             session()->regenerate();
 //            return redirect()->intended('dashboard');
         }
-        session()->flash('message', 'The provided credentials do not match our records.');
+        session()->flash('message', __('The provided credentials do not match our records.'));
     }
 
     public function updated($propertyName): void
