@@ -63,6 +63,37 @@
     margin: 5% 0 0 7%;
 }
 
+#temporary-image {
+    width: 170px;
+}
+
+#preview-image {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#preview-image > span {
+    display: flex;
+    align-items: center;
+}
+
+.dialog-label {
+    font-size: 15px;
+}
+
+#attachments-display {
+    margin-left: 2px;
+}
+
+#edit-image {
+    display: none;
+}
+
+#dialog-layout {
+    margin: 8px 0; align-items: center;
+}
+
 @include card.core-styles;
 @include textfield.core-styles;
 @include dialog.core-styles;
