@@ -12,7 +12,6 @@ abstract class Page extends Component
     public function hydrate(): void
     {
         app()->setLocale(session()->get('locale', 'en'));
-        session()->put('refreshed', session()->get('refreshed', 0) + 1);
     }
 
     public function render(): View
