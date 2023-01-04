@@ -30,7 +30,7 @@ class Dialog extends Component
 
     public function close(): void
     {
-        $this->emitUp('editProfile', []);
+        $this->emitUp('editProfile');
     }
 
     public function accept(): void

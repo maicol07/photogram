@@ -6,7 +6,7 @@
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-3">
                     <div>
-                        <img class="mdc-elevation--z8" src="{{$imageProfile}}" alt="image profile" />
+                        <img class="mdc-elevation--z8" src="{{$user->profileImage}}" alt="image profile" />
                     </div>
                     <x-button id="edit-profile-button" label="edit profile" wire:click="openDialog"
                               variant="outlined" trailing-icon="true" icon="pencil" />
@@ -26,14 +26,14 @@
                             <div>follows</div>
                         </div>
                         <div class="mdc-layout-grid__cell--span-12">
-                            <div>{{$bio}}</div>
+                            <div>{{$user->bio}}</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <x-dialog id="profile-dialog" title="Edit Profile" :open="$open">
-            <livewire:user.dialog :open="$open"/>
+            <livewire:user.dialog :open="$open" :user="$user"/>
         </x-dialog>
     </div>
     {{--<livewire:user.posts :posts="$user->posts" />--}}

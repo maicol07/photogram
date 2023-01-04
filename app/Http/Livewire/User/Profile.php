@@ -3,20 +3,19 @@
 namespace App\Http\Livewire\User;
 
 use App\Http\Livewire\Page;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Livewire\Component;
 
 class Profile extends Page
 {
-    public $imageProfile = 'https://picsum.photos/200/200';
+    public User $user;
 
     public int $numberPosts = 0;
 
     public int $numberFollowers = 0;
 
     public int $numberFollows = 0;
-
-    public string $bio = 'Biografia';
 
     public array $posts = [
         ['img' => 'https://picsum.photos/200/200', 'alt' => 'alt1', 'text' => 'text1'],
@@ -28,22 +27,26 @@ class Profile extends Page
 
     protected $listeners = ['editProfile' => 'editProfile'];
 
-    public function editProfile(array $values): void
+    public function mount(): void
     {
-        foreach ($values as $prop => $value) {
-            $this->$prop = $value;
-        }
-        $this->emitSelf('closeDialog');
+        $this->user = User::find(1);
+        $this->numberPosts = $this->user->posts()->count();
+        $this->numberFollowers = $this->user->followers()->count();
+        $this->numberFollows = $this->user->follows()->count();
+    }
+
+    public function editProfile(): void
+    {
+        $this->open = false;
     }
 
     public function openDialog(): void
     {
         $this->open = true;
-        $this->emitSelf('openDialog');
     }
 
     public function page(): View
     {
-        return view('livewire.user.profile', ['user' => auth()->user()]);
+        return view('livewire.user.profile');
     }
 }
