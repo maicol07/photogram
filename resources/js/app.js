@@ -59,28 +59,7 @@ window.mdcComponentsDefinitions = {
   '.mdc-text-field': {
     slug: 'textField',
     component: MDCTextField,
-    afterInit: [
-      /**
-       *
-       * @param element
-       * @param {?MDCTextField} instance
-       */
-      (element, instance) => {
-        // const textField = element.classList.contains('mdc-text-field') ? element : element.closest('.mdc-text-field');
-        // if (textField.querySelector('input, textarea')?.value) {
-        //   if (element.classList.contains('mdc-text-field')) {
-        //     element.classList.add('mdc-text-field--label-floating');
-        //   } else if (element.classList.contains('mdc-floating-label')) {
-        //     element.classList.add('mdc-notched-outline--notched');
-        //   } else if (element.classList.contains('mdc-line-ripple') && document.activeElement === textField.querySelector('input, textarea')) {
-        //     element.classList.add('mdc-line-ripple--active');
-        //   }
-        // }
-        // instance?.layout();
-        // if (document.activeElement === textField.querySelector('input, textarea')) {
-        //   textField.querySelector('.mdc-line-ripple')?.classList.add('mdc-line-ripple--active');
-        // }
-      }]
+    afterInit: []
   },
   '.mdc-text-field .mdc-floating-label': {
     afterInit: '.mdc-text-field'
@@ -92,32 +71,25 @@ window.mdcComponentsDefinitions = {
       /**
        *
        * @param element
-       * @param {?MDCSelect} instance
+       * @param {MDCSelect} instance
        */
       (element, instance) => {
-        instance.listen('MDCSelect:change',
+        element.addEventListener(
+          'MDCSelect:change',
           /**
            * @param {import('@material/select').MDCSelectEvent} event
            */
           (event) => {
-            event.target.querySelector('input').dispatchEvent(new InputEvent('input', {data: event.detail.value}));
+            event.target.querySelector('input')
+              .dispatchEvent(new InputEvent('input', {data: event.detail.value}));
           }
         );
       }
     ],
-    // afterInit: (element) => {
-    // if (element.parentElement.querySelector('select')?.value) {
-    //   element.classList.add('mdc-select--filled');
-    // }
-    // }
   },
   '.mdc-snackbar': {
     slug: 'snackbar',
     component: MDCSnackbar,
-    /**
-     * @param {HTMLElement} element The snackbar element
-     * @param {MDCSnackbar} instance The snackbar instance
-     */
     afterInit: [
       /**
        * @param {HTMLElement} element The snackbar element
@@ -155,43 +127,49 @@ window.mdcComponentsDefinitions = {
  * @param {HTMLElement} element The HTML element to initialize
  */
 function mdcInit(element) {
-  for (const [selector, {
+  const matchingDefinitions = Object.entries(window.mdcComponentsDefinitions)
+    .filter(([selector]) => element.matches(selector));
+
+  for (const [, {
     slug,
     component,
     beforeInit,
     afterInit
-  }] of Object.entries(mdcComponentsDefinitions)) {
-    if (element.matches(selector)) {
-      if (beforeInit) {
-        beforeInit(element);
-      }
+  }] of matchingDefinitions) {
+    if (beforeInit) {
+      beforeInit(element);
+    }
 
-      let instance;
-      if (component) {
-        instance = component.attachTo(element);
-        window.mdc[slug][element.id] = instance;
-      }
+    let instance;
+    if (component) {
+      instance = component.attachTo(element);
+      window.mdc[slug][element.id] = instance;
+    }
 
-      if (afterInit) {
-        // If the afterInit is a string, it is a selector. Call the afterInit function of that selector.
-        if (typeof afterInit === 'string') {
-          for (const callback of mdcComponentsDefinitions[afterInit].afterInit) {
-            callback(element, instance);
-          }
-        } else {
-          for (const callback of afterInit) {
-            callback(element, instance);
-          }
-        }
+    let callbacks = afterInit;
+
+    // If the afterInit is a string, it is a selector. Call the afterInit function of that selector.
+    if (typeof afterInit === 'string') {
+      callbacks = mdcComponentsDefinitions[afterInit].afterInit;
+    }
+
+    if (Array.isArray(callbacks)) {
+      for (const callback of afterInit) {
+        callback(element, instance);
       }
     }
   }
 }
 
 Livewire.hook('element.initialized', (element) => mdcInit(element));
-Livewire.hook('element.updated', (element) => {
-  for (const [id, instance] of Object.entries({...window.mdc.textField, ...window.mdc.select, ...window.mdc.snackbar, ...window.mdc.dialog})) {
-    if (id !== 'language' && instance instanceof MDCTextField || instance instanceof MDCSelect || instance instanceof MDCSnackbar || instance instanceof MDCDialog) {
+Livewire.hook('element.updated', () => {
+  let mdc = {};
+  for (const component of Object.values(window.mdc)) {
+    mdc = {...mdc, ...component};
+  }
+
+  for (const [, instance] of Object.entries(mdc)) {
+    if (typeof instance.layout === 'function') {
       instance.layout();
     }
   }
