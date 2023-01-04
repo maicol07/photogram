@@ -154,7 +154,7 @@ function mdcInit(element) {
     }
 
     if (Array.isArray(callbacks)) {
-      for (const callback of afterInit) {
+      for (const callback of callbacks) {
         callback(element, instance);
       }
     }
