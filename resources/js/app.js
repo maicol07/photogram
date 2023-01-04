@@ -169,8 +169,14 @@ Livewire.hook('element.updated', () => {
   }
 
   for (const [, instance] of Object.entries(mdc)) {
+    /** @var {MDCComponent} instance */
     if (typeof instance.layout === 'function') {
       instance.layout();
+
+      if (instance.value !== undefined && instance.label) {
+        /** @var {MDCFloatingLabel} instance.label */
+        instance.label.float(true);
+      }
     }
   }
 });
