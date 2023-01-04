@@ -14,7 +14,9 @@
     @if($textarea) mdc-text-field--textarea mdc-text-field--with-internal-counter @endif
     @if($value) mdc-text-field--label-floating @endif">
     @if(!$outlined && !$textarea)
-        <span class="mdc-floating-label" id="{{$id}}-label" wire:ignore.self>{{$label}}</span>
+        <span class="mdc-floating-label @if($value) mdc-floating-label--float-above @endif" id="{{$id}}-label" wire:ignore.self>
+            {{$label}}
+        </span>
     @else
         <span class="mdc-notched-outline" wire:ignore.self>
             <span class="mdc-notched-outline__leading" wire:ignore></span>
