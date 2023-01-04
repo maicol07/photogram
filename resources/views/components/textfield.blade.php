@@ -35,7 +35,9 @@
                       maxlength="{{$maxlength}}"
                       value="{{$value}}"
                 {{$attributes}}></textarea>
-            <span class="mdc-text-field-character-counter" wire:ignore.self>0 / {{$maxlength}}</span>
+            <span class="mdc-text-field-character-counter" wire:ignore>
+                0 / {{$maxlength}}
+            </span>
         </span>
     @else
         <input class="mdc-text-field__input" type="{{$type}}" aria-labelledby="{{$id}}-label" value="{{$value}}" {{$attributes}} wire:ignore />
