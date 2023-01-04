@@ -26,7 +26,7 @@
             <i class="mdi mdi-{{$icon}} mdc-button__icon" aria-hidden="true"></i>
         @endif
 
-        <span class="mdc-button__label">{{$label}}</span>
+        <span class="mdc-button__label" wire:ignore.self>{{$label}}</span>
 
         @if($icon && $trailingIcon)
             <i class="mdi mdi-{{$icon}} mdc-button__icon" aria-hidden="true"></i>
