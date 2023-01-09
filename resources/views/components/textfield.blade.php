@@ -7,7 +7,9 @@
     'id' => '',
     'label' => '',
     'type' => 'text',
-    'value' => ''
+    'value' => '',
+    'helperText' => '',
+    'error' => ''
 ])
 
 <label wire:ignore.self class="mdc-text-field mdc-text-field--{{$outlined ? 'outlined' : 'filled'}}
@@ -48,3 +50,13 @@
         <div class="mdc-line-ripple" wire:ignore></div>
     @endif
 </label>
+
+<div class="mdc-text-field-helper-line" wire:ignore.self>
+    <div id="{{$id}}-helper-text" class="mdc-text-field-helper-text @error($id) mdc-text-field-helper-text--validation-msg mdc-text-field-helper-text--persistent @enderror" aria-hidden="true">
+        @empty($error)
+            {{$helperText}}
+        @else
+            {{$error}}
+        @endempty
+    </div>
+</div>
