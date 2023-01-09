@@ -12,6 +12,7 @@
         "laravel/tinker": "^2",
         "livewire/livewire": "^2",
         "thiagocordeiro/laravel-translator": "^1",
+        "outhebox/blade-flags": "^1",
         "ext-intl": "*"
     },
     "require-dev": {
