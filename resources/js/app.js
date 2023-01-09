@@ -217,3 +217,18 @@ Livewire.hook('element.updated', () => {
     }
   }
 });
+
+Livewire.hook('message.processed', (message) => {
+  const {errors} = message.response.serverMemo;
+  if (errors) {
+    for (const [name, error] of Object.entries(errors)) {
+      const c = window.mdc.textField[name];
+      if (c instanceof MDCTextField) {
+        const focusElement = document.activeElement;
+        c.valid = false;
+        c.helperTextContent = error;
+        focusElement.focus();
+      }
+    }
+  }
+});
