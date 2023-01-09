@@ -40,9 +40,11 @@ class Dialog extends Component
             'image' => 'image|max:1024', // 1MB Max
         ]);
 
-        assert($this->image instanceof TemporaryUploadedFile);
-        $path = $this->image->store('public');
-        $this->user->profileImage = basename($path);
+        if ($this->image !== null) {
+            assert($this->image instanceof TemporaryUploadedFile);
+            $path = $this->image->store('public/profile/images');
+            $this->user->profileImage = basename($path);
+        }
         $this->user->save();
         $this->emitUp('editProfile');
     }
