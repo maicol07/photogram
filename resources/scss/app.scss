@@ -2,4 +2,70 @@
 
 .mdc-select#language {
     margin-top: 16px;
+
+    .mdc-deprecated-list-item__graphic {
+        width: 32px;
+    }
+}
+
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    form.auth-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.auth-card {
+    width: 30%;
+    padding: 16px;
+}
+
+#dateofbirthsignup{
+    width: 46%;//?????? non è come gli altri
+}
+
+#edit-profile-button {
+    margin: 5% 0 0 7%;
+}
+
+#temporary-image {
+    width: 128px;
+    margin-left: 2px;
+}
+
+#preview-image {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#preview-image > span {
+    display: flex;
+    align-items: center;
+}
+
+.dialog-label {
+    font-size: 15px;
+}
+
+#edit-image {
+    display: none;
+}
+
+#dialog-layout {
+    margin: 8px 0; align-items: center;
+}
+
+#edit-bio {
+    width: 100%;
+}
+
+.image-profile {
+    border-radius: 50%;
+    width: 200px;
 }
