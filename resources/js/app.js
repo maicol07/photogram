@@ -173,7 +173,7 @@ Livewire.hook('element.updated', () => {
     if (typeof instance.layout === 'function') {
       instance.layout();
 
-      if (instance.value !== undefined && instance.label) {
+      if (instance.value && instance.label) {
         /** @var {MDCFloatingLabel} instance.label */
         instance.label.float(true);
       }
