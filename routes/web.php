@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Login::class);
-Route::get('/signup', Signup::class);
-Route::get('/profile', Profile::class);
-
+Route::get('/', Login::class)
+    ->name("login");
+Route::get('/signup', Signup::class)
+    ->name('signup');
+Route::get('/profile/{username}', Profile::class)
+    ->name('profile');
