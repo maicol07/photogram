@@ -39,6 +39,7 @@ To build the assets, you will need to run the following command:
 ```bash
 pnpm build
 ```
+
 > This will compile SCSS into CSS, combine JS files and their dependencies (this is called bundling) and publish the resulting files (a .css file and a .js file) in the `public/build` directory.
 
 ## Configuration
@@ -48,7 +49,9 @@ To configure this project, you will need to copy a `.env` file in the root of th
 ```bash
 cp .env.example .env
 php artisan key:generate # Generate the application key
+php artisan storage:link # Create a symbolic link from "public/storage" to "storage/app/public" to make the files in the "public/storage" directory accessible from the web
 ```
+
 > The application key is used by the Laravel framework to encrypt data.
 
 Then, you will need to configure the app settings and the database connection in the `.env` file by setting
@@ -62,20 +65,25 @@ your `.env` file:
 ```bash
 php artisan migrate
 ```
+
 > This will create the database tables (detailed: runs the migrations in the `database/migrations` directory).
 
 ## Usage
+
 Before running the project, you will need to build the assets and migrate the database (see above).
 
 ### Development
+
 To run the PHP development server for the project, you will need to run the following command:
 
 ```bash
 php artisan serve
 ```
+
 > This will start a development PHP server at port 8000 (default).
 
 ### Production
+
 You can run the project in production by your favorite web server (Apache, Nginx, etc.). The entry point of the
 project is the `public/index.php` file, so you need to point your web document root to `$PROJECT_DIR/public`.
 
@@ -86,7 +94,8 @@ To watch files and automatically refresh the page when these changes (developmen
 ```bash
 pnpm dev
 ```
-> This will start the [Vite dev server](https://vitejs.dev/guide/) on port 5174 (default).
+
+> This will start the [Vite dev server](https://vitejs.dev/guide/) on port 5173 (default).
 
 ## PHPStorm tips
 
