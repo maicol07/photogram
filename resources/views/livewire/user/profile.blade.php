@@ -6,7 +6,9 @@
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-3">
                     <div>
-                        <img class="mdc-elevation--z8" src="{{$user->profileImage}}" alt="image profile" />
+                        <img class="mdc-elevation--z8 image-profile"
+                             src="{{Storage::disk('public')->url('profile/images/' . $user->profileImage)}}"
+                             alt="image profile" />
                     </div>
                     <x-button id="edit-profile-button" label="edit profile" wire:click="openDialog"
                               variant="outlined" trailing-icon="true" icon="pencil" />
@@ -46,7 +48,8 @@
     <script>
         const editProfileButton = document.querySelector('#edit-profile-button');
         editProfileButton.addEventListener('click', () => {
-            window.mdc.dialog['profile-dialog'].open();
+            const dialog = window.mdc.dialog['profile-dialog'];
+            dialog.open();
         });
     </script>
 </div>

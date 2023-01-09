@@ -32,11 +32,12 @@
                   data-mdc-dialog-action="accept" data-mdc-dialog-button-default/>
     </div>
 
-    <script>
+    <script wire:ignore>
         /** @type {HTMLButtonElement} */
         const button = document.querySelector('button#attachment-btn');
         button.addEventListener('click', () => {
-            document.querySelector('input#edit-image')?.click();
+            document.querySelector('input#edit-image')
+                ?.click();
         });
     </script>
 </div>
