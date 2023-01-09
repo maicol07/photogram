@@ -15,8 +15,8 @@ class Dialog extends Component
     public User $user;
 
     protected $rules = [
-        'user.bio' => 'string|max:140',
-        'user.profileImage' => 'string',
+        'user.bio' => 'nullable|string|max:140',
+        'image' => 'nullable|file|image|max:1024'
     ];
 
     /**
@@ -25,6 +25,8 @@ class Dialog extends Component
      * @var TemporaryUploadedFile
      */
     public $image;
+
+    public int $maxLength = 140;
 
     public bool $open = false;
 
@@ -35,10 +37,7 @@ class Dialog extends Component
 
     public function accept(): void
     {
-        //TODO:caricare l'immagine correttamente
-        $this->validate([
-            'image' => 'image|max:1024', // 1MB Max
-        ]);
+        $this->validate();
 
         if ($this->image !== null) {
             assert($this->image instanceof TemporaryUploadedFile);
@@ -47,6 +46,11 @@ class Dialog extends Component
         }
         $this->user->save();
         $this->emitUp('editProfile');
+    }
+
+    public function updatedImage(): void
+    {
+        $this->validate();
     }
 
     public function render(): View

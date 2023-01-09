@@ -27,9 +27,9 @@ class Profile extends Page
 
     protected $listeners = ['editProfile' => 'editProfile'];
 
-    public function mount(): void
+    public function mount(string $username): void
     {
-        $this->user = User::find(1);
+        $this->user = User::where('username', $username)->first();
         $this->numberPosts = $this->user->posts()->count();
         $this->numberFollowers = $this->user->followers()->count();
         $this->numberFollows = $this->user->follows()->count();

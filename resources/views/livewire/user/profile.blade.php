@@ -17,15 +17,15 @@
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-4">
                             <div>{{$numberPosts}}</div>
-                            <div>posts</div>
+                            <div>@lang('posts')</div>
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <div>{{$numberFollowers}}</div>
-                            <div>followers</div>
+                            <div>@lang('followers')</div>
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
                             <div>{{$numberFollows}}</div>
-                            <div>follows</div>
+                            <div>@lang('follows')</div>
                         </div>
                         <div class="mdc-layout-grid__cell--span-12">
                             <div>{{$user->bio}}</div>
