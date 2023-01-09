@@ -1,8 +1,14 @@
 import {MDCDialog} from '@material/dialog';
+import {MDCFloatingLabel} from '@material/floating-label';
 import {MDCRipple} from '@material/ripple';
+import {MDCSelect} from '@material/select';
 import {MDCSnackbar} from '@material/snackbar';
 import {MDCTextField} from '@material/textfield';
-import {MDCSelect} from '@material/select';
+import {MDCTextFieldHelperText} from '@material/textfield/helper-text';
+import {MDCFormField} from '@material/form-field';
+import {MDCCheckbox} from '@material/checkbox';
+import {MDCTopAppBar} from '@material/top-app-bar';
+
 
 /**
  * @typedef {typeof import('@material/base/component').MDCComponent} MDCComponent
@@ -35,7 +41,11 @@ window.mdc = {
   ripple: {},
   select: {},
   snackbar: {},
-  textField: {}
+  textField: {},
+  helperText: {},
+  formField: {},
+  checkbox: {},
+  topAppBar: {}
 };
 
 /**
@@ -118,6 +128,33 @@ window.mdcComponentsDefinitions = {
           instance.open();
         }
       }],
+  },
+  '.mdc-text-field-helper-text': {
+    slug: 'helperText',
+    component: MDCTextFieldHelperText,
+  },
+  '.mdc-form-field': {
+    slug: 'formField',
+    component: MDCFormField,
+  },
+  '.mdc-checkbox': {
+    slug: 'checkbox',
+    component: MDCCheckbox,
+    afterInit: [
+      /**
+       * @param {HTMLElement} element The checkbox element
+       * @param {MDCCheckbox} instance The checkbox instance
+       */
+      (element, instance) => {
+        const parent = element.closest('.mdc-form-field');
+        window.mdc.formField[parent.id].input = instance;
+      }
+    ],
+  },
+
+  '.mdc-top-app-bar' : {
+    slug: 'top-app-bar',
+    component: 'MDCTopAppBar',
   }
 };
 

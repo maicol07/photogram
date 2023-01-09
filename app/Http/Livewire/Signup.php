@@ -1,12 +1,13 @@
 <?php
 
 namespace App\Http\Livewire;
+
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
-use Livewire\Component;
 
 class Signup extends Page
 {
@@ -25,7 +26,7 @@ class Signup extends Page
         'dateOfBirth' => 'required|date',
         'username' => 'required|max:20|min:4|string|unique:App\Models\User,username',
         'password' => 'required|max:24|min:8|string',
-        'repeatPassword' => 'required|same:password',
+        'repeat-password' => 'required|same:password',
     ];
 
     public function signup(): void
@@ -37,7 +38,7 @@ class Signup extends Page
             "surname" => __("Surname"),
             "email" => __("Email"),
             "dateOfBirth" => __("Date of birth"),
-            "repeatPassword" => __("Repeated Password"),
+            "repeat-password" => __("Repeated Password"),
         ]);
 
         $user = new User();
@@ -52,5 +53,10 @@ class Signup extends Page
     public function page(): View
     {
         return view('livewire.signup');
+    }
+
+    public function goToLogin(): RedirectResponse|Redirector
+    {
+        return redirect()->route('login');
     }
 }

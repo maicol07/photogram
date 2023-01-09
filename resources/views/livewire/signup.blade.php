@@ -24,7 +24,8 @@
                                                   wire:model="repeatPassword" />
                 <br/>
 
-                <x-button :label="__('Signup')" id="signup-button" variant="raised"/>
+                <x-button :label="__('Signup')" variant="raised"/>
+
             </form>
         </div>
     </div>

@@ -1,20 +1,19 @@
-<div style="text-align: center">
-    <div class="mdc-card mdc-card--outlined" id="login-card">
+<div class="auth-container">
+    <div class="mdc-card mdc-card--outlined auth-card" >
         <div>
-            <form wire:submit.prevent="login">
+            <form wire:submit.prevent="login" class="auth-form">
                 <x-textfield :label="__('Username')" type="text" id="username" wire:model="username" />
                 <br/>
-                @error('username') <span class="error">{{ $message }}</span> @enderror
-                <br/><br/>
                 <x-textfield :label="__('Password')" type="password" required id="password" wire:model="password" />
-                <br/>
-                @error('password') <span class="error">{{ $message }}</span> @enderror
-                <br/><br/>
-                <x-button :label="__('Login')" id="login-button" variant="raised"/>
+
+                <x-checkbox id="remember me" :label="__('Remember me')" wire:model="remember"/>
+
+                <x-button :label="__('Login')" variant="raised"/>
             </form>
         </div>
     </div>
-
+    <br/>
+    <x-button :label="__('Don\'t have an account? Signup')" wire:click="goToSignup"/>
     <livewire:ui.language.select style="margin-top: 16px;"/>
 
     @if(session()->has('message'))
