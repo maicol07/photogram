@@ -9,7 +9,7 @@
 ])
 
 <div wire:ignore.self id="{{$id}}" class="mdc-select mdc-select--{{$outlined ? 'outlined' : 'filled'}}" {{$attributes}}>
-    <input type="hidden" name="{{$id}}" {{$attributes->only('wire:model')}} value="{{$value}}" wire:ignore />
+    <input type="hidden" name="{{$id}}" {{$attributes->only('wire:model')}} value="{{$value}}" wire:ignore/>
     <div class="mdc-select__anchor"
          role="button"
          aria-haspopup="listbox"
@@ -67,7 +67,7 @@
             @foreach($options as $val => $details)
                 @php
                     $label = $details['label'] ?? (is_string($details) ? $details : '');
-                    $icon = $details['icon'] ?? '';
+                    $graphic = $details['graphic'] ?? '';
                     $disabled = $details['disabled'] ?? false;
                     $selected = $details['selected'] ?? ($val === $value);
                 @endphp
@@ -78,6 +78,7 @@
                     aria-disabled="{{$disabled}}"
                     data-value="{{$val}}"
                     role="option" wire:ignore.self>
+                    {!! $graphic !!}
                     <span class="mdc-deprecated-list-item__ripple" wire:ignore></span>
                     <span class="mdc-deprecated-list-item__text" wire:ignore.self>{{$label}}</span>
                 </li>

@@ -28,8 +28,23 @@ class Select extends Component
     {
         return collect(File::glob(base_path('lang/*.json')))
             ->map(static fn (string $file) => File::name($file))
-            ->mapWithKeys(static fn (string $lang) => [$lang => Str::ucfirst(Locale::getDisplayLanguage($lang, app()->getLocale()))])
+            ->mapWithKeys(fn (string $lang) => [
+                $lang => [
+                    'label' => $this->getLocaleDisplayName($lang),
+                    'graphic' => "<img src='{$this->getFlag($lang)}' alt='{$this->getLocaleDisplayName($lang)}' class='mdc-deprecated-list-item__graphic'/>",
+                ],
+            ])
             ->toArray();
+    }
+
+    private function getFlag(string $locale): string
+    {
+        return asset("vendor/blade-flags/language-$locale.svg");
+    }
+
+    private function getLocaleDisplayName(string $locale): string
+    {
+        return Str::ucfirst(Locale::getDisplayLanguage($locale, app()->getLocale()));
     }
 
     public function render(): View
