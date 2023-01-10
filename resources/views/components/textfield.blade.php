@@ -19,9 +19,6 @@
 <label wire:ignore.self id="{{$id}}" class="mdc-text-field @if($error) mdc-text-field--invalid @endif mdc-text-field--{{$outlined ? 'outlined' : 'filled'}}
     @if($textarea) mdc-text-field--textarea mdc-text-field--with-internal-counter @endif
     @if($value) mdc-text-field--label-floating @endif">
-    @error($id)
-        <div class="mdc-text-field--invalid" aria-hidden="true"></div>
-    @enderror
     @if(!$outlined && !$textarea)
         <span class="mdc-floating-label @if($value) mdc-floating-label--float-above @endif" id="{{$id}}-label" wire:ignore.self>
             {{$label}}
