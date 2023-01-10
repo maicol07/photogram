@@ -1,6 +1,5 @@
 @props([
     'dialogButton' => false,
-    'type' => 'button',
     'outlined' => false,
     'label' => '',
     'variant' => 'text', // Can be raised, outlined, text
@@ -14,7 +13,7 @@
     @if($tag === 'a')
         <a
     @else
-        <button
+        <button type="{{$attributes->get('type', 'button')}}"
     @endif
       class="mdc-button @if($variant !== 'text') mdc-button--{{$variant}} @endif
         @if($dialogButton) mdc-dialog__button @endif" {{$attributes}} wire:ignore.self>
