@@ -48,9 +48,9 @@ class Dialog extends Component
         $this->emitUp('editProfile');
     }
 
-    public function updatedImage(): void
+    public function updated(string $propertyName): void
     {
-        $this->validate();
+        $this->validateOnly($propertyName);
     }
 
     public function render(): View

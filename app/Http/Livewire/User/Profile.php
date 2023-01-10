@@ -20,10 +20,8 @@ class Profile extends Page
     public array $posts = [
         ['img' => 'https://picsum.photos/200/200', 'alt' => 'alt1', 'text' => 'text1'],
         ['img' => 'https://picsum.photos/200/200', 'alt' => 'alt2', 'text' => 'text2'],
-        ['img' => 'https://picsum.photos/200/200', 'alt' => 'alt3', 'text' => 'text3']
+        ['img' => 'https://picsum.photos/200/200', 'alt' => 'alt3', 'text' => 'text3'],
     ];
-
-    public bool $open = false;
 
     protected $listeners = ['editProfile' => 'editProfile'];
 
@@ -37,7 +35,7 @@ class Profile extends Page
 
     public function editProfile(): void
     {
-        $this->open = false;
+        $this->closeDialog('profile-dialog', __('Close dialog'));
     }
 
     public function page(): View

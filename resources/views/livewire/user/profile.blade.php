@@ -33,7 +33,7 @@
             </div>
         </div>
         <x-dialog id="profile-dialog" title="Edit Profile">
-            <livewire:user.dialog :open="$open" :user="$user"/>
+            <livewire:user.dialog :user="$user"/>
         </x-dialog>
     </div>
 
