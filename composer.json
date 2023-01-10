@@ -6,14 +6,15 @@
     "license": "MIT",
     "require": {
         "php": ">=8.1",
+        "ext-intl": "*",
+        "doctrine/dbal": "^3.5",
         "guzzlehttp/guzzle": "^7",
         "laravel/framework": "^9",
         "laravel/sanctum": "^3",
         "laravel/tinker": "^2",
         "livewire/livewire": "^2",
-        "thiagocordeiro/laravel-translator": "^1",
         "outhebox/blade-flags": "^1",
-        "ext-intl": "*"
+        "thiagocordeiro/laravel-translator": "^1"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",
