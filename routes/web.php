@@ -1,7 +1,10 @@
 <?php
 
-use App\Http\Livewire\Login;
-use App\Http\Livewire\Signup;
+
+use App\Http\Livewire\Email\VerifyEmail;
+use App\Http\Livewire\Home;
+use App\Http\Livewire\Auth\Login;
+use App\Http\Livewire\Auth\Signup;
 use App\Http\Livewire\User\Profile;
 use Illuminate\Support\Facades\Route;
 
