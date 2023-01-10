@@ -30,10 +30,8 @@
                      id="edit-bio" label="Edit Bio"/>
     </div>
     <div class="mdc-dialog__actions">
-        <x-button dialog-button variant="outlined" label="Cancel" wire:click="close" variant="text"
-                  data-mdc-dialog-action="close"/>
-        <x-button dialog-button variant="outlined" label="OK" wire:click="accept" variant="text"
-                  data-mdc-dialog-action="accept" data-mdc-dialog-button-default/>
+        <x-button dialog-button label="Cancel" variant="text" data-mdc-dialog-action="close"/>
+        <x-button dialog-button label="OK" variant="text" type="submit"/>
     </div>
 
     <script wire:ignore>
