@@ -40,11 +40,6 @@ class Profile extends Page
         $this->open = false;
     }
 
-    public function openDialog(): void
-    {
-        $this->open = true;
-    }
-
     public function page(): View
     {
         return view('livewire.user.profile');

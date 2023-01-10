@@ -16,7 +16,5 @@
     <x-button :label="__('Don\'t have an account? Signup')" wire:click="goToSignup"/>
     <livewire:ui.language.select style="margin-top: 16px;"/>
 
-    @if(session()->has('message'))
-        <x-snackbar :message="session('message')" id="loginMessage" open/>
-    @endif
+    <x-snackbar id="loginMessage"/>
 </div>

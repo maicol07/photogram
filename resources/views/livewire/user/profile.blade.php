@@ -1,6 +1,4 @@
 <div>
-    {{--<livewire:user.card :numberPosts="$numberPosts" :numberFollowers="$numberFollowers" :numberFollows="$numberFollows"
-                        bio="Biografia utente" :imageProfile="$imageProfile" />--}}
     <div class="mdc-card mdc-card--outlined">
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
@@ -10,7 +8,7 @@
                              src="{{Storage::disk('public')->url('profile/images/' . $user->profileImage)}}"
                              alt="image profile" />
                     </div>
-                    <x-button id="edit-profile-button" label="edit profile" wire:click="openDialog"
+                    <x-button id="edit-profile-button" label="edit profile" wire:click="openDialog('profile-dialog')"
                               variant="outlined" trailing-icon="true" icon="pencil" />
                 </div>
                 <div class="mdc-layout-grid__cell--span-9">
@@ -34,22 +32,14 @@
                 </div>
             </div>
         </div>
-        <x-dialog id="profile-dialog" title="Edit Profile" :open="$open">
+        <x-dialog id="profile-dialog" title="Edit Profile">
             <livewire:user.dialog :open="$open" :user="$user"/>
         </x-dialog>
     </div>
-    {{--<livewire:user.posts :posts="$user->posts" />--}}
+
     <x-image-list>
         @foreach($posts as $post)
             <x-image-list-item text="{{$post['text']}}" src="{{$post['img']}}" alt="{{$post['alt']}}" />
         @endforeach
     </x-image-list>
-
-    <script>
-        const editProfileButton = document.querySelector('#edit-profile-button');
-        editProfileButton.addEventListener('click', () => {
-            const dialog = window.mdc.dialog['profile-dialog'];
-            dialog.open();
-        });
-    </script>
 </div>

@@ -31,7 +31,7 @@ class Login extends Page
             session()->regenerate();
 //            return redirect()->intended('dashboard');
         }
-        session()->flash('message', __('The provided credentials do not match our records.'));
+        $this->openSnackbar('loginMessage', __('The provided credentials do not match our records.'), 'loginFailed');
     }
 
     public function updated(string $propertyName): void
