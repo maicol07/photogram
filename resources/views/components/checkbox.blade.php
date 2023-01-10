@@ -2,13 +2,13 @@
     'label'=>'',
     'id'=> '',
 ])
-<div class="mdc-form-field">
-    <div class="mdc-touch-target-wrapper">
-        <div class="mdc-checkbox mdc-checkbox--touch">
+<div class="mdc-form-field" wire:ignore.self>
+    <div class="mdc-touch-target-wrapper" wire:ignore.self>
+        <div class="mdc-checkbox mdc-checkbox--touch" wire:ignore.self {{$attributes}}>
             <input type="checkbox"
                    class="mdc-checkbox__native-control"
-                   id="{{$id}}"/>
-            <div class="mdc-checkbox__background">
+                   id="{{$id}}" {{$attributes->only('wire:model')}} wire:ignore/>
+            <div class="mdc-checkbox__background" wire:ignore>
                 <svg class="mdc-checkbox__checkmark"
                      viewBox="0 0 24 24">
                     <path class="mdc-checkbox__checkmark-path"
@@ -17,9 +17,9 @@
                 </svg>
                 <div class="mdc-checkbox__mixedmark"></div>
             </div>
-            <div class="mdc-checkbox__ripple"></div>
-            <div class="mdc-checkbox__focus-ring"></div>
+            <div class="mdc-checkbox__ripple" wire:ignore></div>
+            <div class="mdc-checkbox__focus-ring" wire:ignore></div>
         </div>
     </div>
-    <label for="{{$id}}">{{$label}}</label>
+    <label for="{{$id}}" wire:ignore.self>{{$label}}</label>
 </div>
