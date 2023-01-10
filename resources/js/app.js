@@ -18,49 +18,24 @@ Livewire.hook('element.updated', () => {
 Livewire.hook('message.processed', (message) => {
   const {errors} = message.response.serverMemo;
   if (errors) {
-    for (const [name, error] of Object.entries(errors)) {
-      const c = window.mdc.textField[name];
-      if (c instanceof MDCTextField) {
-        c.valid = false;
-        c.helperTextContent = error;
+    for (const [id, instance] of Object.entries(getAllMDCInstances())) {
+      const modelProperty = instance.root.getAttribute('wire:model');
+      const error = errors[id] ?? errors[modelProperty] ?? undefined;
+
+      instance.valid = error === undefined;
+      instance.helperTextContent = error ?? '';
+
+      const form = instance.root.closest('form');
+      if (form) {
+        const formInputs = form.querySelectorAll('input');
+        const formHasError = [...formInputs].map((input) => input.id).every((inputId) => inputId in errors);
+        const formSubmitButton = form.querySelector('button[type="submit"]');
+
+        if (formSubmitButton) {
+          formSubmitButton.disabled = formHasError;
+          formSubmitButton.ariaDisabled = formHasError;
+        }
       }
     }
   }
 });
-
-/**
- * Open or close an MDC component (mainly a snackbar or a dialog)
- *
- * @param {string} slug
- * @param {string} id
- * @param {'open'|'close'} actionType
- * @param {?string} action
- * @param {?message} message
- */
-function openCloseComponent(slug, id, actionType, action, message) {
-  /** @type {?MDCComponent} */
-  const component = window.mdc[slug][id] ?? undefined;
-  if (component) {
-    component[actionType](action);
-    if (message && component.labelText !== undefined) {
-      component.labelText = message;
-    }
-  }
-}
-
-/**
- * Open or close an MDC component (mainly a snackbar or a dialog) from a Livewire event
- *
- * @param {string} slug
- * @param {CustomEvent<{id: string, action?: string}>} event
- * @param {'open'|'close'} actionType
- */
-function openCloseComponentFromEvent(slug, event, actionType) {
-  const {id, action, message} = event.detail;
-  openCloseComponent(slug, id, actionType, action, message);
-}
-
-window.addEventListener('MDCDialog::open', (event) => openCloseComponentFromEvent('dialog', event, 'open'));
-window.addEventListener('MDCDialog::close', (event) => openCloseComponentFromEvent('dialog', event, 'close'));
-window.addEventListener('MDCSnackbar::open', (event) => openCloseComponentFromEvent('snackbar', event, 'open'));
-window.addEventListener('MDCSnackbar::close', (event) => openCloseComponentFromEvent('snackbar', event, 'close'));
