@@ -67,7 +67,7 @@ export function getAllMDCInstances() {
  * @type {Object.<string, mdcComponentDefinition>}
  */
 window.mdcComponentsDefinitions = {
-  '.mdc-button, .mdc-icon-button, .mdc-card__primary-action, .mdc-fab, .mdc-chip__ripple, .mdc-list-item': {
+  '.mdc-button, .mdc-icon-button, .mdc-card__primary-action, .mdc-fab, .mdc-chip__ripple, .mdc-deprecated-list-item': {
     slug: 'ripple',
     component: MDCRipple,
     /**
@@ -76,7 +76,7 @@ window.mdcComponentsDefinitions = {
      */
     afterInit: [
       (element, instance) => {
-        instance.unbounded = element.classList.contains('.mdc-icon-button');
+        instance.unbounded = element.classList.contains('mdc-icon-button');
       }]
   },
   '.mdc-text-field': {
@@ -193,9 +193,10 @@ window.mdcComponentsDefinitions = {
  * Initialize a Material Design Component
  *
  * @param {HTMLElement} element The HTML element to initialize
+ * @param {?Object<string, mdcComponentDefinition>} componentDefinitions
  */
-export function mdcInit(element) {
-  const matchingDefinitions = Object.entries(window.mdcComponentsDefinitions)
+export function initSingleComponent(element, componentDefinitions) {
+  const matchingDefinitions = Object.entries(componentDefinitions) ?? Object.entries(window.mdcComponentsDefinitions)
     .filter(([selector]) => element.matches(selector));
 
   for (const [, {
@@ -229,6 +230,16 @@ export function mdcInit(element) {
   }
 }
 
+export function mdcInit() {
+  for (const [selector, componentDefinition] of Object.entries(window.mdcComponentsDefinitions)) {
+    const elements = document.querySelectorAll(selector);
+
+    for (const element of elements) {
+      initSingleComponent(element, {[selector]: componentDefinition});
+    }
+  }
+}
+
 
 /**
  * Open or close an MDC component (mainly a snackbar or a dialog)
@@ -243,7 +254,12 @@ function openCloseComponent(slug, id, actionType, action, message) {
   /** @type {?MDCComponent} */
   const component = window.mdc[slug][id] ?? undefined;
   if (component) {
-    component[actionType](action);
+    if (typeof component[actionType] === 'function') {
+      component[actionType]();
+    } else if (typeof component.open === 'boolean') {
+      component.open = actionType === 'open';
+    }
+
     if (message && component.labelText !== undefined) {
       component.labelText = message;
     }
