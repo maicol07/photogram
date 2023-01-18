@@ -32,6 +32,8 @@ composer install # Install PHP dependencies
 pnpm install # Install CSS/JS dependencies
 ```
 
+> Composer may give you some errors related to missing PHP extensions (such as `bcmath`). If that's the case, you will need to install them.
+
 ### Build assets
 
 To build the assets, you will need to run the following command:
