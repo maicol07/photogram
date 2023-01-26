@@ -7,7 +7,7 @@
             <x-button id="attachment-btn" outlined :label="__('Upload File')" icon="upload" type="button" />
         </div>
         <input wire:model="image" id="edit-image" name="image" type="file"
-               accept=".jpg,.jpeg,.png,.gif,.bmp,.svg,.webp">
+               accept=".jpg,.jpeg,.png,.gif,.bmp,.svg,.webp" />
         @error('image')<span class="error-dialog mdc-layout-grid__cell--span-12">{{ $message }}</span>@enderror
        <x-snackbar id="update-image-profile"/>
         @if ($image && !$errors->has('image'))
