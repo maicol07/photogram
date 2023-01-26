@@ -1,5 +1,4 @@
 import {MDCDialog} from '@material/dialog';
-import {MDCFloatingLabel} from '@material/floating-label';
 import {MDCRipple} from '@material/ripple';
 import {MDCSelect} from '@material/select';
 import {MDCSnackbar} from '@material/snackbar';
@@ -9,6 +8,10 @@ import {MDCFormField} from '@material/form-field';
 import {MDCCheckbox} from '@material/checkbox';
 import {MDCTextFieldCharacterCounter} from '@material/textfield/character-counter';
 import {MDCTopAppBar} from '@material/top-app-bar';
+import {MDCDrawer} from '@material/drawer';
+import {Corner, MDCMenu} from '@material/menu';
+import {MDCMenuSurface} from '@material/menu-surface';
+import {MDCList} from '@material/list';
 
 
 /**
@@ -274,11 +277,18 @@ function openCloseComponent(slug, id, actionType, action, message) {
  * @param {'open'|'close'} actionType
  */
 function openCloseComponentFromEvent(slug, event, actionType) {
-  const {id, action, message} = event.detail;
+  const {
+    id,
+    action,
+    message
+  } = event.detail;
   openCloseComponent(slug, id, actionType, action, message);
 }
 
-window.addEventListener('MDCDialog::open', (event) => openCloseComponentFromEvent('dialog', event, 'open'));
-window.addEventListener('MDCDialog::close', (event) => openCloseComponentFromEvent('dialog', event, 'close'));
-window.addEventListener('MDCSnackbar::open', (event) => openCloseComponentFromEvent('snackbar', event, 'open'));
-window.addEventListener('MDCSnackbar::close', (event) => openCloseComponentFromEvent('snackbar', event, 'close'));
+const componentsWithOpenCloseEvents = ['snackbar', 'dialog', 'menu', 'menuSurface'];
+for (const slug of componentsWithOpenCloseEvents) {
+  const componentName = slug.charAt(0)
+    .toUpperCase() + slug.slice(1);
+  window.addEventListener(`MDC${componentName}::open`, (event) => openCloseComponentFromEvent(slug, event, 'open'));
+  window.addEventListener(`MDC${componentName}::close`, (event) => openCloseComponentFromEvent(slug, event, 'close'));
+}
