@@ -10,7 +10,7 @@
 
 To run this project, you will need to have installed on your machine the following tools:
 
-- [PHP](https://www.php.net/downloads.php) >= 8.2
+- [PHP](https://www.php.net/downloads.php) >= 8.1 (recommended: 8.2)
 - [MySQL](https://dev.mysql.com/downloads/mysql/) >= 8.0 or [MariaDB](https://mariadb.org/download/) >= 10.5
 - [Composer](https://getcomposer.org/download/)
 
