@@ -2,20 +2,18 @@
 
 namespace App\Http\Livewire\User;
 
-use App\Http\Livewire\Page;
+use App\Http\Livewire\InsidePage;
+use App\Http\Livewire\Traits\MDCDialogFeatures;
 use App\Models\User;
+use App\Notifications\NewFollowerNotification;
+use Auth;
 use Illuminate\Contracts\View\View;
-use Livewire\Component;
 
-class Profile extends Page
+class Profile extends InsidePage
 {
+    use MDCDialogFeatures;
+
     public User $user;
-
-    public int $numberPosts = 0;
-
-    public int $numberFollowers = 0;
-
-    public int $numberFollows = 0;
 
     public array $posts = [
         ['img' => 'https://picsum.photos/200/200', 'alt' => 'alt1', 'text' => 'text1'],
@@ -25,17 +23,30 @@ class Profile extends Page
 
     protected $listeners = ['editProfile' => 'editProfile', 'followersChanged' => '$refresh'];
 
-    public function mount(string $username): void
+    public function mount(?string $username = null): void
     {
-        $this->user = User::where('username', $username)->first();
-        $this->numberPosts = $this->user->posts()->count();
-        $this->numberFollowers = $this->user->followers()->count();
-        $this->numberFollows = $this->user->follows()->count();
+        $this->user = $username ? User::where('username', $username)->first() : Auth::user();
     }
 
     public function editProfile(): void
     {
         $this->closeDialog('profile-dialog', __('Close dialog'));
+    }
+
+    public function follow(): void
+    {
+        $this->user->followers()->attach(Auth::user()->id);
+        $this->user->notify((new NewFollowerNotification(Auth::user())));
+        $this->user->save();
+        $this->emitSelf('followerChanged');
+
+    }
+
+    public function unfollow(): void
+    {
+        $this->user->followers()->detach(Auth::user()->id);
+        $this->user->save();
+        $this->emitSelf('followerChanged');
     }
 
     public function page(): View

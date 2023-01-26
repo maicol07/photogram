@@ -28,8 +28,6 @@ class Dialog extends Component
 
     public int $maxLength = 140;
 
-    public bool $open = false;
-
     public function close(): void
     {
         $this->emitUp('editProfile');
