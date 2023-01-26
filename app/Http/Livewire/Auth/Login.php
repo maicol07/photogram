@@ -2,14 +2,17 @@
 
 namespace App\Http\Livewire\Auth;
 
-use App\Http\Livewire\Page;
+use App\Http\Livewire\AuthPage;
+use App\Http\Livewire\Traits\MDCSnackbarFeatures;
 use Auth;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Livewire\Redirector;
 
-class Login extends Page
+class Login extends AuthPage
 {
+    use MDCSnackbarFeatures;
+
     public bool $remember = false;
     public string $username = '';
     public string $password = '';
@@ -19,31 +22,30 @@ class Login extends Page
         'password' => 'required|min:8|string',
     ];
 
-    public function login(): RedirectResponse|Redirector
+    public function login(): RedirectResponse|Redirector|null
     {
-        $validatedData = $this->validate(attributes: [
-            "username" => "Username",
-            "password" => "Password",
-        ]);
+        $validatedData = $this->validate();
 
         if (Auth::attempt($validatedData, $this->remember)) {
             session()->regenerate();
-            $this->openSnackbar('loginMessage', __('Authentication successful.'), 'loginFailed');
+            $this->openSnackbar('loginMessage', __('Authentication successful.'));
 
-            return redirect()->route('home');
+            return redirect()->route('inside.home');
         }
-        else{
-            $this->openSnackbar('loginMessage', __('The provided credentials do not match our records.'),
-                'loginFailed');
-        }
+
+        $this->openSnackbar(
+            'loginMessage',
+            __(
+                'The provided credentials do not match our records.'
+            ),
+            'loginFailed'
+        );
+        return null;
     }
 
     public function updated(string $propertyName): void
     {
-        $this->validateOnly($propertyName, attributes: [
-            "username" => "Username",
-            "password" => "Password",
-        ]);
+        $this->validateOnly($propertyName);
     }
 
     public function page(): View
@@ -51,13 +53,9 @@ class Login extends Page
         return view('livewire.auth.login');
     }
 
-    public function goToSignup(): RedirectResponse|Redirector
+    public function goToResetPassword(): void
     {
-        return redirect()->route('signup');
-    }
-
-    public function goToResetPassword(){
-
+        $this->redirectRoute("password.request");
     }
 
 }

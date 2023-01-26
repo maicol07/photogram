@@ -2,33 +2,35 @@
 
 namespace App\Http\Livewire\Auth;
 
-use App\Http\Livewire\Page;
+use App\Http\Livewire\AuthPage;
+use App\Http\Livewire\Traits\MDCSnackbarFeatures;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;
-
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 
-
-class Signup extends Page
+class Signup extends AuthPage
 {
+    use MDCSnackbarFeatures;
+
     public string $name = '';
     public string $surname = '';
     public string $email = '';
     public string $dateOfBirth = '';
     public string $username = '';
     public string $password = '';
-    public string $repeatPassword = '';
+    public string $password_confirmation = '';
 
     public $rules = [
         'name' => 'required|string',
         'surname' => 'required|string',
-        'email' => 'required|string|unique:App\Models\User,email',
-        'dateOfBirth' => 'required|date',
+        'email' => 'required|email|unique:App\Models\User,email',
+        'dateOfBirth' => 'required|date', //TODO add to database
         'username' => 'required|max:20|min:4|string|unique:App\Models\User,username',
         'password' => 'required|max:24|min:8|string',
-        'repeatPassword' => 'required|same:password',
+        'password_confirmation' => 'required|same:password',
     ];
 
     public function signup(): void
@@ -53,11 +55,11 @@ class Signup extends Page
         $user->bio = null;
         $user->save();
 
-        //event(new Registered($user));//sends email confirmation email
+        event(new Registered($user));
+        auth()->login($user);
 
         $this->openSnackbar('signupMessage', __('Registration completed successfully.'), 'signupSuccess');
-
-        $this->redirect();
+        redirect()->route('home');
     }
 
     public function page(): View

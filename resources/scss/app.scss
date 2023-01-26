@@ -30,7 +30,18 @@
 }
 
 #dateofbirthsignup{
-    width: 46%;//?????? non è come gli altri
+    width: 46%;//TODO
+}
+
+#user-logout-menu{
+    min-height: 100px;
+    min-width: 150px;
+    height: 13em;
+    width: 18em;
+}
+#user-logout-menu-image{
+    width: 100%;
+    font-size: 200px;
 }
 
 #edit-profile-button, #follow-button, #unfollow-button {
