@@ -32,7 +32,9 @@
 
         <span class="mdc-select__selected-text-container" wire:ignore.self>
           <span id="{{$id}}-selected-text" class="mdc-select__selected-text" wire:ignore.self>
-              {{$options[$value]['label'] ?? (is_string($options[$value]) ? $options[$value] : '')}}
+              @if($value)
+                  {{$options[$value]['label'] ?? (is_string($options[$value]) ? $options[$value] : '')}}
+              @endif
           </span>
         </span>
 
@@ -55,34 +57,31 @@
     </div>
 
     <div class="mdc-select__menu mdc-menu mdc-menu-surface mdc-menu-surface--fullwidth" wire:ignore.self>
-        <ul class="mdc-deprecated-list" role="listbox" aria-label="{{$ariaLabel ?? $label}}" wire:ignore.self>
+        <x-list role="listbox" aria-label="{{$ariaLabel ?? $label}}" wire:ignore.self>
             @if($blankOption)
-                <li class="mdc-deprecated-list-item mdc-deprecated-list-item--selected"
-                    aria-selected="true"
-                    data-value=""
-                    role="option" wire:ignore>
+                <x-list-item :selected="(bool) $value" :value="''" wire:ignore.self role="option">
                     <span class="mdc-deprecated-list-item__ripple"></span>
-                </li>
+                </x-list-item>
             @endif
             @foreach($options as $val => $details)
                 @php
+                    $first = reset($options) === $details;
                     $label = $details['label'] ?? (is_string($details) ? $details : '');
                     $graphic = $details['graphic'] ?? '';
                     $disabled = $details['disabled'] ?? false;
                     $selected = $details['selected'] ?? ($val === $value);
                 @endphp
-                <li class="mdc-deprecated-list-item
-                @if($disabled) mdc-deprecated-list-item--disabled @endif
-                @if($selected) mdc-deprecated-list-item--selected @endif"
-                    aria-selected="{{$selected}}"
-                    aria-disabled="{{$disabled}}"
-                    data-value="{{$val}}"
-                    role="option" wire:ignore.self>
-                    {!! $graphic !!}
-                    <span class="mdc-deprecated-list-item__ripple" wire:ignore></span>
-                    <span class="mdc-deprecated-list-item__text" wire:ignore.self>{{$label}}</span>
-                </li>
+                <x-list-item :selected="$selected"
+                    :disabled="$disabled"
+                    :value="$val"
+                    :text="$label"
+                    role="option"
+                    :tabindex="$first ? 0 : null" wire:ignore.self>
+                    <x-slot:graphic>
+                        {!! $graphic !!}
+                    </x-slot:graphic>
+                </x-list-item>
             @endforeach
-        </ul>
+        </x-list>
     </div>
 </div>

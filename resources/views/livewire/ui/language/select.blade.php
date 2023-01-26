@@ -4,5 +4,3 @@
           :value="$this->locale"
           wire:model="locale"
 />
-
-{{-- TODO: Dynamic languages (based on files in lang folder). Add flags --}}
