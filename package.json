@@ -9,6 +9,7 @@
         "@material/card": "^14.0.0",
         "@material/checkbox": "^14.0.0",
         "@material/dialog": "^14.0.0",
+        "@material/drawer": "^14.0.0",
         "@material/floating-label": "^14.0.0",
         "@material/form-field": "^14.0.0",
         "@material/icon-button": "^14.0.0",
@@ -21,8 +22,11 @@
         "@material/select": "^14.0.0",
         "@material/snackbar": "^14.0.0",
         "@material/textfield": "^14.0.0",
+        "@material/theme": "^14.0.0",
         "@material/top-app-bar": "^14.0.0",
-        "@mdi/font": "^7.1.96"
+        "@material/typography": "^14.0.0",
+        "@mdi/font": "^7.1.96",
+        "modern-normalize": "^1.1.0"
     },
     "devDependencies": {
         "axios": "^1.2.2",
