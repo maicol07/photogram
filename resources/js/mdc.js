@@ -50,7 +50,11 @@ window.mdc = {
   helperText: {},
   formField: {},
   checkbox: {},
-  topAppBar: {}
+  topAppBar: {},
+  drawer: {},
+  menu: {},
+  menuSurface: {},
+  list: {},
 };
 
 /**
@@ -187,8 +191,76 @@ window.mdcComponentsDefinitions = {
     ],
   },
   '.mdc-top-app-bar': {
-    slug: 'top-app-bar',
-    component: 'MDCTopAppBar',
+    slug: 'topAppBar',
+    component: MDCTopAppBar,
+    afterInit: [
+      /**
+       * @param {HTMLElement} element The topAppBar element
+       * @param {MDCTopAppBar} instance The topAppBar instance
+       */
+      (element, instance) => {
+        instance.setScrollTarget(document.querySelector('main'));
+        // noinspection JSUnresolvedFunction
+        instance.listen('MDCTopAppBar:nav', () => {
+          const drawer = window.mdc.drawer[element.closest('.mdc-drawer-app-content').previousElementSibling.id];
+          drawer.open = !drawer.open;
+        });
+      }
+    ]
+  },
+  '.mdc-drawer': {
+    slug: 'drawer',
+    component: MDCDrawer,
+    afterInit: [
+      /**
+       * @param {HTMLElement} element The drawer element
+       * @param {MDCDrawer} instance The drawer instance
+       */
+      (element, instance) => {
+        const listElement = document.querySelector('.mdc-drawer .mdc-deprecated-list');
+        const mainContentElement = document.querySelector('main');
+
+        listElement.addEventListener('click', (event) => {
+          mainContentElement.querySelector('input, button')
+            ?.focus();
+        });
+
+        document.body.addEventListener('MDCDrawer:closed', () => {
+          mainContentElement.querySelector('input, button')
+            ?.focus();
+        });
+      }
+    ]
+  },
+  '.mdc-menu': {
+    slug: 'menu',
+    component: MDCMenu,
+    afterInit: [
+      /**
+       * @param {HTMLDivElement} element The drawer element
+       * @param {MDCMenu} instance The drawer instance
+       */
+      (element, instance) => {
+        instance.setAnchorCorner(Corner.BOTTOM_START);
+      }
+    ]
+  },
+  '.mdc-menu-surface': {
+    slug: 'menuSurface',
+    component: MDCMenuSurface,
+    afterInit: [
+      /**
+       * @param {HTMLDivElement} element The drawer element
+       * @param {MDCMenuSurface} instance The drawer instance
+       */
+      (element, instance) => {
+        instance.setAnchorCorner(Corner.BOTTOM_START);
+      }
+    ]
+  },
+  '.mdc-deprecated-list': {
+    slug: 'list',
+    component: MDCList
   }
 };
 

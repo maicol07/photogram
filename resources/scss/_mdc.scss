@@ -1,3 +1,10 @@
+@use "@material/theme" with (
+  $primary: #6200EE,
+  $secondary: #FEDBD0,
+  $on-primary: #FFFFFF,
+  $on-secondary: #442b2d,
+);
+@use "@material/typography/mdc-typography";
 @use "@material/button/styles";
 @use "@material/floating-label/mdc-floating-label";
 @use "@material/line-ripple/mdc-line-ripple";
@@ -12,7 +19,6 @@
 @use "@material/elevation/mdc-elevation";
 @use "@material/snackbar/mdc-snackbar";
 @use "@material/dialog";
-@use "@material/list/mdc-list";
 @use "@material/menu-surface/mdc-menu-surface";
 @use "@material/menu/mdc-menu";
 @use "@material/select/styles" as selectStyles;
@@ -20,10 +26,22 @@
 @use "@material/checkbox";
 @use "@material/form-field";
 @use "@material/top-app-bar/mdc-top-app-bar";
+@use "@material/drawer";
+@use "@material/list";
+@use "@material/list/mdc-list";
 
+@include card.core-styles;
+@include textfield.core-styles;
+@include dialog.core-styles;
+@include drawer.core-styles;
+@include drawer.dismissible-core-styles;
+@include drawer.modal-core-styles;
+@include list.deprecated-core-styles;
 @include helper-text.helper-text-core-styles;
 @include checkbox.core-styles;
 @include form-field.core-styles;
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
 
 .mdc-image-list {
     &.posts-list {
@@ -36,7 +54,7 @@
 
     &.mdc-image-list--with-text-protection .mdc-image-list__supporting {
         border-radius: 0 0 8px 8px;
-        margin-bottom: 5px;
+        margin-bottom: 3px;
     }
 }
 
@@ -52,6 +70,37 @@
     width: 100%;
 }
 
-@include card.core-styles;
-@include textfield.core-styles;
-@include dialog.core-styles;
+html {
+    @for $i from 1 through 6 {
+        --mdc-typography-headline#{$i}-font-family: EB Garamond, serif;
+        h#{$i} {
+            font-family: var(--mdc-typography-headline#{$i}-font-family);
+        }
+    }
+    --mdc-typography-body1-font-family: Roboto, sans-serif;
+    font-family: var(--mdc-typography-body1-font-family);
+}
+
+/*.mdc-deprecated-list-item {
+    margin: 4px 0;
+}*/
+
+/*.mdc-deprecated-list-item__text {
+    margin-left: 30px;
+}*/
+
+/*li > .mdc-deprecated-list-item__primary-text {
+    margin: 0 0 2px 30px;
+}*/
+
+.mdc-deprecated-list-item__secondary-text {
+    margin-bottom: 1rem;
+}
+
+.mdc-deprecated-list-item__meta .mdc-icon-button__ripple {
+    --mdc-ripple-fg-size: 28px;
+    --mdc-ripple-fg-scale: 1.71429;
+    --mdc-ripple-left: 10px;
+    --mdc-ripple-top: 10px;
+}
+
