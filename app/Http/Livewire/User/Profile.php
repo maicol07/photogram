@@ -23,7 +23,7 @@ class Profile extends Page
         ['img' => 'https://picsum.photos/200/200', 'alt' => 'alt3', 'text' => 'text3'],
     ];
 
-    protected $listeners = ['editProfile' => 'editProfile'];
+    protected $listeners = ['editProfile' => 'editProfile', 'followersChanged' => '$refresh'];
 
     public function mount(string $username): void
     {
