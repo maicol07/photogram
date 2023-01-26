@@ -33,7 +33,7 @@
     width: 46%;//?????? non è come gli altri
 }
 
-#edit-profile-button {
+#edit-profile-button, #follow-button, #unfollow-button {
     margin: 5% 0 0 7%;
 }
 
@@ -76,4 +76,86 @@
 
 .error-dialog {
     color: red;
+}
+/*
+// Note: These styles do not account for any paddings/margins that you may need.
+
+.drawer {
+    display: flex;
+    height: 100vh;
+}
+
+.mdc-drawer-app-content {
+    flex: auto;
+    overflow: auto;
+    position: relative;
+}
+
+main {
+    overflow: auto;
+    height: 100%;
+}
+
+.app-bar {
+    position: absolute;
+}*/
+
+#user-logout-menu {
+
+    text-align: center;
+
+    --mdc-menu-min-width: 20em;
+
+    img {
+        width: 150px;
+        border-radius: 50%;
+    }
+
+    hr {
+        margin: 16px 0 8px;
+    }
+
+    .mdi {
+        vertical-align: text-bottom;
+    }
+}
+
+.icon-drawer {
+    font-size: 20px;
+}
+
+.list-follower-image {
+    border-radius: 50%;
+    width: 40px;
+}
+
+.dialog-icon {
+    font-size: 40px;
+}
+
+.mdc-deprecated-list-item a {
+    text-decoration: none;
+    color: black;
+    display: contents;
+}
+
+.without-ripple {
+    cursor: default !important;
+}
+
+#all-notifications-button {
+    margin-left: 35%;
+}
+
+.read-notification {
+    color: black;
+}
+
+#card-notifications {
+    width: 50%;
+    margin: 20px 0 0 25%;
+}
+
+main > :first-child {
+    margin: 16px;
 }
