@@ -1,5 +1,4 @@
 @props([
-    'dense' => false,
     'textual_list' => false,
     'avatar_list' => false,
     'icon_list' => false,
@@ -7,11 +6,10 @@
     'thumbnail_list' => false,
     'video_list' => false,
     'two_line' => false,
-    'id' => '',
     'options' => [],
 ])
 
-<ul {{$attributes->merge(['class' => 'mdc-deprecated-list' . ($two_line ? ' mdc-deprecated-list--two-line' : '')])}}>
+<ul {{$attributes->class(['mdc-deprecated-list', 'mdc-deprecated-list--two-line' => $two_line])}}>
     @isset($slot)
         {{$slot}}
     @else

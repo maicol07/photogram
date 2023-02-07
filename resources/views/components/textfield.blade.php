@@ -13,12 +13,19 @@
 ])
 
 @php
-    $error = $errors->first($id) ?? $error;
+    $inputId = $id ?? $name ?? Str::random(10);
+    $error = $errors->first($inputId) ?? $error;
 @endphp
 
-<label wire:ignore.self id="{{$id}}" class="mdc-text-field @if($error) mdc-text-field--invalid @endif mdc-text-field--{{$outlined ? 'outlined' : 'filled'}}
-    @if($textarea) mdc-text-field--textarea mdc-text-field--with-internal-counter @endif
-    @if($value) mdc-text-field--label-floating @endif">
+<label wire:ignore.self id="{{$inputId}}" {{$attributes->class([
+    'mdc-text-field',
+    'mdc-text-field--invalid' => $error,
+    'mdc-text-field--outlined' => $outlined,
+    'mdc-text-field--filled' => !$outlined,
+    'mdc-text-field--textarea' => $textarea,
+    'mdc-text-field--textarea--with-internal-counter' => $textarea && $maxlength !== null,
+    'mdc-text-field--label-floating' => $value
+])}}>
     @if(!$outlined && !$textarea)
         <span class="mdc-floating-label @if($value) mdc-floating-label--float-above @endif" id="{{$id}}-label" wire:ignore.self>
             {{$label}}

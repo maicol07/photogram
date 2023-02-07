@@ -2,6 +2,6 @@
     'variant' => 'outlined',
 ])
 
-<div class="mdc-card @if($variant !== null) mdc-card--{{$variant}} @endif" {{$attributes}}>
+<div {{$attributes->class(['mdc-card', "mdc-card--$variant"])->merge()}}>
     {{$slot}}
 </div>
