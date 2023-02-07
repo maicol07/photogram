@@ -74,7 +74,7 @@ export function getAllMDCInstances() {
  * @type {Object.<string, mdcComponentDefinition>}
  */
 window.mdcComponentsDefinitions = {
-  '.mdc-button, .mdc-icon-button, .mdc-card__primary-action, .mdc-fab, .mdc-chip__ripple, .mdc-deprecated-list-item': {
+  '.mdc-button, .mdc-icon-button:not(.small-icon-button), .mdc-card__primary-action, .mdc-fab, .mdc-chip__ripple, .mdc-deprecated-list-item': {
     slug: 'ripple',
     component: MDCRipple,
     /**
