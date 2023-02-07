@@ -274,7 +274,7 @@ window.mdcComponentsDefinitions = {
  * @param {?Object<string, mdcComponentDefinition>} componentDefinitions
  */
 export function initSingleComponent(element, componentDefinitions) {
-  const matchingDefinitions = Object.entries(componentDefinitions) ?? Object.entries(window.mdcComponentsDefinitions)
+  const matchingDefinitions = Object.entries(componentDefinitions ?? window.mdcComponentsDefinitions)
     .filter(([selector]) => element.matches(selector));
 
   for (const [, {
