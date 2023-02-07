@@ -245,6 +245,10 @@ window.mdcComponentsDefinitions = {
        */
       (element, instance) => {
         instance.setAnchorCorner(Corner.BOTTOM_START);
+        if (element.dataset.fixed && (element.dataset.anchorid !== undefined)) {
+          instance.setAnchorElement(document.querySelector(`#${element.dataset.anchorid}`));
+        }
+        instance.setFixedPosition(Boolean(element.dataset.fixed));
       }
     ]
   },
