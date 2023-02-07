@@ -37,7 +37,7 @@
         @endisset
 
         @if($icon && $trailingIcon)
-            <i class="mdi mdi-{{$icon}} mdc-button__icon" aria-hidden="true"></i>
+            <i class="mdi mdi-{{$icon}} {{$iconButton ? 'mdc-icon-button__icon' : 'mdc-button__icon' }}" aria-hidden="true"></i>
         @endif
 
         @if($iconButton)
