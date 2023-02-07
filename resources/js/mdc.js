@@ -240,8 +240,8 @@ window.mdcComponentsDefinitions = {
     component: MDCMenu,
     afterInit: [
       /**
-       * @param {HTMLDivElement} element The drawer element
-       * @param {MDCMenu} instance The drawer instance
+       * @param {HTMLDivElement} element The menu element
+       * @param {MDCMenu} instance The menu instance
        */
       (element, instance) => {
         instance.setAnchorCorner(Corner.BOTTOM_START);
@@ -253,8 +253,8 @@ window.mdcComponentsDefinitions = {
     component: MDCMenuSurface,
     afterInit: [
       /**
-       * @param {HTMLDivElement} element The drawer element
-       * @param {MDCMenuSurface} instance The drawer instance
+       * @param {HTMLDivElement} element The menu surface element
+       * @param {MDCMenuSurface} instance The menu surface instance
        */
       (element, instance) => {
         instance.setAnchorCorner(Corner.BOTTOM_START);
