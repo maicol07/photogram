@@ -55,7 +55,7 @@ php artisan storage:link # Create a symbolic link from "public/storage" to "stor
 php artisan vendor:publish --tag=blade-flags --force # Publish the flags images provided by blade-flags to the public directory
 ```
 
-> The application key is used by the Laravel framework to encrypt data.
+> If the `APP_KEY`  The application key is used by the Laravel framework to encrypt data.
 
 Then, you will need to configure the app settings and the database connection in the `.env` file by setting
 the `DB_*` and `APP_*` variables.
