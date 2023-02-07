@@ -11,6 +11,7 @@
         "lib": ["esnext"]
     },
     "plugins": [
+        "html",
         "new-with-error",
         "simple-import-sort",
         "only-warn"
