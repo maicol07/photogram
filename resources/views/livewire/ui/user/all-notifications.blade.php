@@ -1,7 +1,6 @@
 <x-card variant="elevated" id="card-notifications">
     <x-list>
         @foreach(Auth::user()->notifications as $notification)
-            @if($notification->type === \App\Notifications\NewFollowerNotification::class)
                 @php($user = \App\Models\User::find($notification->data['user_id']))
                 <x-list-item class="without-ripple" :ripple="false">
                     <x-slot:graphic>
@@ -22,9 +21,22 @@
                     <a href="{{route('inside.profile', ['username' => $user->username])}}"
                        style="color: var(--mdc-text-button-label-text-color, var(--mdc-theme-primary, #6200EE))">
                         {{$user->username}}
-                    </a> started following you
+                    </a>
+                    @switch($notification->type)
+                        @case(\App\Notifications\NewFollowerNotification::class)
+                            @lang('started following you')
+                            @break
+                        @case(\App\Notifications\NewPostNotification::class)
+                            @lang('posted a new photo')
+                            @break
+                        @case(\App\Notifications\CommentNotification::class)
+                            @lang('commented your post')
+                            @break
+                        @case(\App\Notifications\LikeNotification::class)
+                            @lang('liked your post')
+                            @break
+                    @endswitch
                 </x-list-item>
-            @endif
         @endforeach
     </x-list>
 </x-card>
