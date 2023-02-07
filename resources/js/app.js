@@ -1,4 +1,15 @@
-import {getAllMDCInstances, mdcInit} from './mdc.js';
+import autoAnimate from '@formkit/auto-animate';
+
+import {getAllMDCInstances, initSingleComponent, mdcInit} from './mdc.js';
+
+function domTraversal(parentElement, callback) {
+  for (const element of parentElement.children) {
+    callback(element);
+    if (element.hasChildNodes()) {
+      domTraversal(element, callback);
+    }
+  }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   mdcInit();
@@ -16,7 +27,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  Livewire.hook('message.processed', (message) => {
+  Livewire.hook('message.processed', (message, component) => {
+    domTraversal(component.el, (element) => {
+      // Update MDC components
+      if (!(element.id in getAllMDCInstances())) {
+        initSingleComponent(element);
+      }
+    });
+
     const {errors} = message.response.serverMemo;
     if (errors) {
       for (const [id, instance] of Object.entries(getAllMDCInstances())) {
@@ -29,8 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const form = instance.root.closest('form');
         if (form) {
           const formInputs = form.querySelectorAll('input');
-          const formHasError = [...formInputs].map((input) => input.id)
-            .every((inputId) => inputId in errors);
+          const formHasError = [...formInputs].map((input) => input.id || input.name)
+            .some((inputId) => inputId in errors);
           const formSubmitButton = form.querySelector('button[type="submit"]');
 
           if (formSubmitButton) {

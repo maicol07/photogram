@@ -305,8 +305,16 @@ export function initSingleComponent(element, componentDefinitions) {
   }
 }
 
-export function mdcInit() {
-  for (const [selector, componentDefinition] of Object.entries(window.mdcComponentsDefinitions)) {
+/**
+ * Initialize all Material Design Components
+ * @param {?(string[])} only
+ */
+export function mdcInit(only) {
+  let definitions = Object.entries(window.mdcComponentsDefinitions);
+  if (only) {
+    definitions = definitions.filter(([selector]) => only.some((onlySelector) => selector.includes(onlySelector)));
+  }
+  for (const [selector, componentDefinition] of definitions) {
     const elements = document.querySelectorAll(selector);
 
     for (const element of elements) {
