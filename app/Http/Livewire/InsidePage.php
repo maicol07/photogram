@@ -16,8 +16,13 @@ abstract class InsidePage extends Page
         ];
     }
 
+    public function getTitle(): string
+    {
+        return '';
+    }
+
     public function render(): View
     {
-        return $this->page()->extends('layouts.inside', ['navigation' => $this->getNavigation()])->section('main');
+        return $this->page()->extends('layouts.inside', ['navigation' => $this->getNavigation(), 'title' => $this->getTitle()])->section('main');
     }
 }
