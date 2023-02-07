@@ -5,6 +5,7 @@
         "build": "vite build"
     },
     "dependencies": {
+        "@formkit/auto-animate": "1.0.0-beta.6",
         "@material/button": "^14.0.0",
         "@material/card": "^14.0.0",
         "@material/checkbox": "^14.0.0",

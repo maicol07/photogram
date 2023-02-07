@@ -41,4 +41,8 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  for (const element of document.querySelectorAll('[data-autoanimate]')) {
+    autoAnimate(element);
+  }
 });
