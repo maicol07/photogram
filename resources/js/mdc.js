@@ -101,7 +101,10 @@ window.mdcComponentsDefinitions = {
        */
       (element, instance) => {
         // "0 / 140"
-        const textField = element.closest('label.mdc-text-field');
+        let textField = element.closest('label.mdc-text-field');
+        if (!textField) {
+          textField = element.parentElement.previousElementSibling;
+        }
         const {id} = textField;
         /** @type {{value: string}} */
         const {value} = window.mdc.textField[id];
