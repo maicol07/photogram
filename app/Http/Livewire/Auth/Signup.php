@@ -31,6 +31,11 @@ class Signup extends AuthPage
         'password_confirmation' => 'required|same:password',
     ];
 
+    public function authGoogle(): void
+    {
+        $this->redirectRoute('auth.redirect-provider', ['provider' => 'google']);
+    }
+
     public function signup(): void
     {
         $validatedData = $this->validate(attributes: [

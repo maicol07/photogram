@@ -25,6 +25,11 @@
     @push('bottom')
         <x-button :label="__('Already have an account? Login')" :href="route('login')"/>
     @endpush
+    <div class="oauth">
+        <div>Signup with:</div>
+        @php($google = (config('services.google.client_id') && config('services.google.redirect') && config('services.google.client_secret')))
+        <x-button icon="google" variant="outlined" label="Google" wire:click="authGoogle" :disabled="!$google"/>
+    </div>
     <x-snackbar id="signupMessage"/>
 
 </div>

@@ -40,6 +40,15 @@ Route::group(['middleware' => ['guest']], static function () {
 
     Route::get('/reset-password/{token}', ResetPassword::class)
         ->name('password.reset');
+
+    Route::get('/password-reset-sent', PasswordResetSent::class)
+        ->name('password.reset.notice');
+
+    Route::get('/auth/redirect/{provider}', static function (string $provider) {
+        return Socialite::driver($provider)->redirect();
+    })->name('auth.redirect-provider');
+
+    Route::get('/auth/callback/google', [\App\Http\Controllers\OAuth::class, 'authGoogle']);
 });
 
 Route::group(['middleware' => ['auth'], 'excluded_middleware' => 'verified'], static function () {
