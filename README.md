@@ -50,9 +50,6 @@ To configure this project, you will need to copy a `.env` file in the root of th
 
 ```bash
 cp .env.example .env
-php artisan key:generate # Generate the application key
-php artisan storage:link # Create a symbolic link from "public/storage" to "storage/app/public" to make the files in the "public/storage" directory accessible from the web
-php artisan vendor:publish --tag=blade-flags --force # Publish the flags images provided by blade-flags to the public directory
 ```
 
 > If the `APP_KEY`  The application key is used by the Laravel framework to encrypt data.
