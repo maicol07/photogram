@@ -25,12 +25,12 @@ abstract class BaseNotification extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param  User  $notifiable
      * @return array
      */
-    public function via(mixed $notifiable): array
+    public function via(User $notifiable): array
     {
-        return ['database', 'mail'];
+        return $notifiable->settings()->get('notifications.' . get_class($this), ['database', 'mail']);
     }
 
     /**
