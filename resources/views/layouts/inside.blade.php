@@ -15,7 +15,7 @@
         <x-top-app-bar menu-icon="menu" title="Photogram" id="menu-top-app-bar">
             <x-slot:buttons>
                 <livewire:ui.post.new-post-button />
-                <x-button class="mdc-top-app-bar__action-item" id="search-top-app-bar" outlined iconButton icon="magnify"/>
+                <livewire:ui.user.search/>
                 <livewire:ui.user.notification/>
                 <livewire:ui.language.menu/>
                 <livewire:ui.user.top-app-bar-user-icon/>
