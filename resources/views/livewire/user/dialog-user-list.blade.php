@@ -1,7 +1,7 @@
 <div>
     <x-list>
         @foreach($userList as $user)
-            <x-list-item text="{{$user->username}}" secondary-text="{{$user->bio}}" href="/profile/{{$user->username}}">
+            <x-list-item text="{{$user->username}}" secondary-text="{{$user->bio}}" href="/profile/{{$user->username}}" :tabindex="$userList->search($user)">
                 <x-slot:graphic>
                     @if(!$user->profileImage)
                         <i class="mdi mdi-account-circle mdc-button__icon dialog-icon " aria-hidden="true"></i>
