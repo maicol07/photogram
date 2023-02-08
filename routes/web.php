@@ -3,17 +3,20 @@
 
 use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Auth\Login;
+use App\Http\Livewire\Auth\PasswordResetSent;
 use App\Http\Livewire\Auth\ResetPassword;
 use App\Http\Livewire\Auth\Signup;
 use App\Http\Livewire\Email\VerifyEmail;
 use App\Http\Livewire\Home;
 use App\Http\Livewire\Posts\CreatePost;
-use App\Http\Livewire\Posts\PostView;
+use App\Http\Livewire\Posts\OnePost;
 use App\Http\Livewire\Ui\User\AllNotifications;
 use App\Http\Livewire\User\Profile;
 use App\Http\Livewire\User\Settings;
+use App\Models\User;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,10 +66,10 @@ Route::name('inside.')
         Route::get('/settings', Settings::class)
             ->name('settings');
 
-        Route::get('/new-post', CreatePost::class)
+        Route::get('/new-post/{post?}', CreatePost::class)
             ->name('newPost');
 
-        Route::get('/post/{postId}', PostView::class)
+        Route::get('/post/{post}', OnePost::class)
             ->name('viewPost');
 
         Route::get('/all-notifications', AllNotifications::class)
