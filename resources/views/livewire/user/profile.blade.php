@@ -2,11 +2,15 @@
     <div class="mdc-card mdc-card--outlined">
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell--span-3">
+                <div class="mdc-layout-grid__cell--span-3" id="image-profile">
                     <div>
+                        @if(!$user->profileImage)
+                            <i class="mdi mdi-account-circle" id="icon-profile" aria-hidden="true"></i>
+                        @else
                         <img class="mdc-elevation--z8 image-profile"
                              src="{{Storage::disk('public')->url('profile/images/' . $user->profileImage)}}"
                              alt="image profile" />
+                        @endif
                     </div>
                     @if(Auth::user()->id === $user->id)
                         <x-button id="edit-profile-button" label="edit profile" wire:click="openDialog('profile-dialog')"
@@ -20,7 +24,7 @@
                 <div class="mdc-layout-grid__cell--span-9">
                     <div class="mdc-layout-grid__inner">
                         <div class="mdc-layout-grid__cell--span-4">
-                            <x-button id="post-profile" label="{{$user->posts()->count()}}"/>
+                            <div id="count-posts">{{$user->posts->count()}}</div>
                             <div>@lang('Posts')</div>
                         </div>
                         <div class="mdc-layout-grid__cell--span-4">
@@ -49,9 +53,9 @@
         </x-dialog>
     </div>
 
-    <x-image-list>
-        @foreach($posts as $post)
-            <x-image-list-item text="{{$post['text']}}" src="{{$post['img']}}" alt="{{$post['alt']}}" />
+    <x-image-list style="margin-top: 2px">
+        @foreach($user->posts as $post)
+            <x-image-list-item class="list-posts" wire:click="viewPost({{$post}})" text="{{$post->description}}" src="{{Storage::disk('public')->url('post/images/' . $post->photo)}}" alt="Post image" />
         @endforeach
     </x-image-list>
 </div>

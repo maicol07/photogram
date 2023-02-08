@@ -4,6 +4,7 @@ namespace App\Http\Livewire\User;
 
 use App\Http\Livewire\InsidePage;
 use App\Http\Livewire\Traits\MDCDialogFeatures;
+use App\Models\Post;
 use App\Models\User;
 use App\Notifications\NewFollowerNotification;
 use Auth;
@@ -14,12 +15,6 @@ class Profile extends InsidePage
     use MDCDialogFeatures;
 
     public User $user;
-
-    public array $posts = [
-        ['img' => 'https://picsum.photos/200/200', 'alt' => 'alt1', 'text' => 'text1'],
-        ['img' => 'https://picsum.photos/200/200', 'alt' => 'alt2', 'text' => 'text2'],
-        ['img' => 'https://picsum.photos/200/200', 'alt' => 'alt3', 'text' => 'text3'],
-    ];
 
     protected $listeners = ['editProfile' => 'editProfile', 'followersChanged' => '$refresh'];
 
@@ -47,6 +42,16 @@ class Profile extends InsidePage
         $this->user->followers()->detach(Auth::user()->id);
         $this->user->save();
         $this->emitSelf('followerChanged');
+    }
+
+    public function getTitle(): string
+    {
+        return $this->user->name . ' ' . $this->user->surname;
+    }
+
+    public function viewPost(Post $post): void
+    {
+        $this->redirectRoute('inside.viewPost', ['post' => $post]);
     }
 
     public function page(): View
