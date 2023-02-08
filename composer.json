@@ -7,9 +7,11 @@
     "require": {
         "php": ">=8.1",
         "ext-intl": "*",
-        "doctrine/dbal": "^3.5",
+        "doctrine/dbal": "^3",
         "guzzlehttp/guzzle": "^7",
+        "kcs/class-finder": "^0",
         "laravel/framework": "^9",
+        "laravel/socialite": "^5.6",
         "laravel/tinker": "^2",
         "livewire/livewire": "^2",
         "outhebox/blade-flags": "^1",
@@ -25,8 +27,7 @@
         "laravel-lang/attributes": "^2.0",
         "laravel-lang/lang": "^12.0",
         "laravel-lang/publisher": "^14.0",
-        "barryvdh/laravel-debugbar": "^3",
-        "fossbarrow/laravel-phpcs": "dev-main",
+        "barryvdh/laravel-debugbar": "dev-master",
         "thiagocordeiro/laravel-translator": "^1"
     },
     "autoload": {
