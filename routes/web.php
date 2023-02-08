@@ -47,11 +47,10 @@ Route::group(['middleware' => ['auth'], 'excluded_middleware' => 'verified'], st
     Route::get('/email/verify-email', VerifyEmail::class)
         ->name('verification.notice');
 
-    //"clicca qui per verificare l email"
     Route::get('/email/verify-email/{id}/{hash}', static function (EmailVerificationRequest $request) {
         $request->fulfill();
-        return redirect('/home');
-    })->middleware(['auth', 'signed'])->name('verification.verify');
+        return redirect()->route('inside.home');
+    })->middleware('signed')->name('verification.verify');
 });
 
 Route::name('inside.')
