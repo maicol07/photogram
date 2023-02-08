@@ -1,6 +1,6 @@
 @props([
-    'text' => '',
-    'secondaryText' => '',
+    'text' => null,
+    'secondaryText' => null,
     'disabled' => false,
     'selected' => false,
     'value' => '',
@@ -21,39 +21,29 @@
     wire:ignore.self>
     @if ($href)
         <a href="{{$href}}">
-    @endif
+            @endif
             @isset($graphic)
                 <span class="mdc-deprecated-list-item__graphic">
-                {!! $graphic !!}
-            </span>
-        @endisset
+                    {!! $graphic !!}
+                </span>
+            @endisset
             @if($ripple)
                 <span class="mdc-deprecated-list-item__ripple" wire:ignore></span>
             @endif
-            <span class="mdc-deprecated-list-item__text" wire:ignore.self>
-            @empty($secondaryText)
-                    @empty($text)
-                        {{$slot}}
+                <span class="mdc-deprecated-list-item__text" wire:ignore.self>
+                    @empty($secondaryText)
+                        {{$text ?? $slot}}
                     @else
-                        {{$text}}
+                        <span class="mdc-deprecated-list-item__primary-text" wire:ignore.self>{{$text ?? $slot}}</span>
+                        <span class="mdc-deprecated-list-item__secondary-text" wire:ignore.self>{{$secondaryText}}</span>
                     @endempty
-                @else
-                    <span class="mdc-deprecated-list-item__primary-text" wire:ignore.self>
-                    @empty($text)
-                            {{$slot}}
-                        @else
-                            {{$text}}
-                        @endempty
                 </span>
-                    <span class="mdc-deprecated-list-item__secondary-text" wire:ignore.self>{{$secondaryText}}</span>
-                @endempty
-        </span>
             @isset($meta)
                 <span class="mdc-deprecated-list-item__meta" wire:ignore.self>
                 {{$meta}}
             </span>
-        @endisset
-            @if($href)
+            @endisset
+    @if($href)
         </a>
     @endif
 </li>
