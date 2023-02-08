@@ -27,6 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  const parameters = new URLSearchParams(window.location.search);
+  if (parameters.get('error_auth_google')) {
+    window.mdc.snackbar.authError.open();
+  }
+
   Livewire.hook('message.processed', (message, component) => {
     domTraversal(component.el, (element) => {
       // Update MDC components
