@@ -1,7 +1,6 @@
 @props([
     'iconButton' => false,
     'dialogButton' => false,
-    'outlined' => false,
     'label' => '',
     'variant' => 'text', // Can be raised, outlined, text
     'icon' => '', // MDI icon (reference: https://materialdesignicons.com)
