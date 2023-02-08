@@ -1,10 +1,9 @@
 @props([
     'title' => '',
     'id' => 'id-dialog',
-    'open' => false
 ])
 
-<div class="mdc-dialog" wire:ignore.self id="{{$id}}" {{$attributes}} @if($open) data-open @endif>
+<div class="mdc-dialog" wire:ignore.self id="{{$id}}" {{$attributes}}>
     <div class="mdc-dialog__container" wire:ignore.self>
         <div class="mdc-dialog__surface"
              role="alertdialog"
