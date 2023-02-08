@@ -1,7 +1,11 @@
 @props([
     'label'=>'',
-    'id'=> '',
+    'id'=> null,
+    'name' => null
 ])
+
+@php($inputId = $id ?? $name ?? Str::random(10))
+
 <div class="mdc-form-field" wire:ignore.self>
     <div class="mdc-touch-target-wrapper" wire:ignore.self>
         <div class="mdc-checkbox mdc-checkbox--touch" wire:ignore.self {{$attributes}}>
