@@ -22,6 +22,8 @@ class ForgotPassword extends AuthPage
         );
 
         Password::sendResetLink(['email' => $this->email]);
+
+        $this->redirectRoute("password.reset.notice");
     }
 
     public function goToSignup(): void
