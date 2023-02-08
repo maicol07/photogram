@@ -60,6 +60,29 @@ php artisan vendor:publish --tag=blade-flags --force # Publish the flags images 
 Then, you will need to configure the app settings and the database connection in the `.env` file by setting
 the `DB_*` and `APP_*` variables.
 
+### Email settings
+To test locally the email sending, you need to configure the email settings with Mailhog. To do this, you have to follow these steps:
+1. Install [Mailhog](https://github.com/mailhog/MailHog)
+2. Run Mailhog (should be running on port 8025)
+3. You can now send emails to Mailhog and see them in the Mailhog UI (http://localhost:8025)
+
+### Sign in with Google
+To login to the app with Google, you'll need to get credentials. To get credentials, you have to follow these steps:
+1. Go to the [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project
+3. Go to the [Credentials page](https://console.cloud.google.com/apis/credentials)
+4. Create a new OAuth client ID
+5. Configure consent screen
+   1. Select "External" User Type and create
+   2. Enter the app's name, email for users' assistance and the developer's email
+   3. Add ".../auth/userinfo.email", ".../auth/userinfo.profile" and "openid" scopes
+   4. Add new test users
+   5. Return to the "Credentials" section
+6. Create new credentials and select "OAuth client ID"
+7. Select the "Web application" type
+8. Set the "Authorized redirect URIs" to `http://localhost:8000/login/google/callback` (or the URL of your project) and create
+9. Set the `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI` variables in .env file with the credentials got
+
 ## Database
 
 To create the database, you will need to run the following command after configuring the database connection in
