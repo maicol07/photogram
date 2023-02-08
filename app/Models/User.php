@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Rawilk\Settings\Models\HasSettings;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -19,8 +20,17 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
         'name',
+        'surname',
         'email',
-        'password',
+        'username',
+        'profileImage',
+        'email_verified_at',
+        'google_id',
+        'google_token',
+        'google_refresh_token',
+        'spotify_id',
+        'spotify_token',
+        'spotify_refresh_token',
     ];
 
     /**
