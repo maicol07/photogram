@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 <div class="auth-container">
-    <div class="mdc-card mdc-card--outlined auth-card" >
+    <div class="mdc-card mdc-card--outlined container-card" >
         @yield('main')
     </div>
     @stack('bottom')
