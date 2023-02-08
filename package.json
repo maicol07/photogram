@@ -9,6 +9,7 @@
         "@material/button": "^14.0.0",
         "@material/card": "^14.0.0",
         "@material/checkbox": "^14.0.0",
+        "@material/data-table": "^14.0.0",
         "@material/dialog": "^14.0.0",
         "@material/drawer": "^14.0.0",
         "@material/floating-label": "^14.0.0",

@@ -12,6 +12,7 @@ use Rawilk\Settings\Models\HasSettings;
 class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
+    use HasSettings;
 
     /**
      * The attributes that are mass assignable.
@@ -53,7 +54,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'settings' => 'array'
     ];
 
-    public function getSettings(): array {
+    public function getSettings(): array
+    {
         return $this->settings;
     }
 
@@ -107,5 +109,8 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany(Post::class, 'posts_likes');
     }
 
-
+    public function isLinkedToGoogle(): bool
+    {
+        return $this->google_id !== null;
+    }
 }

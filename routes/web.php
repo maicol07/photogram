@@ -1,6 +1,5 @@
 <?php
 
-
 use App\Http\Livewire\Auth\ForgotPassword;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\PasswordResetSent;
@@ -15,6 +14,7 @@ use App\Http\Livewire\User\Profile;
 use App\Http\Livewire\User\Settings;
 use App\Models\User;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Laravel\Socialite\Facades\Socialite;
 
@@ -83,6 +83,22 @@ Route::name('inside.')
         Route::get('/all-notifications', AllNotifications::class)
             ->name('allNotifications');
     });
+
+
+// Email change
+Route::get('/email/change-email/{user}/{email}', static function (Request $request, User $user, string $email) {
+    $request->validate([
+        'email' => 'required|email|unique:users'
+    ]);
+
+    $user->update([
+        'email' => $email,
+        'email_verified_at' => now()
+    ]);
+
+    // And finally return the view telling the change has been done
+    return redirect()->route('inside.settings', ['email_changed' => true]);
+})->middleware(['auth', 'signed'])->name('user.email-change-verify');
 
 Route::get("/logout", static function () {
     Auth::logout();

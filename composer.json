@@ -12,7 +12,9 @@
         "laravel/framework": "^9",
         "laravel/tinker": "^2",
         "livewire/livewire": "^2",
-        "outhebox/blade-flags": "^1"
+        "outhebox/blade-flags": "^1",
+        "rawilk/laravel-settings": "^2",
+        "socialiteproviders/google": "^4.1"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

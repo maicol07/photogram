@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Illuminate\Contracts\View\View;
-use Spatie\Navigation\Navigation;
 
 abstract class InsidePage extends Page
 {
@@ -12,7 +11,7 @@ abstract class InsidePage extends Page
         return [
             'Home' => ['routeName' => 'inside.home', 'icon' => 'home'],
             'Profile' => ['routeName' => 'inside.profile', 'icon' => 'account'],
-            //'Settings' => route(''),
+            'Settings' => ['routeName' => 'inside.settings', 'icon' => 'cog-outline'],
         ];
     }
 
