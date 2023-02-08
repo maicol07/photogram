@@ -9,7 +9,8 @@
     'type' => 'text',
     'value' => '',
     'helperText' => '',
-    'error' => ''
+    'error' => '',
+    'icon' => ''
 ])
 
 @php
@@ -24,7 +25,8 @@
     'mdc-text-field--filled' => !$outlined,
     'mdc-text-field--textarea' => $textarea,
     'mdc-text-field--textarea--with-internal-counter' => $textarea && $maxlength !== null,
-    'mdc-text-field--label-floating' => $value
+    'mdc-text-field--label-floating' => $value,
+    'mdc-text-field--with-leading-icon' => $icon
 ])}}>
     @if(!$outlined && !$textarea)
         <span class="mdc-floating-label @if($value) mdc-floating-label--float-above @endif" id="{{$id}}-label" wire:ignore.self>
@@ -40,6 +42,10 @@
             </span>
             <span class="mdc-notched-outline__trailing" wire:ignore></span>
         </span>
+    @endif
+
+    @if($icon)
+            <i class="mdi mdi-{{$icon}} mdc-text-field__icon mdc-text-field__icon--leading" aria-hidden="true"></i>
     @endif
 
     @if($textarea)
