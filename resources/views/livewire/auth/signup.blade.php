@@ -9,9 +9,6 @@
         <x-textfield :label="__('Email')" type="text" id="email" required wire:model="email" />
         <br/>
 
-        <x-textfield :label="__('Date of birth')" type="date" required id="dateofbirthsignup" wire:model="dateOfBirth" />
-        <br/>
-
         <x-textfield :label="__('Username')" type="text" required id="username" wire:model="username" />
         <br/>
 
@@ -26,7 +23,7 @@
 
     </form>
     @push('bottom')
-    <x-button :label="__('Already have an account? Login')" :href="route('login')"/>
+        <x-button :label="__('Already have an account? Login')" :href="route('login')"/>
     @endpush
     <x-snackbar id="signupMessage"/>
 

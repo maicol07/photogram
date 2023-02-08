@@ -18,7 +18,6 @@ class Signup extends AuthPage
     public string $name = '';
     public string $surname = '';
     public string $email = '';
-    public string $dateOfBirth = '';
     public string $username = '';
     public string $password = '';
     public string $password_confirmation = '';
@@ -27,7 +26,6 @@ class Signup extends AuthPage
         'name' => 'required|string',
         'surname' => 'required|string',
         'email' => 'required|email|unique:App\Models\User,email',
-        'dateOfBirth' => 'required|date', //TODO add to database
         'username' => 'required|max:20|min:4|string|unique:App\Models\User,username',
         'password' => 'required|max:24|min:8|string',
         'password_confirmation' => 'required|same:password',
@@ -41,7 +39,6 @@ class Signup extends AuthPage
             "name" => __("Name"),
             "surname" => __("Surname"),
             "email" => __("Email"),
-            "dateOfBirth" => __("Date of birth"),
             "repeatPassword" => __("Repeated Password"),
         ]);
 
@@ -59,7 +56,7 @@ class Signup extends AuthPage
         auth()->login($user);
 
         $this->openSnackbar('signupMessage', __('Registration completed successfully.'), 'signupSuccess');
-        redirect()->route('home');
+        redirect()->route('inside.home');
     }
 
     public function page(): View
