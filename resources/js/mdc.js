@@ -148,10 +148,8 @@ window.mdcComponentsDefinitions = {
        * @param {MDCSnackbar} instance The snackbar instance
        */
       (element, instance) => {
-        if (element.dataset.open === undefined) {
-          instance.close();
-        } else {
-          instance.open();
+        if (element.dataset.timeout !== undefined) {
+          instance.timeoutMs = Number.parseInt(element.dataset.timeout, 10);
         }
       }]
   },
