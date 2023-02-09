@@ -37,6 +37,7 @@
             <x-textfield name="password_confirmation" type="password" wire:model="password_confirmation"
                          :label="__('Confirm password')"></x-textfield>
             <div class="mdc-dialog__actions">
+                <x-button :label="__('Cancel')" dialog-button data-mdc-dialog-action="cancel"></x-button>
                 <x-button type="submit" :label="__('Save')" dialog-button></x-button>
             </div>
         </form>
@@ -76,6 +77,7 @@
                 </div>
             </div>
             <div class="mdc-dialog__actions">
+                <x-button :label="__('Cancel')" dialog-button data-mdc-dialog-action="cancel"></x-button>
                 <x-button type="submit" :label="__('Save')" dialog-button></x-button>
             </div>
         </form>
@@ -94,6 +96,7 @@
             @endif
 
             <div class="mdc-dialog__actions">
+                <x-button :label="__('Cancel')" dialog-button data-mdc-dialog-action="cancel"></x-button>
                 @if($user->isLinkedToGoogle())
                     <x-button type="button" :label="__('Unlink')" wire:click="unlinkGoogleAccount" dialog-button></x-button>
                 @else
@@ -109,6 +112,7 @@
             <p>@lang(__('This action cannot be undone. Confirm your password to proceed, you will not be prompted again.'))</p>
             <x-textfield name="password_delete" type="password" wire:model="password_delete" :label="__('Password')"></x-textfield>
             <div class="mdc-dialog__actions">
+                <x-button :label="__('Cancel')" dialog-button data-mdc-dialog-action="cancel"></x-button>
                 <x-button type="submit" :label="__('Delete')" wire:click="deleteAccount" dialog-button></x-button>
             </div>
         </form>
