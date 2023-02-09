@@ -157,7 +157,7 @@ class Settings extends InsidePage
                 'icon' => 'google',
                 'headline' => __('Google'),
                 'supportingText' => __('Link or unlink your Google account with your Photogram account.'),
-                'trailingIcon' => 'link-variant',
+                'trailingIcon' => 'link',
             ],
             'delete-account' => [
                 'icon' => 'delete-outline',
