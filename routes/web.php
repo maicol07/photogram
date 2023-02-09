@@ -43,13 +43,13 @@ Route::group(['middleware' => ['guest']], static function () {
 
     Route::get('/password-reset-sent', PasswordResetSent::class)
         ->name('password.reset.notice');
-
-    Route::get('/auth/redirect/{provider}', static function (string $provider) {
-        return Socialite::driver($provider)->redirect();
-    })->name('auth.redirect-provider');
-
-    Route::get('/auth/callback/google', [\App\Http\Controllers\OAuth::class, 'authGoogle']);
 });
+
+Route::get('/auth/redirect/{provider}', static function (string $provider) {
+    return Socialite::driver($provider)->redirect();
+})->name('auth.redirect-provider');
+
+Route::get('/auth/callback/google', [\App\Http\Controllers\OAuthController::class, 'authGoogle']);
 
 Route::group(['middleware' => ['auth'], 'excluded_middleware' => 'verified'], static function () {
     //"ricordati di cliccare il link nelle email"
