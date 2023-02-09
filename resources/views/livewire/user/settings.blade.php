@@ -19,7 +19,7 @@
 
     <x-dialog id="account-dialog" :title="__('Account settings')">
         <form wire:submit.prevent="saveAccountSettings">
-            <p>@lang(__('Here you can change your username and email address.'))</p>
+            <p>@lang('Here you can change your username and email address.')</p>
             <x-textfield name="username" wire:model="user.username" :label="__('Username')" icon="account-outline"></x-textfield>
             <x-textfield name="email" wire:model="user.email" type="email" :label="__('Email')" icon="envelope-outline"></x-textfield>
             <div class="mdc-dialog__actions">
@@ -30,9 +30,14 @@
 
     <x-dialog id="security-dialog" :title="__('Security settings')">
         <form wire:submit.prevent="saveSecuritySettings">
-            <p>@lang(__('Here you can change your password.'))</p>
-            <x-textfield name="current_password" type="password" wire:model="current_password"
-                         :label="__('Current password')" icon="lock-outline"></x-textfield>
+            @if($user->password)
+                <p>@lang(__('Here you can change your password.'))</p>
+                <x-textfield name="current_password" type="password" wire:model="current_password"
+                             :label="__('Current password')" icon="lock-outline"></x-textfield>
+            @else
+                <p>@lang(__('Here you can set your password.'))</p>
+            @endif
+
             <x-textfield name="password" type="password" wire:model="password" :label="__('Password')" icon="lock-outline"></x-textfield>
             <x-textfield name="password_confirmation" type="password" wire:model="password_confirmation"
                          :label="__('Confirm password')" icon="lock-outline"></x-textfield>
@@ -86,21 +91,27 @@
     <x-dialog id="google-dialog" :title="__('Link/Unlink your Google account')">
         <form wire:submit.prevent="saveGoogleSettings">
             @if($user->isLinkedToGoogle())
-                <p>@lang(__('Here you can unlink your Google account from your account.'))</p>
+                @if($user->password)
+                    <p>@lang('Here you can unlink your Google account from your account.')</p>
+                @else
+                    <p>@lang('You have to set a password in security settings before unlinking your account.')</p>
+                @endif
                 <p>
-                    <strong>@lang(__('Linked Google account ID')):</strong> {{$user->google_id}}
+                    <strong>@lang('Linked Google account ID'):</strong> {{$user->google_id}}
                 </p>
             @else
-                <p>@lang(__('Here you can connect your Google account to your account.'))</p>
-                <p>@lang(__("Currently you aren't linked to any Google account."))</p>
+                <p>@lang('Here you can connect your Google account to your account.')</p>
+                <p>@lang("Currently you aren't linked to any Google account.")</p>
             @endif
 
             <div class="mdc-dialog__actions">
                 <x-button :label="__('Cancel')" dialog-button data-mdc-dialog-action="cancel"></x-button>
                 @if($user->isLinkedToGoogle())
-                    <x-button type="button" :label="__('Unlink')" wire:click="unlinkGoogleAccount" dialog-button></x-button>
+                    @if($user->password)
+                        <x-button type="button" :label="__('Unlink')" wire:click="unlinkGoogleAccount" dialog-button></x-button>
+                    @endif
                 @else
-                    <x-button type="button" :label="__('Link')" :href="route('auth.redirect-provider', 'google')" dialog-button></x-button>
+                    <x-button type="button" :label="__('Link')" wire:click="linkGoogleAccount" dialog-button></x-button>
                 @endif
             </div>
         </form>
@@ -108,12 +119,19 @@
 
     <x-dialog id="delete-account-dialog" :title="__('Delete account')">
         <form wire:submit.prevent="deleteAccount">
-            <p>@lang(__('Are you sure you want to delete your account?'))</p>
-            <p>@lang(__('This action cannot be undone. Confirm your password to proceed, you will not be prompted again.'))</p>
-            <x-textfield name="password_delete" type="password" wire:model="password_delete" :label="__('Password')" icon="lock-outline"></x-textfield>
+            <p>@lang('Are you sure you want to delete your account?')</p>
+            <p>@lang('This action cannot be undone. Confirm your password to proceed, you will not be prompted again.')</p>
+
+            @empty($user->password)
+                <strong class="mdc-typography--body1">@lang("You don't have a password set, please set one before deleting your account from security settings.")</strong>
+            @else
+                <x-textfield name="password_delete" type="password" wire:model="password_delete" :label="__('Password')" icon="lock-outline"></x-textfield>
+            @endempty
             <div class="mdc-dialog__actions">
                 <x-button :label="__('Cancel')" dialog-button data-mdc-dialog-action="cancel"></x-button>
-                <x-button type="submit" :label="__('Delete')" wire:click="deleteAccount" dialog-button></x-button>
+                @if($user->password)
+                    <x-button type="submit" :label="__('Delete')" wire:click="deleteAccount" dialog-button></x-button>
+                @endif
             </div>
         </form>
     </x-dialog>

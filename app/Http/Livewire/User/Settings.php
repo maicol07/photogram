@@ -78,7 +78,9 @@ class Settings extends InsidePage
 
     public function saveSecuritySettings(): void
     {
-        $this->validateOnly('current_password');
+        if ($this->user->password) {
+            $this->validateOnly('current_password');
+        }
         $this->validateOnly('password');
         $this->validateOnly('password_confirmation');
         $this->user->password = Hash::make($this->password);
@@ -104,10 +106,10 @@ class Settings extends InsidePage
 
     public function deleteAccount(): void
     {
-        // TODO: Per Simone: session()->flash() google
         $this->validateOnly('password_delete');
         $this->user->delete();
         auth()->logout();
+        session()->flash('message', __('Your account has been deleted successfully. We are sorry to see you go.'));
         $this->redirectRoute('inside.home');
     }
 
@@ -117,6 +119,12 @@ class Settings extends InsidePage
             return;
         }
         $this->validateOnly($propertyName);
+    }
+
+    public function linkGoogleAccount(): void
+    {
+        session()->put('from', 'inside.settings');
+        $this->redirectRoute('auth.redirect-provider', 'google');
     }
 
     public function unlinkGoogleAccount(): void
