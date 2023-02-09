@@ -33,6 +33,7 @@ class Signup extends AuthPage
 
     public function authGoogle(): void
     {
+        session()->put('from', 'signup');
         $this->redirectRoute('auth.redirect-provider', ['provider' => 'google']);
     }
 

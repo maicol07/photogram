@@ -21,6 +21,5 @@
         @php($google = (config('services.google.client_id') && config('services.google.redirect') && config('services.google.client_secret')))
         <x-button icon="google" variant="outlined" label="Google" wire:click="authGoogle" :disabled="!$google"/>
     </div>
-    <x-snackbar id="authError" message="{{$message}}"/>
     <x-snackbar id="loginMessage"/>
 </div>

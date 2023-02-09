@@ -31,5 +31,4 @@
         <x-button icon="google" variant="outlined" label="Google" wire:click="authGoogle" :disabled="!$google"/>
     </div>
     <x-snackbar id="signupMessage"/>
-
 </div>

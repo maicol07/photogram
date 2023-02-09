@@ -16,25 +16,15 @@ class Login extends AuthPage
     public bool $remember = false;
     public string $username = '';
     public string $password = '';
-    public string $message = '';
 
     public $rules = [
         'username' => 'required|max:20|string',
         'password' => 'required|min:8|string',
     ];
 
-    public function mount(): void
-    {
-        $error = request('error_auth_google');
-
-        $this->message = match ($error) {
-            '1062' => __('It seems your email address is already registered. You may have already an account registered in our systems. Please login with your credentials.'),
-            default => '',
-        };
-    }
-
     public function authGoogle(): void
     {
+        session()->put('from', 'login');
         $this->redirectRoute('auth.redirect-provider', ['provider' => 'google']);
     }
 

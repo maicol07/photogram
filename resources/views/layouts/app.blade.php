@@ -14,6 +14,9 @@
     @yield('content')
 @endisset
 
+@if(session()->has('message'))
+    <x-snackbar id="message-snackbar" :message="session()->pull('message', '')"/>
+@endif
 @livewireScripts
 @vite('resources/js/app.js')
 </body>

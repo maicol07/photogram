@@ -2,7 +2,6 @@
     <x-card id="post-card" >
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-
                 <div class="mdc-layout-grid__cell--span-8">
                     <a class="namebar" wire:click="goToProfile">
                         @if($this->post->user->profileImage)
@@ -21,7 +20,7 @@
                              alt="Post main image"/>
                     @endif
                     <br/>
-                    {{--parte con numero di like e link share--}}
+                    {{--section with number of likes and link share--}}
                     <div id="post-options" >
 
                         <x-button id="post-like-button" alt="post like button" iconButton wire:click="likeToggle"

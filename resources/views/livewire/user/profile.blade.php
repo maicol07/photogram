@@ -2,7 +2,7 @@
     <div class="mdc-card mdc-card--outlined">
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell--span-3" id="image-profile">
+                <div class="mdc-layout-grid__cell--span-3">
                     <div>
                         @if(!$user->profileImage)
                             <i class="mdi mdi-account-circle" id="icon-profile" aria-hidden="true"></i>
