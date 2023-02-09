@@ -2,7 +2,7 @@
     @php($posts = $this->getPosts())
 
     @if($posts->isEmpty())
-        <p>@lang("Non ci sono post per te")</p>
+        <p>@lang("There aren't posts for you.")</p>
     @endif
 
     @foreach($posts as $post)
