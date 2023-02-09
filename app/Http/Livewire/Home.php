@@ -13,6 +13,11 @@ class Home extends InsidePage
         return view('livewire.home');
     }
 
+    public function getTitle(): string
+    {
+        return __('Home');
+    }
+
     /**
      * @return Collection<Post>
      */
