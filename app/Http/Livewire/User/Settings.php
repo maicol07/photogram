@@ -108,7 +108,7 @@ class Settings extends InsidePage
         $this->validateOnly('password_delete');
         $this->user->delete();
         auth()->logout();
-        $this->redirectRoute('home');
+        $this->redirectRoute('inside.home');
     }
 
     public function updated(string $propertyName): void
