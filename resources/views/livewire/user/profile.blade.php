@@ -16,9 +16,9 @@
                         <x-button id="edit-profile-button" :label="__('Edit profile')" wire:click="openDialog('profile-dialog')"
                                   variant="outlined" icon="pencil" />
                     @elseif(Auth::user()->follows()->where('user_follower', $user->id)->exists())
-                        <x-button id="unfollow-button" :="__('Unfollow')" variant="outlined" wire:click="unfollow" trailing-icon="true" icon="account-minus" />
+                        <x-button id="unfollow-button" :label="__('Unfollow')" variant="outlined" wire:click="unfollow" trailing-icon="true" icon="account-minus" />
                     @else
-                        <x-button id="follow-button" :label="('Follow')" variant="outlined" wire:click="follow" trailing-icon="true" icon="account-plus" />
+                        <x-button id="follow-button" :label="__('Follow')" variant="outlined" wire:click="follow" trailing-icon="true" icon="account-plus" />
                     @endif
                 </div>
                 <div class="mdc-layout-grid__cell--span-9">
