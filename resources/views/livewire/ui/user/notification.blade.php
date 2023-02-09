@@ -3,7 +3,7 @@
               :icon="$notifications->isEmpty() ? 'bell' : 'bell-badge'" wire:click="openNotification"/>
     <x-menu id="menu-notifications">
         @if($notifications->isEmpty())
-            <div>@lang('You have not notifications')</div>
+            <div>@lang('You do not have notifications')</div>
         @else
             <x-list>
                 @foreach($notifications as $notification)
@@ -47,6 +47,6 @@
                 @endforeach
             </x-list>
         @endif
-        <x-button variant="outlined" label="+ View All" id="all-notifications-button" wire:click="showAll"/>
+        <x-button variant="outlined" :label="__('+ View All')" id="all-notifications-button" wire:click="showAll"/>
     </x-menu>
 </div>

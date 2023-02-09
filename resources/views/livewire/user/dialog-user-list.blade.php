@@ -14,6 +14,6 @@
         @endforeach
     </x-list>
     <div class="mdc-dialog__actions">
-        <x-button dialog-button label="Close" variant="text" data-mdc-dialog-action="close"/>
+        <x-button dialog-button :label="__('Close')" variant="text" data-mdc-dialog-action="close"/>
     </div>
 </div>

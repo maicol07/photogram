@@ -9,9 +9,9 @@ abstract class InsidePage extends Page
     public function getNavigation(): array
     {
         return [
-            'Home' => ['routeName' => 'inside.home', 'icon' => 'home'],
-            'Profile' => ['routeName' => 'inside.profile', 'icon' => 'account'],
-            'Settings' => ['routeName' => 'inside.settings', 'icon' => 'cog-outline'],
+            __('Home') => ['routeName' => 'inside.home', 'icon' => 'home'],
+            __('Profile') => ['routeName' => 'inside.profile', 'icon' => 'account'],
+            __('Settings') => ['routeName' => 'inside.settings', 'icon' => 'cog-outline'],
         ];
     }
 

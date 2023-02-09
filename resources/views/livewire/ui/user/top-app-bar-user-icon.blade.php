@@ -31,7 +31,7 @@
         <br/>
 
         {{--button that redirects to user profile--}}
-        <x-button id="menu-user-button" :label="__('Il tuo profilo')"
+        <x-button id="menu-user-button" :label="__('Your profile')"
             wire:click="goToProfile"/>
         <br/>
 

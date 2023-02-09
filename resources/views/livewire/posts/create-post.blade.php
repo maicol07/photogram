@@ -31,12 +31,12 @@
 
         <div>
             <x-textfield wire:model="post.description" outlined textarea rows="8" cols="40" maxlength="{{$maxLength}}"
-                         id="edit-bio" label="Add a description"/>
+                         id="edit-bio" :label="__('Add a description')"/>
         </div>
         <div class="mdc-dialog__actions">
-            <x-button dialog-button label="Delete" variant="text" wire:click="delete" />
-            <x-button dialog-button label="Cancel" variant="text" wire:click="goToProfile" />
-            <x-button dialog-button label="OK" variant="text" type="submit" />
+            <x-button dialog-button :label="__('Delete')" variant="text" wire:click="delete" />
+            <x-button dialog-button :label="__('Cancel')" variant="text" wire:click="goToProfile" />
+            <x-button dialog-button :label="__('OK')" variant="text" type="submit" />
         </div>
     </div>
     <script wire:ignore>

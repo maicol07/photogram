@@ -13,12 +13,12 @@
                         @endif
                     </div>
                     @if(Auth::user()->id === $user->id)
-                        <x-button id="edit-profile-button" label="edit profile" wire:click="openDialog('profile-dialog')"
+                        <x-button id="edit-profile-button" :label="__('Edit profile')" wire:click="openDialog('profile-dialog')"
                                   variant="outlined" icon="pencil" />
                     @elseif(Auth::user()->follows()->where('user_follower', $user->id)->exists())
-                        <x-button id="unfollow-button" label="unfollow" variant="outlined" wire:click="unfollow" trailing-icon="true" icon="account-minus" />
+                        <x-button id="unfollow-button" :="__('Unfollow')" variant="outlined" wire:click="unfollow" trailing-icon="true" icon="account-minus" />
                     @else
-                        <x-button id="follow-button" label="follow" variant="outlined" wire:click="follow" trailing-icon="true" icon="account-plus" />
+                        <x-button id="follow-button" :label="('Follow')" variant="outlined" wire:click="follow" trailing-icon="true" icon="account-plus" />
                     @endif
                 </div>
                 <div class="mdc-layout-grid__cell--span-9">
@@ -42,13 +42,13 @@
                 </div>
             </div>
         </div>
-        <x-dialog id="list-follower" title="Followers">
+        <x-dialog id="list-follower" :title="__('Followers')">
             <livewire:user.dialog-user-list :userList="$user->followers"/>
         </x-dialog>
-        <x-dialog id="list-follow" title="Follows">
+        <x-dialog id="list-follow" :title="__('Follows')">
             <livewire:user.dialog-user-list :userList="$user->follows"/>
         </x-dialog>
-        <x-dialog id="profile-dialog" title="Edit Profile">
+        <x-dialog id="profile-dialog" :title="__('Edit Profile')">
             <livewire:user.dialog :user="$user"/>
         </x-dialog>
     </div>

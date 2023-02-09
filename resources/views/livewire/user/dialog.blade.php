@@ -27,11 +27,11 @@
     </div>
     <div>
         <x-textfield wire:model="user.bio" outlined textarea rows="8" cols="40" maxlength="{{$maxLength}}"
-                     id="edit-bio" label="Edit Bio"/>
+                     id="edit-bio" :label="__('Edit Bio')"/>
     </div>
     <div class="mdc-dialog__actions">
-        <x-button dialog-button label="Cancel" variant="text" data-mdc-dialog-action="close"/>
-        <x-button dialog-button label="OK" variant="text" type="submit"/>
+        <x-button dialog-button :label="__('Cancel')" variant="text" data-mdc-dialog-action="close"/>
+        <x-button dialog-button :label="__('OK')" variant="text" type="submit"/>
     </div>
 
     <script wire:ignore>
