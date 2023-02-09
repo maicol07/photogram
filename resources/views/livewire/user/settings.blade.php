@@ -20,8 +20,8 @@
     <x-dialog id="account-dialog" :title="__('Account settings')">
         <form wire:submit.prevent="saveAccountSettings">
             <p>@lang(__('Here you can change your username and email address.'))</p>
-            <x-textfield name="username" wire:model="user.username" :label="__('Username')"></x-textfield>
-            <x-textfield name="email" wire:model="user.email" type="email" :label="__('Email')"></x-textfield>
+            <x-textfield name="username" wire:model="user.username" :label="__('Username')" icon="account-outline"></x-textfield>
+            <x-textfield name="email" wire:model="user.email" type="email" :label="__('Email')" icon="envelope-outline"></x-textfield>
             <div class="mdc-dialog__actions">
                 <x-button type="submit" :label="__('Save')" dialog-button></x-button>
             </div>
@@ -32,10 +32,10 @@
         <form wire:submit.prevent="saveSecuritySettings">
             <p>@lang(__('Here you can change your password.'))</p>
             <x-textfield name="current_password" type="password" wire:model="current_password"
-                         :label="__('Current password')"></x-textfield>
-            <x-textfield name="password" type="password" wire:model="password" :label="__('Password')"></x-textfield>
+                         :label="__('Current password')" icon="lock-outline"></x-textfield>
+            <x-textfield name="password" type="password" wire:model="password" :label="__('Password')" icon="lock-outline"></x-textfield>
             <x-textfield name="password_confirmation" type="password" wire:model="password_confirmation"
-                         :label="__('Confirm password')"></x-textfield>
+                         :label="__('Confirm password')" icon="lock-outline"></x-textfield>
             <div class="mdc-dialog__actions">
                 <x-button :label="__('Cancel')" dialog-button data-mdc-dialog-action="cancel"></x-button>
                 <x-button type="submit" :label="__('Save')" dialog-button></x-button>
@@ -110,7 +110,7 @@
         <form wire:submit.prevent="deleteAccount">
             <p>@lang(__('Are you sure you want to delete your account?'))</p>
             <p>@lang(__('This action cannot be undone. Confirm your password to proceed, you will not be prompted again.'))</p>
-            <x-textfield name="password_delete" type="password" wire:model="password_delete" :label="__('Password')"></x-textfield>
+            <x-textfield name="password_delete" type="password" wire:model="password_delete" :label="__('Password')" icon="lock-outline"></x-textfield>
             <div class="mdc-dialog__actions">
                 <x-button :label="__('Cancel')" dialog-button data-mdc-dialog-action="cancel"></x-button>
                 <x-button type="submit" :label="__('Delete')" wire:click="deleteAccount" dialog-button></x-button>
