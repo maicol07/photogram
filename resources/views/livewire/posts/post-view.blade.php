@@ -20,7 +20,7 @@
                              alt="Post main image"/>
                     @endif
                     <br/>
-                    {{--section with number of likes and link share--}}
+                    {{--section with number of likes and link shares--}}
                     <div id="post-options" >
 
                         <x-button id="post-like-button" alt="post like button" iconButton wire:click="likeToggle"
