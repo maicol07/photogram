@@ -256,7 +256,7 @@ window.mdcComponentsDefinitions = {
       }
     ]
   },
-  '.mdc-menu-surface': {
+  '.mdc-menu-surface:not(.mdc-menu)': {
     slug: 'menuSurface',
     component: MDCMenuSurface,
     afterInit: [
