@@ -11,7 +11,7 @@
         <div class="mdc-checkbox mdc-checkbox--touch" wire:ignore.self {{$attributes}}>
             <input type="checkbox"
                    class="mdc-checkbox__native-control"
-                   id="{{$id}}" {{$attributes->only('wire:model')}} wire:ignore/>
+                   id="{{$inputId}}-id" name="{{$inputId}}-id" {{$attributes->only('wire:model')}} wire:ignore/>
             <div class="mdc-checkbox__background" wire:ignore>
                 <svg class="mdc-checkbox__checkmark"
                      viewBox="0 0 24 24">
@@ -25,5 +25,5 @@
             <div class="mdc-checkbox__focus-ring" wire:ignore></div>
         </div>
     </div>
-    <label for="{{$id}}" wire:ignore.self>{{$label}}</label>
+    <label for="{{$inputId}}-id" wire:ignore.self>{{$label}}</label>
 </div>
