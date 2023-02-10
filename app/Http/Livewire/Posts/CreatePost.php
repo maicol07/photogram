@@ -24,6 +24,14 @@ class CreatePost extends InsidePage
         'post.photo' => 'nullable|string|max:1024'
     ];
 
+    public function getTitle(): string
+    {
+        if ($this->post->exists) {
+            return __('Edit Post');
+        }
+        return __('Create Post');
+    }
+
     public function mount(null|Post $post): void
     {
         $this->post = ($post instanceof Post) ? $post : new Post();
@@ -56,7 +64,7 @@ class CreatePost extends InsidePage
 
     public function delete(): void
     {
-        if ($this->post->exists){
+        if ($this->post->exists) {
             $this->post->delete();
         }
         $this->goToProfile();
