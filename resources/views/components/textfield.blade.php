@@ -64,7 +64,7 @@
             </span>
         </span>
     @else
-        <input class="mdc-text-field__input" id="{{$inputId}}-input" name="{{$name}}" type="{{$type}}" aria-labelledby="{{$inputId}}-label" @if($value) value="{{$value}}" @endif {{$attributes}} wire:ignore />
+        <input class="mdc-text-field__input" id="{{$inputId}}-input" name="{{$name}}" type="{{$type}}" aria-labelledby="{{$inputId}}-label" @if($value) value="{{$value}}" @endif @if($maxlength) maxlength="{{$maxlength}}" @endif {{$attributes}} wire:ignore />
     @endif
     @empty($outlined)
         <div class="mdc-line-ripple" wire:ignore></div>
@@ -72,6 +72,11 @@
 </label>
 
 <div class="mdc-text-field-helper-line" wire:ignore.self>
+    @if(!$textarea && $maxlength !== null)
+        <div class="mdc-text-field-character-counter" wire:ignore>
+            {{strlen($value)}} / {{$maxlength}}
+        </div>
+    @endif
     <div id="{{$inputId}}-helper-text" class="mdc-text-field-helper-text @error($inputId) mdc-text-field-helper-text--validation-msg mdc-text-field-helper-text--persistent @enderror" aria-hidden="true">
         @empty($error)
             {{$helperText}}
