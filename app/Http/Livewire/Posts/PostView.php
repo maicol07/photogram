@@ -27,7 +27,7 @@ class PostView extends Component
 
     protected $listeners = [
         'refreshPostView' => '$refresh',
-        'editComment' => 'editComment'
+        'editComment' => 'editComment',
     ];
 
     public function mount(Post|int $post): void
@@ -39,8 +39,6 @@ class PostView extends Component
     {
         $this->openMenuSurface('share-menu-' . $this->post->id);
     }
-
-
 
     public function addComment(): void
     {
