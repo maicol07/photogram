@@ -1,0 +1,10 @@
+.mdc-select#language {
+    margin-top: 16px;
+}
+
+.language-list, .mdc-select#language {
+    .mdc-deprecated-list-item__graphic {
+        width: 32px;
+        margin-right: 8px;
+    }
+}

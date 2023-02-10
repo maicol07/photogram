@@ -1,5 +1,5 @@
-<div style="width:{{$width}}%" >
-    <x-card id="post-card" >
+<div class="post-container">
+    <x-card class="post-card">
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-8">

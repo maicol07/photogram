@@ -1,0 +1,19 @@
+#home-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    > div, .post-card {
+        @include media("<=tablet"){
+            width: 100%;
+        }
+        //@include media(">phone", "<=tablet"){
+        //    width: 60%;
+        //}
+        @include media(">tablet"){
+            width: 40%;
+        }
+    }
+}

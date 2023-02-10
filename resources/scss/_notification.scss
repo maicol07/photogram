@@ -1,0 +1,23 @@
+#all-notifications-button {
+    margin-top: 10px
+}
+
+#menu-notifications {
+    min-width: 250px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+.mdc-deprecated-list-item a {
+    text-decoration: none;
+    color: black;
+    display: contents;
+}
+
+.without-ripple {
+    cursor: default !important;
+}
+
+.read-notification {
+    color: black;
+}

@@ -145,7 +145,7 @@
         <script>
             document.addEventListener('DOMContentLoaded', () => {
               /** @type{import('@material/snackbar').MDCSnackbar} */
-              const snackbar = new mdc.snackbar.MDCSnackbar(document.querySelector('#email-changed-snackbar'));
+              const snackbar = window.mdc.snackbar['email-changed-snackbar'];
               snackbar.open();
             });
         </script>

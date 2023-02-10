@@ -1,0 +1,169 @@
+.post-container {
+    display: contents;
+    .post-card {
+        padding: 8px;
+
+        .share-menu {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+
+            span {
+                white-space: nowrap;
+            }
+        }
+
+        .mdc-layout-grid {
+            padding: 1%;
+        }
+
+        hr {
+            width: 100%;
+        }
+
+        #post-description {
+            padding: 16px 0;
+        }
+
+        #user-post-image {
+            width: 48px;
+            height: 48px;
+            margin: 1%;
+            border-radius: 50%;
+        }
+
+        #post-options {
+            display: flex;
+            align-items: center;
+            justify-content: center; // TODO centrare share menu che seno esce dallo schermo mobile
+        }
+
+        .namebar {
+            display: inline-flex;
+            align-items: center;
+            padding: 2%;
+            cursor: pointer;
+        }
+
+        #nametag {
+            font-size: large;
+            padding-left: 10%;
+            font-weight: bold;
+            color: var(--mdc-theme-primary);
+
+        }
+
+        #post-main-image {
+            width: 99%;
+            border-radius: 8px;
+        }
+
+        #add-comment-section {
+            padding-top: 1%;
+            margin-left: 1%;
+            display: flex;
+            flex-direction: row;
+            align-items: baseline;
+            column-gap: 0.5vw;
+
+            #comment-textfield-counter {
+                flex-grow: 10;
+            }
+
+            .add-comment-content {
+                width: 100%;
+            }
+        }
+
+        #display-comments {
+            float: left;
+            width: 95%;
+            margin-left: 1%;
+
+            .delete-button {
+                color: var(--mdc-theme-error);
+
+                .mdc-deprecated-list-item__graphic {
+                    color: var(--mdc-theme-error);
+                }
+            }
+
+            .comment {
+                height: fit-content;
+                cursor: unset;
+            }
+
+            .comment-content {
+                word-wrap: break-word;
+                white-space: initial;
+            }
+
+            .comment-meta {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .user-comment-image {
+                cursor: pointer;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+            }
+
+            .comment-name {
+                color: var(--mdc-theme-primary);
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+#temporary-post-image{
+    width:80%;
+    margin: 1%;
+}
+
+#add-image {
+    display: none;
+}
+
+#upload-image-button{
+    margin: 5% 0;
+}
+
+#preview-image{
+    margin: 5% 0;
+}
+
+.post-create-container {
+    margin: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-create-card {
+    padding: 16px;
+    margin-top: 1%;
+}
+
+#single-post-view{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+
+    > div, .post-card {
+        @include media("<=tablet"){
+            width: 100%;
+        }
+        //@include media(">phone", "<=tablet"){
+        //    width: 60%;
+        //}
+        @include media(">tablet"){
+            width: 60%;
+        }
+    }
+}

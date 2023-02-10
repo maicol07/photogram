@@ -6,6 +6,8 @@
 );
 @use "@material/typography/mdc-typography";
 @use "@material/button/styles";
+@use "@material/button" ;
+@use "@material/icon-button" ;
 @use "@material/floating-label/mdc-floating-label";
 @use "@material/line-ripple/mdc-line-ripple";
 @use "@material/notched-outline/mdc-notched-outline";
@@ -15,7 +17,7 @@
 @use "@material/card";
 @use "@mdi/font/css/materialdesignicons.min.css";
 @use "@material/layout-grid/mdc-layout-grid";
-@use "@material/icon-button/styles" as icon-button;
+@use "@material/icon-button/styles" as icon-button-styles;
 @use "@material/elevation/mdc-elevation";
 @use "@material/snackbar/mdc-snackbar";
 @use "@material/dialog";
@@ -29,6 +31,13 @@
 @use "@material/drawer";
 @use "@material/list";
 @use "@material/list/mdc-list";
+@use "@material/data-table/data-table";
+@use "@material/textfield/character-counter";
+
+@include character-counter.character-counter-core-styles;
+
+@include data-table.core-styles;
+@include data-table.theme-baseline;
 
 @include card.core-styles;
 @include textfield.core-styles;
@@ -75,12 +84,29 @@ hr {
     }
 }
 
+.mdi {
+    font-size: 24px;
+}
+
 .mdc-button i.mdi.mdc-button__icon {
     line-height: 1;
 }
 
-#login-button{
-    float: right;
+.mdc-icon-button i.mdi.mdc-button__icon {
+    vertical-align: top;
+    line-height: 1;
+}
+
+.small-button{
+    @include button.density(-3);
+}
+.small-icon-button{
+    @include icon-button.density(-3);
+
+    .mdi{
+        font-size: 18px;
+        line-height: normal;
+    }
 }
 
 .mdc-layout-grid {
@@ -120,4 +146,24 @@ html {
     --mdc-ripple-left: 10px;
     --mdc-ripple-top: 10px;
 }
+
+:root {
+    --mdc-theme-primary: #6200EE;
+    --mdc-theme-secondary: #FEDBD0;
+    --mdc-theme-background: #fff;
+    --mdc-theme-surface: #fff;
+    --mdc-theme-error: #b00020;
+    --mdc-theme-text-primary-on-background: #000d;
+    --mdc-theme-text-icon-on-background: #00000060;
+    --mdc-theme-outline-color: #e0e0e0;
+}
+/*@media (max-width: 599px) {
+    .mdc-image-list{
+        @include image-list.standard-columns(3);
+    }
+}
+
+.mdc-image-list {
+    @include image-list.standard-columns(3);
+}*/
 

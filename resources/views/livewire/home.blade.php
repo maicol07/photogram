@@ -1,4 +1,4 @@
-<div>
+<div id="home-page">
     @php($posts = $this->getPosts())
 
     @if($posts->isEmpty())
@@ -6,6 +6,6 @@
     @endif
 
     @foreach($posts as $post)
-        <livewire:posts.post-view :wire-key="$post->id" :post="$post" width=60 ></livewire:posts.post-view>
+        <livewire:posts.post-view :wire-key="$post->id" :post="$post"></livewire:posts.post-view>
     @endforeach
 </div>

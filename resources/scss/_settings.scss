@@ -1,0 +1,21 @@
+#settings {
+    @include media(">=tablet"){
+        width: 60%;
+    }
+
+    #categories-list .mdc-deprecated-list-item {
+        height: 75px;
+
+        &[data-danger] {
+            color: var(--mdc-theme-error);
+            --mdc-theme-text-secondary-on-background: var(--mdc-theme-error);
+            --mdc-theme-text-icon-on-background: var(--mdc-theme-error);
+        }
+    }
+
+    .mdc-dialog {
+        .mdc-text-field {
+            width: 100%;
+        }
+    }
+}

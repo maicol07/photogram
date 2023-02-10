@@ -28,6 +28,7 @@
         "@material/top-app-bar": "^14.0.0",
         "@material/typography": "^14.0.0",
         "@mdi/font": "^7.1.96",
+        "include-media": "^2.0.0",
         "modern-normalize": "^1.1.0"
     },
     "devDependencies": {

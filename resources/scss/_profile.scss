@@ -1,0 +1,72 @@
+#icon-profile {
+    font-size: 100px;
+    margin-left: 10%;
+}
+
+#edit-profile-button, #follow-button, #unfollow-button {
+    margin: 5% 0 0 7%;
+}
+
+#count-posts {
+    margin: 11px 0 8px 10px;
+}
+
+#dialog-layout {
+    margin: 8px 0;
+    align-items: center;
+}
+
+#edit-image {
+    display: none;
+}
+
+#temporary-image {
+    width: 128px;
+    height: 128px;
+    margin-left: 2px;
+}
+
+#edit-bio {
+    width: 100%;
+}
+
+#profile-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+#bio {
+    margin-top: 15px;
+}
+
+.image-profile {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.list-posts:hover {
+    cursor: pointer;
+}
+
+.dialog-label {
+    font-size: 15px;
+}
+
+.error-dialog {
+    color: red;
+}
+
+.dialog-icon {
+    font-size: 36px;
+}
+
+.list-follower-image {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.container-profile {
+    text-align: center;
+}
