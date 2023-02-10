@@ -9,7 +9,7 @@ abstract class AuthPage extends Page
 {
     public function render(): View
     {
-        return $this->page()->extends('layouts.auth')->section('main');
+        return (parent::render())->extends('layouts.auth')->section('main');
     }
 
     public function validationAttributes(): array

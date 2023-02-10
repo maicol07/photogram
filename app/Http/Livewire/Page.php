@@ -7,11 +7,16 @@ use Livewire\Component;
 
 abstract class Page extends Component
 {
-    protected $listeners = ['localeChanged' => '$refresh'];
+    protected $listeners = ['localeChanged' => 'reloadPage'];
 
-    public function hydrate(): void
+    public function boot(): void
     {
         app()->setLocale(session()->get('locale', 'en'));
+    }
+
+    public function reloadPage(): void
+    {
+        $this->redirect(request()?->header('referer'));
     }
 
     public function render(): View
