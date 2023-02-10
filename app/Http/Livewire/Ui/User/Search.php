@@ -28,7 +28,7 @@ class Search extends InsidePage
 
     public function search(): void
     {
-        if(User::where('username', '=', $this->username)->exists()) {
+        if (User::where('username', '=', $this->username)->exists()) {
             $this->redirectRoute('inside.profile', ['username' => $this->username]);
         }
     }
