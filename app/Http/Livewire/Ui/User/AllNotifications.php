@@ -13,6 +13,11 @@ class AllNotifications extends InsidePage
         $notification->markAsRead();
     }
 
+    public function getTitle(): string
+    {
+        return __('Notifications');
+    }
+
     public function page(): View
     {
         return view('livewire.ui.user.all-notifications');
