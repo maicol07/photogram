@@ -14,15 +14,13 @@
             <div class="mdc-layout-grid__cell--span-4">
                 @lang('Updated file'): {{$image->getClientOriginalName()}}
             </div>
-            <div class="mdc-layout-grid__cell--span-6 dialog-label" id="preview-image">
-                <span>
-                    @lang('Image Preview'):
-                </span>
-                <span>
-                    <img class="mdc-elevation--z8 image-profile" id="temporary-image" src="{{$image->temporaryUrl()}}"
-                         alt="preview image">
-                </span>
-            </div>
+            <span class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-phone">
+                @lang('Image Preview'):
+            </span>
+            <span class="mdc-layout-grid__cell--span-8-desktop mdc-layout-grid__cell--span-2-phone">
+                <img class="mdc-elevation--z8 image-profile" id="temporary-image" src="{{$image->temporaryUrl()}}"
+                     alt="preview image">
+            </span>
         @endif
     </div>
     <div>

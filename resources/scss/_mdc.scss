@@ -42,10 +42,27 @@
 @include form-field.core-styles;
 
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
+@import 'include-media';
+
+hr {
+    @extend .mdc-deprecated-list-divider;
+}
+
+.mdc-dialog__actions {
+    gap: 8px;
+}
 
 .mdc-image-list {
     &.posts-list {
-        @include image-list.standard-columns(5);
+        @include media ("<=phone"){
+            @include image-list.standard-columns(1);
+        }
+        @include media (">phone", "<=tablet"){
+            @include image-list.standard-columns(3);
+        }
+        @include media (">tablet"){
+            @include image-list.standard-columns(5);
+        }
     }
 
     .mdc-image-list__image {

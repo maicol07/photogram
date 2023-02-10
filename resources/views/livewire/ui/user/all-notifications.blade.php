@@ -1,4 +1,4 @@
-<x-card variant="elevated" id="card-notifications">
+<x-card class="container-card" variant="outlined">
     <x-list>
         @foreach(Auth::user()->notifications as $notification)
                 @php($user = \App\Models\User::find($notification->data['user_id']))

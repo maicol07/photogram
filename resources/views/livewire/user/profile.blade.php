@@ -2,7 +2,7 @@
     <div class="mdc-card mdc-card--outlined">
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
-                <div class="mdc-layout-grid__cell--span-3">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone container-profile">
                     <div>
                         @if(!$user->profileImage)
                             <i class="mdi mdi-account-circle" id="icon-profile" aria-hidden="true"></i>
@@ -21,22 +21,24 @@
                         <x-button id="follow-button" :label="__('Follow')" variant="outlined" wire:click="follow" trailing-icon="true" icon="account-plus" />
                     @endif
                 </div>
-                <div class="mdc-layout-grid__cell--span-9">
-                    <div class="mdc-layout-grid__inner">
-                        <div class="mdc-layout-grid__cell--span-4">
+                <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-9-desktop mdc-layout-grid__cell--span-8-phone container-profile">
+                    <div id="profile-buttons">
+                        <div>
                             <div id="count-posts">{{$user->posts->count()}}</div>
                             <div>@lang('Posts')</div>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-4">
+                        <div>
                             <x-button id="follower-profile" label="{{$user->followers()->count()}}" wire:click="openDialog('list-follower')" />
                             <div>@lang('Followers')</div>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-4">
+                        <div>
                             <x-button id="follow-profile" label="{{$user->follows()->count()}}" wire:click="openDialog('list-follow')" />
                             <div>@lang('Follows')</div>
                         </div>
-                        <div class="mdc-layout-grid__cell--span-12">
-                            <div>{{$user->bio}}</div>
+                    </div>
+                    <div class="mdc-layout-grid__inner">
+                        <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-12 mdc-layout-grid__cell--span-4-phone">
+                            <div id="bio">{{$user->bio}}</div>
                         </div>
                     </div>
                 </div>
