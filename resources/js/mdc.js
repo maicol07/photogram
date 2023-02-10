@@ -167,6 +167,12 @@ window.mdcComponentsDefinitions = {
         } else {
           instance.open();
         }
+        instance.listen('MDCDialog:opened', function() {
+          element.setAttribute('aria-hidden', 'true');
+        });
+        instance.listen('MDCDialog:closing', function() {
+          element.removeAttribute('aria-hidden');
+        });
       }],
   },
   '.mdc-text-field-helper-text': {

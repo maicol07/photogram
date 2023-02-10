@@ -16,7 +16,7 @@
         <button type="{{$attributes->get('type', 'button')}}"
     @endif
       class="mdc-{{$iconButton ? 'icon-button' : 'button'}} @if($variant !== 'text') mdc-button--{{$variant}} @endif
-        @if($dialogButton) mdc-dialog__button @endif {{$attributes->get('class')}}" {{$attributes}} wire:ignore.self>
+        @if($dialogButton) mdc-dialog__button @endif {{$attributes->get('class')}}" aria-pressed="false" {{$attributes}} wire:ignore.self>
         <span class="mdc-{{$iconButton ? 'icon-button__ripple' : 'button__ripple'}}" wire:ignore></span>
         @if(!$iconButton)
             <span class="mdc-button__touch" wire:ignore></span>
