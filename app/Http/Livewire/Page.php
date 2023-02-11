@@ -19,6 +19,11 @@ abstract class Page extends Component
         $this->redirect(request()?->header('referer'));
     }
 
+    public function getTitle(): string
+    {
+        return '';
+    }
+
     public function render(): View
     {
         return $this->page();
