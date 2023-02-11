@@ -16,4 +16,9 @@ class PasswordResetSent extends Page
     {
         $this->redirectRoute("password.reset");
     }
+
+    public function getTitle(): string
+    {
+        return __('Check your Emails!');
+    }
 }

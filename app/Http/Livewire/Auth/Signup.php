@@ -87,4 +87,9 @@ class Signup extends AuthPage
             "repeatPassword" => __("Repeated Password"),
         ]);
     }
+
+    public function getTitle(): string
+    {
+        return __('Signup');
+    }
 }

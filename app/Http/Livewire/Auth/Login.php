@@ -71,4 +71,9 @@ class Login extends AuthPage
         $this->message = $message;
         return $this;
     }
+
+    public function getTitle(): string
+    {
+        return __('Login');
+    }
 }

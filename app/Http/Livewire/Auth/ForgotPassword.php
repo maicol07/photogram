@@ -30,4 +30,9 @@ class ForgotPassword extends AuthPage
     {
         $this->redirectRoute('signup');
     }
+
+    public function getTitle(): string
+    {
+        return __('Forgotten Password');
+    }
 }

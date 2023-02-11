@@ -14,4 +14,9 @@ class OnePost extends InsidePage
     {
         return view('livewire.posts.one-post');
     }
+
+    public function getTitle(): string
+    {
+        return __('View Post');
+    }
 }

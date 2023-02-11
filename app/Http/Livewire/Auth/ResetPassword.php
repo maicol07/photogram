@@ -89,4 +89,9 @@ class ResetPassword extends AuthPage
     {
         $this->redirectRoute('signup');
     }
+
+    public function getTitle(): string
+    {
+        return __('Password Reset');
+    }
 }
