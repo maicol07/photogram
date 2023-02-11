@@ -1,5 +1,5 @@
 <div class="mdc-menu-surface--anchor">
-    <x-button class="mdc-top-app-bar__action-item" id="user-top-app-bar" outlined iconButton
+    <x-button class="mdc-top-app-bar__action-item" id="language-top-app-bar-button" outlined iconButton
               icon="translate"
               wire:click="openLanguagesMenu">
     </x-button>
