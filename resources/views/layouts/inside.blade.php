@@ -4,12 +4,13 @@
     <x-drawer variants="dismissible" mainClass="app-content">
         <x-slot:icons>
             @foreach($navigation as $keyNav => $buttonNav)
-                <a href="{{route($buttonNav['routeName'])}}" class="mdc-deprecated-list-item
-                @if(Route::currentRouteName() === $buttonNav['routeName']) mdc-deprecated-list-item--activated @endif" aria-current="page">
-                    <span class="mdc-deprecated-list-item__ripple"></span>
-                    <i class="mdi mdi-{{$buttonNav['icon']}} mdc-deprecated-list-item__graphic" aria-hidden="true"></i>
-                    <span class="mdc-deprecated-list-item__text">{{$keyNav}}</span>
-                </a>
+                @php($isCurrentRoute = Route::currentRouteName() === $buttonNav['routeName'])
+                <x-list-item :href="route($buttonNav['routeName'])" :activated="$isCurrentRoute" :aria-current="$isCurrentRoute ? 'page' : null">
+                    <x-slot:graphic>
+                        <i class="mdi mdi-{{$buttonNav['icon']}}" aria-hidden="true"></i>
+                    </x-slot:graphic>
+                    {{$keyNav}}
+                </x-list-item>
             @endforeach
         </x-slot:icons>
         <x-top-app-bar menu-icon="menu" title="Photogram" id="menu-top-app-bar">

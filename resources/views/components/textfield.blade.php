@@ -3,7 +3,7 @@
     'textarea' => false,
     'rows' => '8',
     'cols' => '40',
-    'maxlength' => '140',
+    'maxlength' => null,
     'id' => null,
     'label' => '',
     'name' => null,

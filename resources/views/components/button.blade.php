@@ -1,4 +1,5 @@
 @props([
+    'type' => 'button',
     'iconButton' => false,
     'dialogButton' => false,
     'label' => '',
@@ -13,10 +14,15 @@
     @if($tag === 'a')
         <a
     @else
-        <button type="{{$attributes->get('type', 'button')}}"
+        <button type="{{$type}}"
     @endif
-      class="mdc-{{$iconButton ? 'icon-button' : 'button'}} @if($variant !== 'text') mdc-button--{{$variant}} @endif
-        @if($dialogButton) mdc-dialog__button @endif {{$attributes->get('class')}}" aria-pressed="false" {{$attributes}} wire:ignore.self>
+      {{$attributes->class([
+    'mdc-button' => !$iconButton,
+    'mdc-icon-button' => $iconButton,
+    'mdc-button--raised' => $variant === 'raised',
+    'mdc-button--outlined' => $variant === 'outlined',
+    'mdc-dialog__button' => $dialogButton
+])}} wire:ignore.self>
         <span class="mdc-{{$iconButton ? 'icon-button__ripple' : 'button__ripple'}}" wire:ignore></span>
         @if(!$iconButton)
             <span class="mdc-button__touch" wire:ignore></span>

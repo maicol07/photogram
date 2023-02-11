@@ -7,9 +7,15 @@
     'video_list' => false,
     'two_line' => false,
     'options' => [],
+    'role' => null // Can be 'listbox' for select lists or 'menu' for lists inside menus (Default value is 'list')
 ])
 
-<ul {{$attributes->class(['mdc-deprecated-list', 'mdc-deprecated-list--two-line' => $two_line])}}>
+<ul {{$attributes->class([
+    'mdc-deprecated-list',
+    'mdc-deprecated-list--two-line' => $two_line
+])->merge([
+    'role' => $role
+])}}>
     @isset($slot)
         {{$slot}}
     @else
@@ -20,14 +26,14 @@
                 $graphic = $details['graphic'] ?? '';
                 $disabled = $details['disabled'] ?? false;
                 $selected = $details['selected'] ?? ($val === $value);
-                $role = $details['role'] ?? null;
+                $role = $details['role'] ?? ($role === 'listbox' ? 'option' : null);
             @endphp
             <x-list-item :selected="$selected"
                          :disabled="$disabled"
                          :value="$val"
                          :text="$label"
                          :role="$role"
-                         :tabindex="$first ? 0 : null" wire:ignore.self>
+                         :tabindex="($first || $selected) ? 0 : null" wire:ignore.self>
                 <x-slot:graphic>
                     {!! $graphic !!}
                 </x-slot:graphic>

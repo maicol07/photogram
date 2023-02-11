@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{app()->getLocale()}}">
 <head>
     @vite('resources/scss/app.scss')
     <title>{{$title}} | PhotoGram</title>
@@ -17,6 +17,7 @@
 @if(session()->has('message'))
     <x-snackbar id="message-snackbar" :message="session()->pull('message', '')"/>
 @endif
+
 @livewireScripts
 @vite('resources/js/app.js')
 </body>

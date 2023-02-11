@@ -1,8 +1,8 @@
 @props([
     'outlined' => false,
-    'label' => '',
+    'label' => null,
     'id' => '',
-    'ariaLabel' => '',
+    'ariaLabel' => null,
     'options' => [],
     'blankOption' => false,
     'value' => ''

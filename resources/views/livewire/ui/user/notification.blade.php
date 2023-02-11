@@ -5,13 +5,13 @@
         @if($notifications->isEmpty())
             <div>@lang('You do not have notifications')</div>
         @else
-            <x-list>
+            <x-list role="menu" aria-hidden="true" aria-orientation="vertical" tabindex="-1">
                 @foreach($notifications as $notification)
                         @php
                             $user = \App\Models\User::find($notification->data['user_id']);
                             assert($notification instanceof \Illuminate\Notifications\DatabaseNotification);
                         @endphp
-                        <x-list-item class="without-ripple" :ripple="false" onclick="event.stopPropagation()">
+                        <x-list-item class="without-ripple" :ripple="false" onclick="event.stopPropagation()" role="menuitem">
                             <x-slot:graphic>
                                 @if(!$user->profileImage)
                                     <i class="mdi mdi-account-circle mdc-button__icon dialog-icon " aria-hidden="true"></i>
