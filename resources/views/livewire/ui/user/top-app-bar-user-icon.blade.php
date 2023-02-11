@@ -26,7 +26,7 @@
                  style="border-radius: 50%;"/>
         @endif
         @if(auth()->user()->profileImage === null)
-          <i class="mdi mdi-account mdc-button__icon" id="user-logout-menu-image" aria-hidden="true"></i>
+          <i class="mdi mdi-account" id="user-logout-menu-image" aria-hidden="true"></i>
         @endif
         <br/>
 
