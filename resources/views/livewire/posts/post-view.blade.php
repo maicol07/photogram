@@ -45,8 +45,8 @@
 
         <hr/>
 
-        <form wire:submit.prevent="addComment"  id="add-comment-section" >
-            <div id="comment-textfield-counter">
+        <form wire:submit.prevent="addComment" id="add-comment-section-{{$this->post->id}}" class="add-comment-section">
+            <div id="comment-textfield-counter-{{$this->post->id}}" class="comment-textfield-counter">
                 <x-textfield class="add-comment-content" id="add-comment-content-{{$post->id}}" :label="$this->editMode ? (__('Edit comment')) : (__('Add a comment'))"
                              wire:model="commentContent" maxlength="255"/>
             </div>
@@ -61,8 +61,9 @@
             </x-list>
         </div>
     </x-card>
-    <x-dialog id="list-likes" :title="__('Users who liked this post:')">
-        <livewire:user.dialog-user-list :userList="$this->post->likes"/>
+
+    <x-dialog id="list-likes-{{$this->post->id}}" :title="__('Users who liked this post:')">
+        <livewire:user.dialog-user-list :wire:key="$this->post->id . $this->post->likes->count()" :userList="$this->post->likes"/>
     </x-dialog>
 
     <x-menu-surface class='share-menu' id="share-menu-{{$this->post->id}}" anchor-id="share-button-{{$post->id}}" fixed>
