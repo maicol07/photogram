@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Auth;
 
-use App\Http\Livewire\Page;
+use App\Http\Livewire\AuthPage;
 use Illuminate\Contracts\View\View;
 
-class PasswordResetSent extends Page
+class PasswordResetSent extends AuthPage
 {
     public function page(): View
     {

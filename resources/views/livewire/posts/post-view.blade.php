@@ -5,39 +5,37 @@
                 <div class="mdc-layout-grid__cell--span-8">
                     <a class="namebar" wire:click="goToProfile">
                         @if($this->post->user->profileImage)
-                            <img class="mdc-button__icon" aria-hidden="true" id="user-post-image"
+                            <img class="mdc-button__icon user-post-image" aria-hidden="true" id="user-post-image"
                                  src="{{Storage::disk('public')->url('profile/images/' . $this->post->user->profileImage)}}"
                                  alt="{{$this->post->user->username}}"/>
                         @else
-                            <i class="mdi mdi-account mdc-button__icon" id="user-post-image" aria-hidden="true"
+                            <i class="mdi mdi-account mdc-button__icon user-post-image" id="user-post-image" aria-hidden="true"
                                alt="{{$this->post->user->username}}" ></i>
                         @endif
-                        <span id="nametag" >{{$this->post->user->username}}</span>
+                        <span id="nametag-{{$this->post->id}}" class="nametag" >{{$this->post->user->username}}</span>
                     </a>
-                    <br/>
                     @if($this->post->photo)
-                        <img src="{{Storage::disk('public')->url('post/images/' . $this->post->photo )}}" id="post-main-image"
-                             alt="Post main image"/>
+                        <img src="{{Storage::disk('public')->url('post/images/' . $this->post->photo )}}" id="post-main-image-{{$this->post->id}}"
+                             alt="Post main image" class="post-main-image"/>
                     @endif
-                    <br/>
                     {{--section with number of likes and link shares--}}
-                    <div id="post-options" >
+                    <div id="post-options-{{$this->post->id}}" class="post-options">
 
-                        <x-button id="post-like-button" alt="post like button" iconButton wire:click="likeToggle"
+                        <x-button id="post-like-button-{{$this->post->id}}" alt="post like button" iconButton wire:click="likeToggle"
                                   :icon="$this->post->likes()->where('user_id', Auth::user()->id)->exists() ? 'thumb-up' : 'thumb-up-outline'" />
 
-                        <x-button id="post-likes" label="{{$this->post->likes()->count()}}"
-                                  wire:click="openDialog('list-likes')" />
+                        <x-button id="post-likes-{{$this->post->id}}" label="{{$this->post->likes()->count()}}"
+                                  wire:click="openDialog('list-likes-{{$this->post->id}}')" />
 
                         @if(Auth::user()->id === $post->user->id)
-                            <x-button id="edit-post-button" label="edit post" wire:click="editPost"
+                            <x-button id="edit-post-button-{{$this->post->id}}" label="edit post" wire:click="editPost"
                                       variant="outlined" icon="pencil" />
                         @endif
                             <x-button id="share-button-{{$post->id}}" iconButton wire:click="share" icon="share-variant-outline"/>
                     </div>
                 </div>
 
-                <div class="mdc-layout-grid__cell--span-4" id="post-description" >
+                <div class="mdc-layout-grid__cell--span-4 post-description" id="post-description">
                     <span> {{$this->post->description}} </span>
                 </div>
             </div>
@@ -50,10 +48,10 @@
                 <x-textfield class="add-comment-content" id="add-comment-content-{{$post->id}}" :label="$this->editMode ? (__('Edit comment')) : (__('Add a comment'))"
                              wire:model="commentContent" maxlength="255"/>
             </div>
-            <x-button type="submit" id="add-comment-button" icon="send-outline" icon-button />
+            <x-button type="submit" id="add-comment-button-{{$this->post->id}}" icon="send-outline" icon-button />
         </form>
 
-        <div id="display-comments">
+        <div class="display-comments" id="display-comments-{{$this->post->id}}">
             <x-list data-autoanimate>
             @foreach($this->post->comments as $c)
                     <livewire:posts.comment-component :wire:key="$c->id . $c->content" :c="$c" :post="$this->post" ></livewire:posts.comment-component>

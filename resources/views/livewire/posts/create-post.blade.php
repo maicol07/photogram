@@ -15,7 +15,6 @@
             <div style="text-overflow: ellipsis; overflow: clip">
                 @lang('Uploaded file'): {{($image instanceof \Livewire\TemporaryUploadedFile)? $image->getClientOriginalName() : $image}}
             </div>
-            <br/>
             <div id="preview-image">
                 <span>
                     @lang('Image Preview'):

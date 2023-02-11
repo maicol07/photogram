@@ -21,18 +21,18 @@
             width: 100%;
         }
 
-        #post-description {
+        .post-description {
             padding: 16px 0;
         }
 
-        #user-post-image {
+        .user-post-image {
             width: 48px;
             height: 48px;
             margin: 1%;
             border-radius: 50%;
         }
 
-        #post-options {
+        .post-options {
             display: flex;
             align-items: center;
             justify-content: center; // TODO centrare share menu che seno esce dallo schermo mobile
@@ -45,7 +45,7 @@
             cursor: pointer;
         }
 
-        #nametag {
+        .nametag {
             font-size: large;
             padding-left: 10%;
             font-weight: bold;
@@ -53,12 +53,13 @@
 
         }
 
-        #post-main-image {
+        .post-main-image {
+            margin: 2% 0;
             width: 99%;
             border-radius: 8px;
         }
 
-        #add-comment-section {
+        .add-comment-section {
             padding-top: 1%;
             margin-left: 1%;
             display: flex;
@@ -66,7 +67,7 @@
             align-items: baseline;
             column-gap: 0.5vw;
 
-            #comment-textfield-counter {
+            .comment-textfield-counter {
                 flex-grow: 10;
             }
 
@@ -75,7 +76,7 @@
             }
         }
 
-        #display-comments {
+        .display-comments {
             float: left;
             width: 95%;
             margin-left: 1%;
@@ -119,6 +120,7 @@
     }
 }
 
+/*View di create post:      */
 #temporary-post-image{
     width:80%;
     margin: 1%;

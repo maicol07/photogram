@@ -1,9 +1,10 @@
 
 <div>
     <form wire:submit.prevent="login" class="auth-form">
-        <x-textfield :label="__('Username')" type="text" id="username" wire:model="username" />
-        <br/>
-        <x-textfield :label="__('Password')" type="password" required id="password" wire:model="password" />
+        <x-textfield :label="__('Username')" type="text" required id="username" wire:model="username"
+            icon="account-outline" icon-textfield />
+        <x-textfield :label="__('Password')" type="password" required id="password" wire:model="password"
+            icon="key-outline" icon-textfield/>
 
         <x-checkbox id="remember me" :label="__('Remember me')" wire:model="remember"/>
 

@@ -1,7 +1,6 @@
 <div>
     <form wire:submit.prevent="sendReset" class="auth-form">
         <x-textfield :label="__('Email')" id="email" wire:model="email" />
-        <br/>
         <x-button type="submit" :label="__('Send reset Link')" variant="raised"/>
     </form>
 
