@@ -167,10 +167,10 @@ window.mdcComponentsDefinitions = {
         } else {
           instance.open();
         }
-        instance.listen('MDCDialog:opened', function() {
+        instance.listen('MDCDialog:opened', () => {
           element.setAttribute('aria-hidden', 'true');
         });
-        instance.listen('MDCDialog:closing', function() {
+        instance.listen('MDCDialog:closing', () => {
           element.removeAttribute('aria-hidden');
         });
       }],
