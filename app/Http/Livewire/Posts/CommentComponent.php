@@ -17,8 +17,9 @@ class CommentComponent extends Component
 
     public Comment $c;
     public Post $post;
+    public ?string $tabindex = null;
 
-    public function commentLikeToggle(int $commentId): void //TODO
+    public function commentLikeToggle(int $commentId): void
     {
         $this->post->comments()->find($commentId)->likes()->toggle(Auth::user()->id);
     }

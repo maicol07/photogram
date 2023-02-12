@@ -15,7 +15,8 @@
         </x-slot:icons>
         <x-top-app-bar menu-icon="menu" title="Photogram" id="menu-top-app-bar">
             <x-slot:buttons>
-                <livewire:ui.post.new-post-button />
+                <x-button class="mdc-top-app-bar__action-item" id="new-post-top-app-bar" outlined iconButton icon="plus"
+                          :href="route('inside.newPost')" :aria-label="__('New post button')"/>
                 <livewire:ui.user.search/>
                 <livewire:ui.user.notification/>
                 <livewire:ui.language.menu/>

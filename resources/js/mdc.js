@@ -1,17 +1,17 @@
+import {MDCCheckbox} from '@material/checkbox';
 import {MDCDialog} from '@material/dialog';
+import {MDCDrawer} from '@material/drawer';
+import {MDCFormField} from '@material/form-field';
+import {MDCList} from '@material/list';
+import {Corner, MDCMenu} from '@material/menu';
+import {MDCMenuSurface} from '@material/menu-surface';
 import {MDCRipple} from '@material/ripple';
 import {MDCSelect} from '@material/select';
 import {MDCSnackbar} from '@material/snackbar';
 import {MDCTextField} from '@material/textfield';
-import {MDCTextFieldHelperText} from '@material/textfield/helper-text';
-import {MDCFormField} from '@material/form-field';
-import {MDCCheckbox} from '@material/checkbox';
 import {MDCTextFieldCharacterCounter} from '@material/textfield/character-counter';
+import {MDCTextFieldHelperText} from '@material/textfield/helper-text';
 import {MDCTopAppBar} from '@material/top-app-bar';
-import {MDCDrawer} from '@material/drawer';
-import {Corner, MDCMenu} from '@material/menu';
-import {MDCMenuSurface} from '@material/menu-surface';
-import {MDCList} from '@material/list';
 
 
 /**
@@ -270,6 +270,18 @@ window.mdcComponentsDefinitions = {
           instance.setMenuSurfaceAnchorElement(document.querySelector(`#${element.dataset.anchorid}`));
         }
         instance.setFixedPosition(Boolean(element.dataset.fixed));
+        const keyboardFocusableElements = [
+          ...element.querySelectorAll(
+            'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+          )
+        ].filter((element_) => !element_.hasAttribute('disabled') && !element_.getAttribute('aria-hidden'));
+        element.addEventListener('MDCMenuSurface:opened', () => {
+          for (const element_ of keyboardFocusableElements) element_.removeAttribute('tabIndex');
+          element.firstElementChild.focus();
+        });
+        element.addEventListener('MDCMenuSurface:closed', () => {
+          for (const element_ of keyboardFocusableElements) element_.setAttribute('tabIndex', '-1');
+        });
       }
     ]
   },

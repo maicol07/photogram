@@ -12,11 +12,6 @@ class PasswordResetSent extends AuthPage
         return view('livewire.auth.password-reset-sent');
     }
 
-    public function resendEmail(): void
-    {
-        $this->redirectRoute("password.reset");
-    }
-
     public function getTitle(): string
     {
         return __('Check your Emails!');

@@ -57,10 +57,6 @@ class Login extends AuthPage
         return view('livewire.auth.login');
     }
 
-    public function goToResetPassword(): void
-    {
-        $this->redirectRoute("password.request");
-    }
 
     /**
      * @param string $message

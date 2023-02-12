@@ -57,17 +57,12 @@ class CreatePost extends InsidePage
         $this->redirectRoute('inside.viewPost', $this->post);
     }
 
-    public function goToProfile(): void
-    {
-        $this->redirectRoute('inside.profile');
-    }
-
     public function delete(): void
     {
         if ($this->post->exists) {
             $this->post->delete();
         }
-        $this->goToProfile();
+        $this->redirectRoute('inside.profile');
     }
 
     public function page(): View

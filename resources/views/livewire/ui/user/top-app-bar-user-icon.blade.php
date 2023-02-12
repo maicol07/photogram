@@ -1,7 +1,7 @@
 <div class="mdc-menu-surface--anchor">
     <x-button class="mdc-top-app-bar__action-item" id="user-top-app-bar" outlined iconButton
               :icon="!empty(auth()->user()->profileImage) ? '' : 'account'"
-              wire:click="openLogoutMenu" >
+              wire:click="openLogoutMenu" :aria-label="__('Open Logout menu')" >
 
         @if(auth()->user()->profileImage)
             <x-slot:image>
@@ -22,15 +22,15 @@
                  style="border-radius: 50%;"/>
         @endif
         @if(auth()->user()->profileImage === null)
-          <i class="mdi mdi-account" id="user-logout-menu-image" aria-hidden="true"></i>
+          <span class="mdi mdi-account" id="user-logout-menu-image" role="img" aria-hidden="true"></span>
         @endif
 
         {{--button that redirects to user profile--}}
-        <x-button id="menu-user-button" :label="__('Your profile')" tabindex="-1"
-            wire:click="goToProfile"/>
+        <x-button id="menu-user-button" icon="account-outline" :label="__('Your profile')" tabindex="-1"
+                  :href="route('inside.profile')"/>
 
         {{--button to logout--}}
-        <x-button id="user-profile-menu" :label="__('Logout')" wire:click="goToLogout" tabindex="-1"/>
+        <x-button id="user-profile-menu" icon="logout" :label="__('Logout')" :href="route('logout')" tabindex="-1"/>
     </x-menu-surface>
 </div>
 

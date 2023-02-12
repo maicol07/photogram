@@ -1,7 +1,7 @@
 <div>
     <form wire:submit.prevent="sendReset" class="auth-form">
-        <x-textfield :label="__('Email')" id="email" wire:model="email" />
-        <x-button type="submit" :label="__('Send reset Link')" variant="raised"/>
+        <x-textfield icon="email-outline" :label="__('Email')" id="email" wire:model="email" />
+        <x-button type="submit" icon="send" trailingIcon :label="__('Send reset Link')" variant="raised"/>
     </form>
 
     @push('bottom')

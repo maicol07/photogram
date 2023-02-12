@@ -7,8 +7,6 @@ use App\Http\Livewire\Traits\MDCSnackbarFeatures;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Hash;
 
 class Signup extends AuthPage
@@ -68,11 +66,6 @@ class Signup extends AuthPage
     public function page(): View
     {
         return view('livewire.auth.signup');
-    }
-
-    public function goToLogin(): RedirectResponse|Redirector
-    {
-        return redirect()->route('login');
     }
 
     public function updated(string $propertyName): void

@@ -12,9 +12,9 @@
         </div>
 
         @if ($image && !$errors->has('image'))
-            <div style="text-overflow: ellipsis; overflow: clip">
+            <output style="text-overflow: ellipsis; overflow: clip">
                 @lang('Uploaded file'): {{($image instanceof \Livewire\TemporaryUploadedFile)? $image->getClientOriginalName() : $image}}
-            </div>
+            </output>
             <div id="preview-image">
                 <span>
                     @lang('Image Preview'):
@@ -35,8 +35,8 @@
             @if($this->post->exists)
                 <x-button dialog-button icon="delete" :label="__('Delete')" variant="text" wire:click="delete" />
             @endif
-            <x-button dialog-button :label="__('Cancel')" variant="text" wire:click="goToProfile" />
-            <x-button dialog-button :label="__('OK')" variant="text" type="submit" />
+            <x-button dialog-button icon="close" :label="__('Cancel')" variant="text" :href="route('inside.profile')" />
+            <x-button dialog-button icon="check" :label="__('OK')" variant="text" type="submit" />
         </div>
     </x-card>
     <script wire:ignore>

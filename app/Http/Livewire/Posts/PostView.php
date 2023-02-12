@@ -75,16 +75,6 @@ class PostView extends Component
         }
     }
 
-    public function editPost(): void
-    {
-        $this->redirectRoute("inside.newPost", ['post' => $this->post]);
-    }
-
-    public function goToProfile(): void
-    {
-        $this->redirectRoute('inside.profile', $this->post->user->username);
-    }
-
     public function render(): View
     {
         return view('livewire.posts.post-view');
