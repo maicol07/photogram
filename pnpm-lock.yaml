@@ -17,6 +17,7 @@ specifiers:
   '@material/list': ^14.0.0
   '@material/menu': ^14.0.0
   '@material/menu-surface': ^14.0.0
+  '@material/notched-outline': ^14.0.0
   '@material/ripple': ^14.0.0
   '@material/select': ^14.0.0
   '@material/snackbar': ^14.0.0
@@ -68,6 +69,7 @@ dependencies:
   '@material/list': 14.0.0
   '@material/menu': 14.0.0
   '@material/menu-surface': 14.0.0
+  '@material/notched-outline': 14.0.0
   '@material/ripple': 14.0.0
   '@material/select': 14.0.0
   '@material/snackbar': 14.0.0
