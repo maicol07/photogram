@@ -56,5 +56,5 @@
         "stylelint-scss": "^4.3.0",
         "vite": "^4.1.1"
     },
-    "packageManager": "pnpm@7.26.3"
+    "packageManager": "pnpm@7.27.0"
 }
