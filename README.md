@@ -11,6 +11,7 @@
 To run this project, you will need to have installed on your machine the following tools:
 
 - [PHP](https://www.php.net/downloads.php) >= 8.1 (recommended: 8.2)
+  - [Mysql](https://www.php.net/manual/en/mysql.installation.php) extension
 - [MySQL](https://dev.mysql.com/downloads/mysql/) >= 8.0 or [MariaDB](https://mariadb.org/download/) >= 10.5
 - [Composer](https://getcomposer.org/download/)
 
@@ -28,11 +29,18 @@ To install this project, you will need to clone this repository and install the 
 ```bash
 git clone https://github.com/maicol07/photogram.git # Clone the repository
 cd photogram
-composer install # Install PHP dependencies
+composer install --no-dev --optimize-autoloader # Install PHP dependencies
 pnpm install # Install CSS/JS dependencies
 ```
 
 > Composer may give you some errors related to missing PHP extensions (such as `bcmath`). If that's the case, you will need to install them.
+
+After installation, to get a list of required PHP extensions, you can run the following command:
+```bash
+composer check-platform-reqs
+```
+This will list all the required PHP extensions and their versions. You can install them with your favorite package manager (apt, yum, etc.).
+You'll need them to run the project without issues.
 
 ### Build assets
 
@@ -58,6 +66,22 @@ php artisan storage:link # Create a symbolic link from "public/storage" to "stor
 
 Then, you will need to configure the app settings and the database connection in the `.env` file by setting
 the `DB_*` and `APP_*` variables.
+### Details
+#### App settings
+To configure the app settings, you have to set the `APP_*` variables in .env file with the following values:
+- `APP_NAME`: The name of the app
+- `APP_URL`: The URL of the app
+- `APP_ENV`: The environment of the app (local, production, etc.)
+- `APP_DEBUG`: Whether the app is in debug mode or not
+#### Database settings
+To configure the database connection, you have to set the `DB_*` variables in .env file with the following values:
+- `DB_CONNECTION`: The database connection driver (mysql, pgsql, etc.)
+- `DB_HOST`: The database host
+- `DB_PORT`: The database port
+- `DB_DATABASE`: The database name (will be created if it doesn't exist)
+- `DB_USERNAME`: The database username
+- `DB_PASSWORD`: The database password
+You'll also need the appropriate PHP extension for the database connection driver (e.g. `ext-mysql` for MySQL).
 
 ### Email settings
 To test locally the email sending, you need to configure the email settings with Mailhog. To do this, you have to follow these steps:
