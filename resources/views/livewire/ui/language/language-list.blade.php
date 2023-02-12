@@ -13,7 +13,6 @@
                      :value="$val"
                      :text="$label"
                      role="menuitem"
-                     {{--                             :tabindex="$first ? 0 : null"--}}
                      wire:ignore.self>
             <x-slot:graphic>
                 {!! $graphic !!}

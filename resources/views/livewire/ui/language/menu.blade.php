@@ -1,7 +1,7 @@
 <div class="mdc-menu-surface--anchor">
     <x-button class="mdc-top-app-bar__action-item" id="language-top-app-bar-button" outlined iconButton
               icon="translate"
-              wire:click="openLanguagesMenu">
+              wire:click="openLanguagesMenu" aria-label="{{__('Open translation menu')}}">
     </x-button>
     <x-menu id="languages-menu" label="{{__('Language')}}">
         <livewire:ui.language.language-list/>

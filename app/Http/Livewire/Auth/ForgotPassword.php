@@ -26,11 +26,6 @@ class ForgotPassword extends AuthPage
         $this->redirectRoute("password.reset.notice");
     }
 
-    public function goToSignup(): void
-    {
-        $this->redirectRoute('signup');
-    }
-
     public function getTitle(): string
     {
         return __('Forgotten Password');

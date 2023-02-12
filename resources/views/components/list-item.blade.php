@@ -7,6 +7,7 @@
     'value' => '',
     'href' => '',
     'ripple' => true,
+    'role' => null,
     'tabindex' => null,
 ])
 
@@ -22,10 +23,11 @@
     'mdc-deprecated-list-item--activated' => $activated
 ])
         ->merge([
-            'aria-disabled' => $disabled ? 'true' : 'false',
-            'aria-selected' => $selected ? 'true' : 'false',
+            'aria-disabled' => $role === 'option' ? ($disabled ? 'true' : 'false') : null,
+            'aria-selected' => $role === 'option' ? ($selected ? 'true' : 'false') : null,
             'data-value' => $value,
-            'tabindex' => $tabindex
+            'tabindex' => $tabindex,
+            'role' => $role
     ])}}
 wire:ignore.self>
                 @isset($graphic)
@@ -47,9 +49,9 @@ wire:ignore.self>
                 </span>
                 @isset($meta)
                     <span class="mdc-deprecated-list-item__meta" wire:ignore.self>
-                {{$meta}}
-            </span>
-        @endisset
+                        {{$meta}}
+                    </span>
+                @endisset
         @if($href)
     </a>
     @else

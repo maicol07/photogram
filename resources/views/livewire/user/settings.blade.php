@@ -1,8 +1,10 @@
 <x-card outlined class="container-card" id="settings">
     <x-list id="categories-list">
-        @foreach($this->getCategories() as $slug => $category)
+        @php($categories = $this->getCategories())
+        @php($first = reset($categories))
+        @foreach($categories as $slug => $category)
             <x-list-item :text="$category['headline']" :secondary-text="$category['supportingText']"
-                         wire:click="openCategory('{{$slug}}')" :data-danger="Arr::get($category, 'danger')">
+                         wire:click="openCategory('{{$slug}}')" :data-danger="Arr::get($category, 'danger')" :tabindex="$first === $category ? 0 : null">
                 <x-slot:graphic>
                     <i class="mdi mdi-{{$category['icon']}} dialog-icon" aria-hidden="true"></i>
                 </x-slot:graphic>
