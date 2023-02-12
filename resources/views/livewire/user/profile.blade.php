@@ -1,15 +1,15 @@
 <div>
-    <div class="mdc-card mdc-card--outlined">
+    <section class="mdc-card mdc-card--outlined">
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell mdc-layout-grid__cell--span-3-desktop mdc-layout-grid__cell--span-4-phone container-profile">
                     <div>
                         @if(!$user->profileImage)
-                            <i class="mdi mdi-account-circle" id="icon-profile" aria-hidden="true"></i>
+                            <span class="mdi mdi-account-circle" id="icon-profile" role="img" aria-label="{{__(":user's profile image", ['user' => $user->username])}}"></span>
                         @else
                         <img class="mdc-elevation--z8 image-profile"
                              src="{{Storage::disk('public')->url('profile/images/' . $user->profileImage)}}"
-                             alt="image profile" />
+                             alt="{{__(":user's profile image", ['user' => $user->username])}}" />
                         @endif
                     </div>
                     @if(Auth::user()->id === $user->id)
@@ -53,11 +53,12 @@
         <x-dialog id="profile-dialog" :title="__('Edit Profile')">
             <livewire:user.dialog :user="$user"/>
         </x-dialog>
-    </div>
-
-    <x-image-list style="margin-top: 2px">
-        @foreach($user->posts as $post)
-            <x-image-list-item class="list-posts" wire:click="viewPost({{$post}})" text="{{$post->description}}" src="{{Storage::disk('public')->url('post/images/' . $post->photo)}}" alt="Post image" />
-        @endforeach
-    </x-image-list>
+    </section>
+    <section>
+        <x-image-list style="margin-top: 2px">
+            @foreach($user->posts as $number => $post)
+                <x-image-list-item class="list-posts" wire:click="viewPost({{$post}})" text="{{$post->description}}" src="{{Storage::disk('public')->url('post/images/' . $post->photo)}}" alt="{{__(':number° post image', ['number' => $number + 1])}}" />
+            @endforeach
+        </x-image-list>
+    </section>
 </div>

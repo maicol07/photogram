@@ -32,11 +32,6 @@ class Notification extends Component
         $this->notifications = Auth::user()->unreadNotifications;
     }
 
-    public function showAll(): void
-    {
-        $this->redirectRoute('inside.allNotifications');
-    }
-
     public function render(): View
     {
         return view('livewire.ui.user.notification');

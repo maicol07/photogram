@@ -9,8 +9,8 @@
                                  src="{{Storage::disk('public')->url('profile/images/' . $this->post->user->profileImage)}}"
                                  alt="@lang(":username's profile image", ['username' => $this->post->user->username ])"/>
                         @else
-                            <i class="mdi mdi-account mdc-button__icon user-post-image" id="user-post-image" aria-hidden="true"
-                               alt="{{$this->post->user->username}}" ></i>
+                            <span class="mdi mdi-account mdc-button__icon user-post-image" id="user-post-image" aria-hidden="true"
+                               aria-label="@lang(":username's profile image", ['username' => $this->post->user->username ])" ></span>
                         @endif
                         <span id="nametag-{{$this->post->id}}" class="nametag" >{{$this->post->user->username}}</span>
                     </a>

@@ -46,7 +46,7 @@
     @endif
 
     @if($icon)
-            <i class="mdi mdi-{{$icon}} mdc-text-field__icon mdc-text-field__icon--leading" aria-hidden="true"></i>
+            <span class="mdi mdi-{{$icon}} mdc-text-field__icon mdc-text-field__icon--leading" aria-hidden="true"></span>
     @endif
 
     @if($textarea)

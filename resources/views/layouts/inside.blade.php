@@ -7,7 +7,7 @@
                 @php($isCurrentRoute = Route::currentRouteName() === $buttonNav['routeName'])
                 <x-list-item :href="route($buttonNav['routeName'])" :activated="$isCurrentRoute" :aria-current="$isCurrentRoute ? 'page' : null">
                     <x-slot:graphic>
-                        <i class="mdi mdi-{{$buttonNav['icon']}}" aria-hidden="true"></i>
+                        <span class="mdi mdi-{{$buttonNav['icon']}}" aria-hidden="true"></span>
                     </x-slot:graphic>
                     {{$keyNav}}
                 </x-list-item>

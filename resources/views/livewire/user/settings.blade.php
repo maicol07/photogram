@@ -6,13 +6,13 @@
             <x-list-item :text="$category['headline']" :secondary-text="$category['supportingText']"
                          wire:click="openCategory('{{$slug}}')" :data-danger="Arr::get($category, 'danger')" :tabindex="$first === $category ? 0 : null">
                 <x-slot:graphic>
-                    <i class="mdi mdi-{{$category['icon']}} dialog-icon" aria-hidden="true"></i>
+                    <span class="mdi mdi-{{$category['icon']}} dialog-icon" aria-hidden="true"></span>
                 </x-slot:graphic>
                 <x-slot:meta>
                     @if(Arr::get($category, 'trailingIcon'))
-                        <i class="mdi mdi-{{$category['trailingIcon']}}"></i>
+                        <span class="mdi mdi-{{$category['trailingIcon']}}"></span>
                     @elseif(Arr::get($category, 'trailingIcon') !== false)
-                        <i class="mdi mdi-pencil"></i>
+                        <span class="mdi mdi-pencil"></span>
                     @endif
                 </x-slot:meta>
             </x-list-item>

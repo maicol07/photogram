@@ -1,5 +1,5 @@
 <div id="user-notification" class="mdc-menu-surface--anchor">
-    <x-button class="mdc-top-app-bar__action-item" id="notification" outlined iconButton
+    <x-button class="mdc-top-app-bar__action-item" id="notification" outlined iconButton :aria-label="__('open the notifications menu')"
               :icon="$notifications->isEmpty() ? 'bell' : 'bell-badge'" wire:click="openNotification"/>
     <x-menu id="menu-notifications">
             <x-list role="menu" aria-orientation="vertical" aria-hidden="true" aria-orientation="vertical"

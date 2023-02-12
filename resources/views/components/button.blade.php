@@ -30,7 +30,7 @@
         <span class="mdc-{{$iconButton ? 'icon-button__focus-ring' : 'button__focus-ring'}}" wire:ignore></span>
 
         @if($icon && !$trailingIcon)
-            <i class="mdi mdi-{{$icon}} mdc-button__icon" aria-hidden="true"></i>
+            <span class="mdi mdi-{{$icon}} mdc-button__icon" aria-hidden="true"></span>
         @endif
 
         @if(!$iconButton)
@@ -42,7 +42,7 @@
         @endisset
 
         @if($icon && $trailingIcon)
-            <i class="mdi mdi-{{$icon}} {{$iconButton ? 'mdc-icon-button__icon' : 'mdc-button__icon' }}" aria-hidden="true"></i>
+            <span class="mdi mdi-{{$icon}} {{$iconButton ? 'mdc-icon-button__icon' : 'mdc-button__icon' }}" aria-hidden="true"></span>
         @endif
 
         @if($iconButton)

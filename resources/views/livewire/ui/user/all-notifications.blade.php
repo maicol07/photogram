@@ -2,19 +2,19 @@
     <x-list>
         @foreach(Auth::user()->notifications as $notification)
                 @php($user = \App\Models\User::find($notification->data['user_id']))
-                <x-list-item class="without-ripple" :ripple="false">
+                <x-list-item class="without-ripple" :ripple="false" :tabindex="Auth::user()->notifications->search($notification) === 0 ? 0 : null">
                     <x-slot:graphic>
                         @if(!$user->profileImage)
-                            <i class="mdi mdi-account-circle mdc-button__icon dialog-icon " aria-hidden="true"></i>
+                            <span class="mdi mdi-account-circle mdc-button__icon dialog-icon" role="img" aria-label="{{__(":user's profile image", ['user' => $user->username])}}"></span>
                         @else
                             <img class="mdc-elevation--z4 list-follower-image"
                                  src="{{Storage::disk('public')->url('profile/images/' . $user->profileImage)}}"
-                                 alt="Profile Image">
+                                 alt="{{__(":user's profile image", ['user' => $user->username])}}">
                         @endif
                     </x-slot:graphic>
                     <x-slot:meta>
                         @if(!$notification->read())
-                            <x-button class="read-notification" iconButton icon="check-circle-outline" wire:click="markAsRead({{$notification}})"/>
+                            <x-button class="read-notification" iconButton icon="check-circle-outline" wire:click="markAsRead({{$notification}})" :aria-label="__('mark the notification as read')"/>
                         @endif
                     </x-slot:meta>
                     <!--suppress CssUnresolvedCustomProperty (FALSE POSITIVE) -->
@@ -40,3 +40,4 @@
         @endforeach
     </x-list>
 </x-card>
+

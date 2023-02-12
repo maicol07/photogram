@@ -1,19 +1,19 @@
 <form wire:submit.prevent="accept">
     <div class="mdc-layout-grid__inner" id="dialog-layout">
-        <span class="mdc-layout-grid__cell--span-{{$image && !$errors->has('image') ? 4 : 6}} dialog-label">
+        <span class="mdc-layout-grid__cell--span-{{$image && !$errors->has('image') ? 4 : 6}} dialog-label" id="update-image">
             @lang('Update profile image'):
         </span>
         <div class="mdc-layout-grid__cell--span-{{$image && !$errors->has('image') ? 4 : 6}}">
             <x-button id="attachment-btn" outlined :label="__('Upload File')" icon="upload" type="button" />
         </div>
         <input wire:model="image" id="edit-image" name="image" type="file"
-               accept=".jpg,.jpeg,.png,.gif,.bmp,.svg,.webp" />
+               accept=".jpg,.jpeg,.png,.gif,.bmp,.svg,.webp" aria-labelledby="update-image"/>
         @error('image')<span class="error-dialog mdc-layout-grid__cell--span-12">{{ $message }}</span>@enderror
        <x-snackbar id="update-image-profile"/>
         @if ($image && !$errors->has('image'))
-            <div class="mdc-layout-grid__cell--span-4">
+            <output class="mdc-layout-grid__cell--span-4">
                 @lang('Updated file'): {{$image->getClientOriginalName()}}
-            </div>
+            </output>
             <span class="mdc-layout-grid__cell--span-4-desktop mdc-layout-grid__cell--span-2-phone">
                 @lang('Image Preview'):
             </span>
