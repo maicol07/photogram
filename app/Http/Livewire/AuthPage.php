@@ -20,7 +20,6 @@ abstract class AuthPage extends Page
             "name" => __("Name"),
             "surname" => __("Surname"),
             "email" => __("Email"),
-            "dateOfBirth" => __("Date of birth"),
             "password_confirmation" => __("Password confirmation"),
         ];
     }

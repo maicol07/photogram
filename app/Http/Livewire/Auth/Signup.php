@@ -76,7 +76,6 @@ class Signup extends AuthPage
             "name" => __("Name"),
             "surname" => __("Surname"),
             "email" => __("Email"),
-            "dateOfBirth" => __("Date of birth"),
             "repeatPassword" => __("Repeated Password"),
         ]);
     }
