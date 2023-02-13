@@ -22,8 +22,8 @@
     <x-dialog id="account-dialog" :title="__('Account settings')">
         <form wire:submit.prevent="saveAccountSettings">
             <p>@lang('Here you can change your username and email address.')</p>
-            <x-textfield name="username" wire:model="user.username" :label="__('Username')" icon="account-outline"></x-textfield>
-            <x-textfield name="email" wire:model="user.email" type="email" :label="__('Email')" icon="email-outline"></x-textfield>
+            <x-textfield name="username" wire:model.lazy="user.username" :label="__('Username')" icon="account-outline"></x-textfield>
+            <x-textfield name="email" wire:model.lazy="user.email" type="email" :label="__('Email')" icon="email-outline"></x-textfield>
             <div class="mdc-dialog__actions">
                 <x-button :label="__('Cancel')" dialog-button data-mdc-dialog-action="cancel"></x-button>
                 <x-button type="submit" :label="__('Save')" icon="content-save-outline" dialog-button></x-button>
@@ -35,14 +35,14 @@
         <form wire:submit.prevent="saveSecuritySettings">
             @if($user->password)
                 <p>@lang(__('Here you can change your password.'))</p>
-                <x-textfield name="current_password" type="password" wire:model="current_password"
+                <x-textfield name="current_password" type="password" wire:model.lazy="current_password"
                              :label="__('Current password')" icon="lock-reset"></x-textfield>
             @else
                 <p>@lang(__('Here you can set your password.'))</p>
             @endif
 
-            <x-textfield name="password" type="password" wire:model="password" :label="__('Password')" icon="lock-outline"></x-textfield>
-            <x-textfield name="password_confirmation" type="password" wire:model="password_confirmation"
+            <x-textfield name="password" type="password" wire:model.lazy="password" :label="__('Password')" icon="lock-outline"></x-textfield>
+            <x-textfield name="password_confirmation" type="password" wire:model.lazy="password_confirmation"
                          :label="__('Confirm password')" icon="lock-check-outline"></x-textfield>
             <div class="mdc-dialog__actions">
                 <x-button :label="__('Cancel')" dialog-button data-mdc-dialog-action="cancel"></x-button>
