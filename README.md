@@ -121,6 +121,11 @@ php artisan migrate
 
 Before running the project, you will need to build the assets and migrate the database (see above).
 
+## Troubleshooting
+### Image failed to upload
+Check the `upload_max_filesize` and `post_max_size` variables in your php.ini file.
+If they are too low (2MB by default), you'll need to increase them.
+
 ### Development
 
 To run the PHP development server for the project, you will need to run the following command:
