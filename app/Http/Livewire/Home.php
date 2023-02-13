@@ -24,6 +24,6 @@ class Home extends InsidePage
     public function getPosts(): Collection
     {
         $followed_ids = auth()->user()?->follows()->pluck('users.id');
-        return Post::whereIn('user_id', $followed_ids)->get();
+        return Post::whereIn('user_id', $followed_ids)->orderBy('created_at', 'desc')->get();
     }
 }
