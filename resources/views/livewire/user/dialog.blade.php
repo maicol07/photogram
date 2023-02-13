@@ -4,7 +4,7 @@
             @lang('Update profile image'):
         </span>
         <div class="mdc-layout-grid__cell--span-{{$image && !$errors->has('image') ? 4 : 6}}">
-            <x-button id="attachment-btn" outlined :label="__('Upload File')" icon="upload" type="button" />
+            <x-button id="attachment-btn" :label="__('Upload File')" icon="upload"/>
         </div>
         <input wire:model="image" id="edit-image" name="image" type="file"
                accept=".jpg,.jpeg,.png,.gif,.bmp,.svg,.webp" aria-labelledby="update-image"/>
