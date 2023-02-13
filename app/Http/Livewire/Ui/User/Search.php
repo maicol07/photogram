@@ -23,7 +23,7 @@ class Search extends InsidePage
 
     public function updatedUsername(): void
     {
-        $this->users = User::where('username', 'LIKE', $this->username . '%')->pluck('username');
+        $this->users = User::where('username', 'LIKE', '%'. $this->username . '%')->pluck('username');
     }
 
     public function search(): void
