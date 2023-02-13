@@ -9,7 +9,6 @@ class LikeNotification extends BaseNotification
     public function toMail(): MailMessage
     {
         return (new MailMessage)
-            ->from('noreply@photogram')
             ->subject(__('New Like'))
             ->greeting(__('You have a new like'))
             ->line(__(':user liked your post', ['user' => $this->user->username]));

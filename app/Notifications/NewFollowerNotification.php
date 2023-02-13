@@ -10,7 +10,6 @@ class NewFollowerNotification extends BaseNotification
     public function toMail(): MailMessage
     {
         return (new MailMessage)
-            ->from('noreply@photogram')
             ->subject(__('New Follower'))
             ->greeting(__('You have a new follower'))
             ->line(__(':user started following you!', ['user' => $this->user->username]));
