@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Posts;
 
 use App\Http\Livewire\Traits\MDCDialogFeatures;
+use App\Http\Livewire\Traits\MDCMenuFeatures;
 use App\Http\Livewire\Traits\MDCMenuSurfaceFeatures;
 use App\Models\Comment;
 use App\Models\Post;
@@ -17,6 +18,7 @@ class PostView extends Component
 {
     use MDCMenuSurfaceFeatures;
     use MDCDialogFeatures;
+    use MDCMenuFeatures;
 
     public Post $post;
     public string $commentContent = '';
@@ -65,6 +67,7 @@ class PostView extends Component
         $this->editMode = true;
         $this->commentContent = $c->content;
         $this->editC = $c;
+        $this->dispatchBrowserEvent("edit-comment-{$this->post->id}");
     }
 
     public function likeToggle(): void
@@ -78,5 +81,16 @@ class PostView extends Component
     public function render(): View
     {
         return view('livewire.posts.post-view');
+    }
+
+    public function commentLikeToggle(int $commentId): void
+    {
+        $this->post->comments()->find($commentId)->likes()->toggle(Auth::user()->id);
+    }
+
+    public function deleteComment(int $commentId): void
+    {
+        $this->post->comments()->find($commentId)->delete();
+        $this->emitSelf('refreshPostView');
     }
 }
