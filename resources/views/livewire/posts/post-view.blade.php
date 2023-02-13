@@ -9,30 +9,34 @@
                                  src="{{Storage::disk('public')->url('profile/images/' . $this->post->user->profileImage)}}"
                                  alt="@lang(":username's profile image", ['username' => $this->post->user->username ])"/>
                         @else
-                            <span class="mdi mdi-account mdc-button__icon user-post-image" id="user-post-image" aria-hidden="true"
-                               aria-label="@lang(":username's profile image", ['username' => $this->post->user->username ])" ></span>
+                            <span class="mdi mdi-account mdc-button__icon user-post-image" id="user-post-image"
+                                  aria-hidden="true"
+                                  aria-label="@lang(":username's profile image", ['username' => $this->post->user->username ])"></span>
                         @endif
-                        <span id="nametag-{{$this->post->id}}" class="nametag" >{{$this->post->user->username}}</span>
+                        <span id="nametag-{{$this->post->id}}" class="nametag">{{$this->post->user->username}}</span>
                     </a>
                     @if($this->post->photo)
-                        <img src="{{Storage::disk('public')->url('post/images/' . $this->post->photo )}}" id="post-main-image-{{$this->post->id}}"
+                        <img src="{{Storage::disk('public')->url('post/images/' . $this->post->photo )}}"
+                             id="post-main-image-{{$this->post->id}}"
                              alt="@lang('Post main image')" class="post-main-image"/>
                     @endif
                     {{--section with number of likes and link shares--}}
                     <div id="post-options-{{$this->post->id}}" class="post-options">
 
-                        <x-button id="post-like-button-{{$this->post->id}}" :aria-label="__('Like this post')" iconButton wire:click="likeToggle"
-                                  :icon="$this->post->likes()->where('user_id', Auth::user()->id)->exists() ? 'thumb-up' : 'thumb-up-outline'" />
+                        <x-button id="post-like-button-{{$this->post->id}}" :aria-label="__('Like this post')"
+                                  iconButton wire:click="likeToggle"
+                                  :icon="$this->post->likes()->where('user_id', Auth::user()->id)->exists() ? 'thumb-up' : 'thumb-up-outline'"/>
 
                         <x-button id="post-likes-{{$this->post->id}}" label="{{$this->post->likes()->count()}}"
-                                  wire:click="openDialog('list-likes-{{$this->post->id}}')" />
+                                  wire:click="openDialog('list-likes-{{$this->post->id}}')"/>
 
                         @if(Auth::user()->id === $post->user->id)
-                            <x-button id="edit-post-button-{{$this->post->id}}" label="edit post" :href="route('inside.newPost', $this->post)"
-                                      variant="outlined" icon="pencil" />
+                            <x-button id="edit-post-button-{{$this->post->id}}" label="edit post"
+                                      :href="route('inside.newPost', $this->post)"
+                                      variant="outlined" icon="pencil"/>
                         @endif
                         <x-button id="share-button-{{$post->id}}" iconButton wire:click="share"
-                                      icon="share-variant-outline" :aria-label="__('Share this post')"/>
+                                  icon="share-variant-outline" :aria-label="__('Share this post')"/>
 
                         <x-menu-surface class='share-menu' id="share-menu-{{$this->post->id}}"
                                         anchor-id="share-button-{{$post->id}}" fixed>
@@ -58,7 +62,7 @@
                              :label="$this->editMode ? (__('Edit comment')) : (__('Add a comment'))"
                              wire:model="commentContent" maxlength="255"/>
             </div>
-            <x-button type="submit" id="add-comment-button-{{$this->post->id}}" icon="send-outline" icon-button />
+            <x-button type="submit" id="add-comment-button-{{$this->post->id}}" icon="send-outline" icon-button/>
         </form>
 
         {{-- --------------------------------------------=----------------------------------------------------------------------------------------------------}}
@@ -164,18 +168,21 @@
         {{------------------------------------------------------------------------------------------------------------------------------}}
     </x-card>
     <x-dialog id="list-likes-{{$this->post->id}}" :title="__('Users who liked this post:')">
-        <livewire:user.dialog-user-list :wire:key="$this->post->id . $this->post->likes->count()" :userList="$this->post->likes"/>
+        <livewire:user.dialog-user-list :wire:key="$this->post->id . $this->post->likes->count()"
+                                        :userList="$this->post->likes"/>
     </x-dialog>
 
     @stack('comment-options-' . $this->post->id)
 
     <script wire:ignore>
         window.addEventListener('edit-comment-{{$this->post->id}}', () => {
-          document.querySelector('#add-comment-content-{{$this->post->id}}').focus();
+            document.querySelector('#add-comment-content-{{$this->post->id}}')
+                .focus();
         });
-        document.querySelector('#copy-share-link-button-{{$this->post->id}}').addEventListener('click', () =>{
-            navigator.clipboard.writeText(@js(route('inside.viewPost', $this->post->id)));
-        });
+        document.querySelector('#copy-share-link-button-{{$this->post->id}}')
+            .addEventListener('click', () => {
+                navigator.clipboard.writeText(@js(route('inside.viewPost', $this->post->id)));
+            });
     </script>
 </article>
 

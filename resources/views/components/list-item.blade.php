@@ -31,8 +31,16 @@
     ])}}
 wire:ignore.self>
                 @isset($graphic)
-                    <span class="mdc-deprecated-list-item__graphic">
-                    {!! $graphic !!}
+                    @if($graphic->attributes->has('href'))
+                        <a href="{{$graphic->attributes->get('href')}}" class="mdc-deprecated-list-item__graphic"
+                           wire:ignore.self>
+                            {!! $graphic !!}
+                        </a>
+                    @else
+                        <span class="mdc-deprecated-list-item__graphic">
+                            {!! $graphic !!}
+                        </span>
+                    @endif
                 </span>
                 @endisset
                 @if($ripple)
