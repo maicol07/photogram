@@ -24,4 +24,9 @@ class Post extends Model
         return $this->belongsToMany(User::class, 'posts_likes');
     }
 
+    public function getURL(): string
+    {
+        return route('inside.viewPost', $this->id);
+    }
+
 }
