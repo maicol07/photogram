@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Ui\User;
 
 use App\Http\Livewire\InsidePage;
 use App\Http\Livewire\Traits\MDCDialogFeatures;
+use App\Http\Livewire\Traits\MDCSnackbarFeatures;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Collection;
@@ -11,6 +12,7 @@ use Illuminate\Support\Collection;
 class Search extends InsidePage
 {
     use MDCDialogFeatures;
+    use MDCSnackbarFeatures;
 
     public string $username = '';
 
@@ -18,7 +20,7 @@ class Search extends InsidePage
 
     public function mount(): void
     {
-        $this->users = collect();
+        $this->users = User::all()->pluck('username');
     }
 
     public function updatedUsername(): void
@@ -28,8 +30,11 @@ class Search extends InsidePage
 
     public function search(): void
     {
-        if (User::where('username', '=', $this->username)->exists()) {
+        $user = User::where('username', '=', $this->username)->exists();
+        if ($user) {
             $this->redirectRoute('inside.profile', ['username' => $this->username]);
+        } else {
+            $this->openSnackbar('searchMessage', __('User not found. Select a user from the textfield list.'));
         }
     }
 
