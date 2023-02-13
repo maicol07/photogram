@@ -25,7 +25,7 @@ class OAuthController extends Controller
         try {
             $user = Auth::user();
             if ($user === null) {
-                $user = User::updateOrCreate([
+                $user = User::firstOrCreate([
                     'google_id' => $googleUser->id,
                 ], [
                     'name' => $googleUser->user['given_name'],
