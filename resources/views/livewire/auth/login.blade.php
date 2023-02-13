@@ -17,7 +17,7 @@
         <x-button :label="__('Don\'t have an account? Signup')" :href="route('signup')" />
     @endpush
     <div class="oauth">
-        <div>@lang('Signup with:')</div>
+        <div>@lang('Login with:')</div>
         @php($google = (config('services.google.client_id') && config('services.google.redirect') && config('services.google.client_secret')))
         <x-button icon="google" variant="outlined" label="Google" wire:click="authGoogle" :disabled="!$google"/>
     </div>

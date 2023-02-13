@@ -27,7 +27,11 @@
                             @lang('started following you')
                             @break
                         @case(\App\Notifications\NewPostNotification::class)
-                            @lang('posted a new photo')
+                            @if($notification->data['post_url'] ?? null)
+                                <a href="{{$notification->data['post_url']}}">@lang('posted a new photo')</a>
+                            @else
+                                @lang('posted a new photo')
+                            @endif
                             @break
                         @case(\App\Notifications\CommentNotification::class)
                             @lang('commented your post')

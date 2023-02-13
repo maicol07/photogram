@@ -51,7 +51,7 @@ class CreatePost extends InsidePage
         $this->post->save();
 
         foreach ($this->post->user->followers as $follower) {
-            $follower->notify(new NewPostNotification($this->post->user));
+            $follower->notify(new NewPostNotification($this->post));
         }
 
         $this->redirectRoute('inside.viewPost', $this->post);
