@@ -19,7 +19,7 @@ class CreatePost extends InsidePage
     public int $maxLength = 1024;
 
     protected $rules = [
-        'image' => 'required',
+        'image' => 'required|image',
         'post.description' => 'nullable|string|max:1024',
         'post.photo' => 'nullable|string|max:1024'
     ];
