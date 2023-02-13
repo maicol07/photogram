@@ -46,6 +46,13 @@ class Dialog extends Component
         $this->emitUp('editProfile');
     }
 
+    public function removeImage(): void
+    {
+        $this->user->profileImage = null;
+        $this->user->save();
+        $this->emitUp('editProfile');
+    }
+
     public function updated(string $propertyName): void
     {
         $this->validateOnly($propertyName);

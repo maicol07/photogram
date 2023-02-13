@@ -28,8 +28,9 @@
                      id="edit-bio" :label="__('Edit Bio')"/>
     </div>
     <div class="mdc-dialog__actions">
-        <x-button dialog-button :label="__('Cancel')" variant="text" data-mdc-dialog-action="close"/>
-        <x-button dialog-button :label="__('OK')" variant="text" type="submit"/>
+        <x-button dialog-button :label="__('Remove profile image')" icon="delete" wire:click="removeImage" style="--mdc-theme-primary: var(--mdc-theme-error);"/>
+        <x-button dialog-button :label="__('Cancel')" data-mdc-dialog-action="close"/>
+        <x-button dialog-button :label="__('OK')" type="submit"/>
     </div>
 
     <script wire:ignore>
