@@ -3,10 +3,13 @@
 namespace App\Http\Livewire\Email;
 
 use App\Http\Livewire\AuthPage;
+use App\Http\Livewire\Traits\MDCSnackbarFeatures;
 use Illuminate\Contracts\View\View;
 
 class VerifyEmail extends AuthPage
 {
+    use MDCSnackbarFeatures;
+
     public function page(): View
     {
         return view('livewire.email.verify-email');
