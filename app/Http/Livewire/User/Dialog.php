@@ -16,7 +16,7 @@ class Dialog extends Component
 
     protected $rules = [
         'user.bio' => 'nullable|string|max:140',
-        'image' => 'nullable|file|image|max:1024'
+        'image' => 'nullable|file|image'
     ];
 
     /**
