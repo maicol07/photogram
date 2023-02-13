@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -54,19 +55,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'settings' => 'array'
     ];
 
-    public function getSettings(): array
+    public function username(): Attribute
     {
-        return $this->settings;
-    }
-
-    public function getSetting(string $key): mixed
-    {
-        return $this->settings[$key] ?? null;
-    }
-
-    public function setSetting(string $key, mixed $value): void
-    {
-        $this->settings[$key] = $value;
+        return Attribute::get(static fn ($value) => htmlspecialchars_decode($value));
     }
 
     public function posts(): HasMany
