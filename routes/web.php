@@ -70,7 +70,7 @@ Route::name('inside.')
         Route::get('/home', Home::class)
             ->name('home');
 
-        Route::get('/profile/{username?}', Profile::class)
+        Route::get('/profile/{user:username?}', Profile::class)
             ->name('profile');
 
         Route::get('/settings', Settings::class)

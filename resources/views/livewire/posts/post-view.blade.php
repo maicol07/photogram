@@ -3,7 +3,7 @@
         <div class="mdc-layout-grid">
             <div class="mdc-layout-grid__inner">
                 <div class="mdc-layout-grid__cell--span-8">
-                    <a class="namebar" href="{{route('inside.profile', $this->post->user->username)}}">
+                    <a class="namebar" href="{!! route('inside.profile', $this->post->user->username) !!}">
                         @if($this->post->user->profileImage)
                             <img class="mdc-button__icon user-post-image" aria-hidden="true" id="user-post-image"
                                  src="{{Storage::disk('public')->url('profile/images/' . $this->post->user->profileImage)}}"
@@ -82,7 +82,7 @@
                             @endif
                         </x-slot:graphic>
 
-                        <a class="comment-name" href="{{route('inside.profile', $c->user->username)}}">
+                        <a class="comment-name" href="{!! route('inside.profile', $c->user->username) !!}">
                             {{ $c->user->username }}
                         </a>
                         <div class="comment-content">

@@ -18,7 +18,7 @@
                         @endif
                     </x-slot:meta>
                     <!--suppress CssUnresolvedCustomProperty (FALSE POSITIVE) -->
-                    <a href="{{route('inside.profile', ['username' => $user->username])}}"
+                    <a href="{!! route('inside.profile', ['username' => $user->username]) !!}"
                        style="color: var(--mdc-text-button-label-text-color, var(--mdc-theme-primary, #6200EE))">
                         {{$user->username}}
                     </a>

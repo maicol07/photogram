@@ -18,9 +18,9 @@ class Profile extends InsidePage
 
     protected $listeners = ['editProfile' => 'editProfile', 'followersChanged' => '$refresh'];
 
-    public function mount(?string $username = null): void
+    public function mount(User $user): void
     {
-        $this->user = $username ? User::where('username', $username)->first() : Auth::user();
+        $this->user = $user->exists ? $user : Auth::user();
     }
 
     public function editProfile(): void
