@@ -53,4 +53,9 @@ abstract class BaseNotification extends Notification implements ShouldQueue
     }
 
     abstract public static function getNotificationDescription(): string;
+
+    public function getUserDisplayString(): string
+    {
+        return "{$this->user->name} {$this->user->surname} ({$this->user->username})";
+    }
 }

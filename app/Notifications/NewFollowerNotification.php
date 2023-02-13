@@ -12,7 +12,7 @@ class NewFollowerNotification extends BaseNotification
         return (new MailMessage)
             ->subject(__('New Follower'))
             ->greeting(__('You have a new follower'))
-            ->line(__(':user started following you!', ['user' => $this->user->username]));
+            ->line(__(':user started following you!', ['user' => $this->getUserDisplayString()]));
     }
 
     public static function getNotificationDescription(): string

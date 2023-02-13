@@ -11,7 +11,7 @@ class LikeNotification extends BaseNotification
         return (new MailMessage)
             ->subject(__('New Like'))
             ->greeting(__('You have a new like'))
-            ->line(__(':user liked your post', ['user' => $this->user->username]));
+            ->line(__(':user liked your post', ['user' => $this->getUserDisplayString()]));
     }
 
     public static function getNotificationDescription(): string

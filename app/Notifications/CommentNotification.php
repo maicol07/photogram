@@ -11,7 +11,7 @@ class CommentNotification extends BaseNotification
         return (new MailMessage)
             ->subject(__('New Comment'))
             ->greeting(__('You have a new comment'))
-            ->line(__(':user commented your photo', ['user' => $this->user->username]));
+            ->line(__(':user commented your photo', ['user' => $this->getUserDisplayString()]));
     }
 
     public static function getNotificationDescription(): string
