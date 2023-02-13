@@ -287,7 +287,22 @@ window.mdcComponentsDefinitions = {
   },
   '.mdc-deprecated-list': {
     slug: 'list',
-    component: MDCList
+    component: MDCList,
+    afterInit: [
+      /**
+       * @param {HTMLElement} element The list element
+       * @param {MDCList} instance The list instance
+       */
+      (element, instance) => {
+        for (const item of instance.listElements) {
+          item.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              item.click();
+            }
+          });
+        }
+      }
+    ]
   }
 };
 

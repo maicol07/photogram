@@ -144,22 +144,6 @@
                                 @endif
                             </x-list>
                         </x-menu>
-                        <script>
-                            /* eslint-disable indent */
-
-                            // Fix for mdc list item not being keyboard-clickable (accessibility)
-                            document.addEventListener('DOMContentLoaded', () => {
-                                const menuitems = document.querySelector('#comment-option-menu-{{$c->id}}')
-                                    .querySelectorAll('.mdc-deprecated-list-item');
-                                for (const item of menuitems) {
-                                    item.addEventListener('keydown', (event) => {
-                                        if (event.key === 'Enter' || event.key === ' ') {
-                                            item.click();
-                                        }
-                                    });
-                                }
-                            });
-                        </script>
                     @endpush
                 @endforeach
             </x-list>
