@@ -50,6 +50,7 @@
 @include checkbox.core-styles;
 @include form-field.core-styles;
 
+//noinspection CssUnknownTarget
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600;700&display=swap');
 @import 'include-media';
 

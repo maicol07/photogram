@@ -59,3 +59,8 @@ main > div:first-of-type {
     height: 150px;
     font-size: 150px;
 }
+
+a.mdc-top-app-bar__title {
+    text-decoration: none;
+    color: var(--mdc-theme-on-primary);
+}

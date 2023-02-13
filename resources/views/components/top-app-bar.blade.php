@@ -11,7 +11,7 @@
             <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
                 <x-button class="mdc-top-app-bar__navigation-icon" id="{{$id}}" outlined iconButton
                               icon="{{$menuIcon}}" :aria-label="__('Open navigation menu')"/>
-                <span class="mdc-top-app-bar__title">{{$title}}</span>
+                <a class="mdc-top-app-bar__title" href="{{route('inside.home')}}">{{$title}}</a>
             </section>
         @endempty
         <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-end" role="toolbar">
