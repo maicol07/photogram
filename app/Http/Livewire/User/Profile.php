@@ -30,18 +30,21 @@ class Profile extends InsidePage
 
     public function follow(): void
     {
-        $this->user->followers()->attach(Auth::user()->id);
-        $this->user->notify((new NewFollowerNotification(Auth::user())));
-        $this->user->save();
-        $this->emitSelf('followerChanged');
-
+        if (!$this->user->followers->contains(Auth::user()->id)) {
+            $this->user->followers()->attach(Auth::user()->id);
+            $this->user->notify((new NewFollowerNotification(Auth::user())));
+            $this->user->save();
+            $this->emitSelf('followerChanged');
+        }
     }
 
     public function unfollow(): void
     {
-        $this->user->followers()->detach(Auth::user()->id);
-        $this->user->save();
-        $this->emitSelf('followerChanged');
+        if ($this->user->followers->contains(Auth::user()->id)) {
+            $this->user->followers()->detach(Auth::user()->id);
+            $this->user->save();
+            $this->emitSelf('followerChanged');
+        }
     }
 
     public function getTitle(): string
