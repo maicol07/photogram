@@ -32,7 +32,7 @@ class Search extends InsidePage
     {
         $user = User::where('username', '=', $this->username)->exists();
         if ($user) {
-            $this->redirectRoute('inside.profile', ['username' => $this->username]);
+            $this->redirectRoute('inside.profile', $this->username);
         } else {
             $this->openSnackbar('searchMessage', __('User not found. Select a user from the textfield list.'));
         }

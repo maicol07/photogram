@@ -25,7 +25,7 @@
                                 <x-button iconButton icon="check-circle-outline" :wire:key="$notification->id" wire:click="markAsRead({{$notification}})" :aria-label="__('mark the notification as read')"/>
                             </x-slot:meta>
                             <!--suppress CssUnresolvedCustomProperty (FALSE POSITIVE) -->
-                            <a href="{!! route('inside.profile', ['username' => $user->username]) !!}"
+                            <a href="{!! route('inside.profile', $user->username) !!}"
                                style="color: var(--mdc-text-button-label-text-color, var(--mdc-theme-primary, #6200EE))">
                                 {{$user->username}}
                             </a>
