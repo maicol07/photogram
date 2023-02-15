@@ -24,7 +24,7 @@ class Signup extends AuthPage
         'name' => 'required|string',
         'surname' => 'required|string',
         'email' => 'required|email|unique:App\Models\User,email',
-        'username' => 'required|max:20|min:4|string|unique:App\Models\User,username',
+        'username' => 'required|max:20|min:4|string|unique:App\Models\User,username|alpha_dash',
         'password' => 'required|max:24|min:8|string',
         'password_confirmation' => 'required|same:password',
     ];
