@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Auth;
 
 use App\Http\Livewire\AuthPage;
+use App\Http\Livewire\Traits\MDCSnackbarFeatures;
 use Hash;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Contracts\View\View;
@@ -11,6 +12,7 @@ use Str;
 
 class ResetPassword extends AuthPage
 {
+    use MDCSnackbarFeatures;
     public string $token;
     public string $email = '';
     public string $password = '';
@@ -36,12 +38,12 @@ class ResetPassword extends AuthPage
     {
         $this->validate();
 
-        Password::reset(
+        $success = Password::reset(
             [
-            'email' => $this->email,
-            'password' => $this->password,
-            'password_confirmation' => $this->password_confirmation,
-            'token' => $this->token,
+                'email' => $this->email,
+                'password' => $this->password,
+                'password_confirmation' => $this->password_confirmation,
+                'token' => $this->token,
             ],
             static function ($user, $password) {
                 $user->forceFill([
@@ -53,7 +55,11 @@ class ResetPassword extends AuthPage
                 event(new PasswordReset($user));
             }
         );
-        $this->redirectRoute('login');
+        if ($success !== Password::PASSWORD_RESET) {
+            $this->openSnackbar('reset-password-snackbar', __($success));
+        } else {
+            $this->redirectRoute('login');
+        }
     }
 
     public function updated(string $propertyName): void

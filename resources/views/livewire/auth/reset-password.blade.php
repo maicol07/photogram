@@ -9,5 +9,6 @@
     @push('bottom')
         <x-button :label="__('Don\'t have an account? Signup')" :href="route('signup')" />
     @endpush
+    <x-snackbar id="reset-password-snackbar"></x-snackbar>
 </div>
 
