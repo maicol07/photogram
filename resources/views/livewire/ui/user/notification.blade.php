@@ -4,7 +4,7 @@
     <x-menu id="menu-notifications">
             <x-list role="menu" aria-orientation="vertical" aria-hidden="true" tabindex="-1">
                 @if($notifications->isEmpty())
-                    <x-list-item role="menuitem">@lang('You do not have notifications')</x-list-item>
+                    <x-list-item class="without-ripple" :ripple="false" role="menuitem">@lang('You do not have notifications')</x-list-item>
                 @else
                     @foreach($notifications as $notification)
                         @php
@@ -48,14 +48,14 @@
                                     @break
                             @endswitch
                         </x-list-item>
-                    @endforeach
-                    <x-list-item :href="route('inside.allNotifications')">
-                        <x-slot:graphic>
-                            <span class="mdi mdi-plus mdc-button__icon dialog-icon" aria-label="{{__('show all notifications')}}" aria-hidden="true" role="listitem" ></span>
-                        </x-slot:graphic>
-                        @lang('View all')
-                    </x-list-item>
+                    @endforeach                  
                 @endif
+                <x-list-item :href="route('inside.allNotifications')">
+                    <x-slot:graphic>
+                        <span class="mdi mdi-plus mdc-button__icon dialog-icon" aria-label="{{__('show all notifications')}}" aria-hidden="true" role="listitem" ></span>
+                    </x-slot:graphic>
+                    @lang('View all')
+                </x-list-item>
             </x-list>
     </x-menu>
 </div>
