@@ -4,7 +4,7 @@
     <x-menu id="menu-notifications">
             <x-list role="menu" aria-orientation="vertical" aria-hidden="true" tabindex="-1">
                 @if($notifications->isEmpty())
-                    <x-list-item role="menuitem">@lang('You do not have notifications')</x-list-item>
+                    <x-list-item class="without-ripple" :ripple="false" role="menuitem">@lang('You do not have notifications')</x-list-item>
                 @else
                     @foreach($notifications as $notification)
                         @php
