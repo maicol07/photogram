@@ -13,7 +13,7 @@ class VerifyEmail extends AuthPage
     public function mount(): void
     {
         if (request()?->user()?->hasVerifiedEmail()) {
-            $this->redirectRoute('home');
+            $this->redirectRoute('inside.home');
         }
     }
 
