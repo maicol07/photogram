@@ -10,6 +10,13 @@ class VerifyEmail extends AuthPage
 {
     use MDCSnackbarFeatures;
 
+    public function mount(): void
+    {
+        if (request()?->user()?->hasVerifiedEmail()) {
+            $this->redirectRoute('home');
+        }
+    }
+
     public function page(): View
     {
         return view('livewire.email.verify-email');

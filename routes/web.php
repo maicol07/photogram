@@ -56,8 +56,6 @@ Route::group(['middleware' => ['auth'], 'excluded_middleware' => 'verified'], st
     Route::get('/email/verify-email', VerifyEmail::class)
         ->name('verification.notice');
 
-    Route::redirect('/email/verify-email', '/', 301)->middleware('verified');
-
     Route::get('/email/verify-email/{id}/{hash}', static function (EmailVerificationRequest $request) {
         $request->fulfill();
         return redirect()->route('inside.home');
