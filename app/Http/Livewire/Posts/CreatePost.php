@@ -18,12 +18,6 @@ class CreatePost extends InsidePage
     public $image;
     public int $maxLength = 1024;
 
-    protected $rules = [
-        'image' => 'required|file|image',
-        'post.description' => 'nullable|string|max:1024',
-        'post.photo' => 'nullable|string|max:1024'
-    ];
-
     public function getTitle(): string
     {
         if ($this->post->exists) {
@@ -38,6 +32,22 @@ class CreatePost extends InsidePage
         if ($post instanceof Post) {
             $this->image = $post->photo;
         }
+    }
+
+    public function getRules()
+    {
+        $imageRules = ['required'];
+
+        if ($this->image instanceof TemporaryUploadedFile) {
+            $imageRules[] = 'file';
+            $imageRules[] = 'image';
+        }
+
+        return [
+            'image' => $imageRules,
+            'post.description' => 'nullable|string|max:1024',
+            'post.photo' => 'nullable|string|max:1024'
+        ];
     }
 
     public function upload(): void
