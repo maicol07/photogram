@@ -103,7 +103,7 @@ To login to the app with Google, you'll need to get credentials. To get credenti
    5. Return to the "Credentials" section
 6. Create new credentials and select "OAuth client ID"
 7. Select the "Web application" type
-8. Set the "Authorized redirect URIs" to `http://localhost:8000/login/google/callback` (or the URL of your project) and create
+8. Set the "Authorized redirect URIs" to `http://localhost:8000/auth/google/callback` (or the URL of your project) and create
 9. Set the `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `GOOGLE_REDIRECT_URI` variables in .env file with the credentials got
 
 ## Database
